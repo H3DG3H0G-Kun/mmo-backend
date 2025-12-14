@@ -1,0 +1,17 @@
+# Default to LF for everything
+* text=auto eol=lf
+
+# Windows scripts must stay CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts LF
+*.sh text eol=lf
+
+# Configs and sources LF
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
