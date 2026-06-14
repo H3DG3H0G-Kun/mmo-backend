@@ -235,13 +235,24 @@ What made the L2 world feel alive — restated as enforceable pillars:
 Echoes** (§6) are the L2 epic-boss moments — server-shared, fought over, the source of server
 legend. The **Living Timeline** is the communal server-history layer those acts build.
 
-**Conflict / PvP framing (director's proposal — needs your call):** L2's soul includes
-open-world PvP and sieges. To fit our "*remember, restore, protect — belonging, not
-conquest*" theme, conflict is reframed in-fiction: not all Watchers agree on how memory should
-be kept. Some restore it truthfully; others — **Revisionists**, the distortion-touched — would
-bend it. Contested sacred sites, World Echoes, and clan sieges over places of power become the
-battlegrounds. PvP carries L2-grade consequence, but is *justified by the memory-war*. **Open
-question for you:** full open-world PvP, contested-zones-only, or consensual/duel-and-siege?
+**Conflict / PvP model — DECIDED: contested-zones + sieges (the model that fits Georgian
+history most).** Georgian history *is* fortress history — an unbroken chain of stronghold
+defenses and sieges against invaders, and a recurring arc of fragmentation giving way to unity
+against a force that would erase the homeland's faith and memory. That maps exactly onto both
+L2's legendary siege endgame and our theme. So:
+
+- **Homeland, towns, and ordinary hunting grounds are safe** (no ganking countrymen — that
+  would betray the *belonging, not conquest* theme).
+- **Places of power, World Echoes, and siege sites are open, consequential PvP** — the
+  contested sacred ground.
+- **Sieges are the centerpiece** — clans/Orders fight over strongholds and places of power,
+  the most Georgian large-scale conflict there is, and the L2-soul set-piece.
+
+In-fiction, conflict is the **memory-war**: not all Watchers agree how memory should be kept.
+**Restorers** hold it true; **Revisionists** — the distortion-touched — would bend it. PvP
+carries L2-grade consequence (karma/reputation), but is always *over ground and memory*, never
+idle slaughter. The backend should keep the model dial-able (the safe/contested boundary is
+data), but contested-zones-+-sieges is the design target.
 
 **Backend implications (build-time, since we are backend-first):** this pillar must not be
 retrofitted — the architecture must allow it from the start, even if features ship later:

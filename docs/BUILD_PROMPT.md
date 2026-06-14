@@ -138,9 +138,12 @@ Stop after Phase 0 and give me a short status + how you verified each item befor
   world feel like L2: area-of-interest / interest management for a seamless world, clans &
   alliances, **sieges over places of power**, contested **World Echoes / world bosses** with
   fair shared spawn authority + anti-grief, player-driven **economy** (player shops, crafting,
-  trade), persistent **reputation/identity**, and the chosen **PvP/conflict model**. Heavy
-  systems — sequenced after the narrative core is proven, but the architecture from E06 onward
-  must not preclude them (principle #4). Decide the PvP model with me before building it.
+  trade), persistent **reputation/identity**, and the **PvP/conflict model**. PvP model is
+  **decided: contested-zones + sieges** (safe homeland/towns; open consequential PvP at places
+  of power, World Echoes, and siege sites; sieges as centerpiece; memory-war fiction — fits
+  Georgian fortress history). Keep the safe/contested boundary **data-driven** so it stays
+  dial-able. Heavy systems — sequenced after the narrative core is proven, but the architecture
+  from E06 onward must not preclude them (principle #4). See [GAME_DESIGN.md](GAME_DESIGN.md) §7.
 
 ## 6. How I want you to work (working agreement)
 
