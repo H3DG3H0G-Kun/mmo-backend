@@ -56,4 +56,11 @@ public class CharacterService {
     public Optional<PlayerCharacter> findOwned(UUID accountId, UUID characterId) {
         return characters.findByIdAndAccountId(characterId, accountId);
     }
+
+    /** Persist a character's move to a new era (the timeline layer validates eligibility first). */
+    @Transactional
+    public PlayerCharacter relocate(PlayerCharacter character, Era era) {
+        character.moveToEra(era);
+        return characters.save(character);
+    }
 }

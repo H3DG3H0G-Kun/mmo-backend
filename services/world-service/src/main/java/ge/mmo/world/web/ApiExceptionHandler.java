@@ -31,8 +31,10 @@ public class ApiExceptionHandler {
         String type = ex.getClass().getSimpleName();
         HttpStatus status = switch (type) {
             case "CharacterNameTakenException", "TooManyCharactersException",
-                 "ResonanceClosedException", "NoActiveProgressException" -> HttpStatus.CONFLICT;
-            case "CharacterNotFoundException", "TaleNotFoundException" -> HttpStatus.NOT_FOUND;
+                 "ResonanceClosedException", "NoActiveProgressException",
+                 "EraLockedException" -> HttpStatus.CONFLICT;
+            case "CharacterNotFoundException", "TaleNotFoundException",
+                 "EraNotFoundException" -> HttpStatus.NOT_FOUND;
             case "InvalidChoiceException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "NoStartingEraException" -> HttpStatus.INTERNAL_SERVER_ERROR;
             default -> null;

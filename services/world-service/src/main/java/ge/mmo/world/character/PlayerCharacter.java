@@ -43,6 +43,11 @@ public class PlayerCharacter {
         this.currentEra = currentEra;
     }
 
+    /** Move this Watcher to another era (travel must be validated by the backend first). */
+    public void moveToEra(Era era) {
+        this.currentEra = era;
+    }
+
     public UUID getId() {
         return id;
     }

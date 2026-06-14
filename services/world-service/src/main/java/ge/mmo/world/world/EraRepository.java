@@ -11,4 +11,7 @@ public interface EraRepository extends JpaRepository<Era, Integer> {
 
     /** The starting eras open to new Watchers, earliest first. */
     List<Era> findByDefaultUnlockedTrueOrderByOrdinalAsc();
+
+    /** All eras in timeline order. */
+    List<Era> findAllByOrderByOrdinalAsc();
 }

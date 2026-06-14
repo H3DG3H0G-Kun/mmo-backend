@@ -69,9 +69,13 @@ Read both before feature work.
   (resonances/enter/advance with `TaleProgress`), REST under `/api/narrative`, Flyway `V2`
   seeding the Parnavaz tale. Verified live: walk→resonate→enter→Witness/Ward→complete→era unlock.
   (A "Tale" in code = the design's "Thread".)
-- **Next: E08/E09** — instances & party (Tales as solo/party/raid instances, public World Echoes)
-  and the world/timeline (persist era unlocks → the Living Timeline). Era-unlock persistence is
-  currently surfaced by the engine but not yet stored (deferred to E09).
+- **E09 DONE.** Timeline in `world-service` (`timeline` package): per-character `character_era_unlock`,
+  server-wide `timeline_progress` (Living Timeline), `TimelineService` (unlock/isUnlocked/listEras/
+  travel/recordRestoration), REST under `/api/world` (eras, travel, timeline), Flyway `V3`. Tale
+  completion now persistently unlocks the era + increments the Living Timeline. Verified live:
+  locked era → 409, complete tale → era unlocks → travel 200 → counter ticks.
+- **Next: E08** — party & instances (Tales as solo/party/raid runs, public World Echoes), then
+  E11 contracts, E14 the Lineage 2 social/territory layer, E10 Godot.
 
 ## Build / verify commands (Windows)
 

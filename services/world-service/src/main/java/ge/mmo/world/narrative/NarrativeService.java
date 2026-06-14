@@ -2,6 +2,7 @@ package ge.mmo.world.narrative;
 
 import ge.mmo.world.character.CharacterService;
 import ge.mmo.world.character.PlayerCharacter;
+import ge.mmo.world.timeline.TimelineService;
 import ge.mmo.world.narrative.NarrativeEnums.Interaction;
 import ge.mmo.world.narrative.NarrativeEnums.Progress;
 import ge.mmo.world.narrative.NarrativeViews.BeatView;
@@ -33,11 +34,12 @@ public class NarrativeService {
     private final TaleProgressRepository progressRepo;
     private final ResonanceEvaluator evaluator;
     private final CharacterService characters;
+    private final TimelineService timeline;
 
     public NarrativeService(SagaRepository sagas, TaleRepository tales, BeatRepository beats,
                             BeatEdgeRepository edges, TriggerConditionRepository conditions,
                             TaleProgressRepository progressRepo, ResonanceEvaluator evaluator,
-                            CharacterService characters) {
+                            CharacterService characters, TimelineService timeline) {
         this.sagas = sagas;
         this.tales = tales;
         this.beats = beats;
@@ -46,6 +48,7 @@ public class NarrativeService {
         this.progressRepo = progressRepo;
         this.evaluator = evaluator;
         this.characters = characters;
+        this.timeline = timeline;
     }
 
     /** Which Tales resonate (the Herald appears) for this Watcher, here and now. */
@@ -113,6 +116,11 @@ public class NarrativeService {
         if (current.isTerminal()) {
             progress.complete();
             progressRepo.save(progress);
+            // Reward + Living Timeline: unlock the era this Tale opens, and record the restoration.
+            if (tale.getUnlocksEraId() != null) {
+                timeline.unlockEra(characterId, tale.getUnlocksEraId());
+            }
+            sagas.findById(tale.getSagaId()).ifPresent(s -> timeline.recordRestoration(s.getEraId()));
             return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
                     progress.getStatus().name(), null, tale.getUnlocksEraId());
         }
