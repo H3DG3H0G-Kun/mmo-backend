@@ -130,9 +130,16 @@ Read both before feature work.
   Dev CORS added to both services (`WebCorsConfig`, permissive — lock down per-env). Verified live:
   page served 200, auth login CORS preflight ok, world CORS ok, import path works. Open
   `http://localhost:8090/studio/` (or `:18090` when run locally) after starting the stack.
-- **Client direction:** eventual 3D game client → **Unity** (most AI-buildable mature 3D; C#).
-  Built but unverifiable here — generate scripts/scenes, user runs the editor.
-- **Still open / next:** E10 Unity/Godot game client (scaffold only; can't run here).
+- **Client direction:** 3D game client → **Unity** (most AI-buildable mature 3D; C#).
+- **Unity client SCAFFOLD created** in `clients/unity-client/` (drop-in `Assets/Scripts`, not
+  compiled in an editor here): `ApiClient` (REST login/register/character), `GameSocket`
+  (System.Net.WebSockets + Newtonsoft; hello/enter/move + typed presence events, main-thread
+  `Poll`), `WorldManager`/`RemoteWatcher` (capsules from snapshot/join/move/left, WASD local
+  move → `MOVE`), `GameBootstrap` (register-or-login → ensure char → connect → enter). README
+  has Unity 6 setup. "Prove the pipe" milestone: login → WS → walk → see others move.
+- **Still open / next:** user opens the Unity project to run/iterate the client; then tale/clan/
+  siege/combat UIs. Backend hardening (combat→siege wiring, persistent HP, Redis/Kafka AoI,
+  refresh tokens, 401→403 admin polish) remains.
   Later: wire combat into siege/encounter contribution, persistent character stats/HP,
   multi-instance AoI (Redis/Kafka fan-out), Kafka event backbone, refresh tokens/rate-limit.
 

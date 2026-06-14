@@ -1,0 +1,6 @@
+{
+  "//": "Reference only. Your Unity-generated project has its own Packages/manifest.json; just make sure Newtonsoft JSON is present (add via Package Manager: com.unity.nuget.newtonsoft-json). For a future WebGL build, also add NativeWebSocket and swap GameSocket.",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  }
+}
