@@ -60,3 +60,23 @@ class NoActiveInstanceException extends RuntimeException {
         super("The party is not in a tale");
     }
 }
+
+/** A World Echo of this Tale is already active. */
+class WorldEchoActiveException extends RuntimeException {
+    WorldEchoActiveException() {
+        super("A World Echo of this tale is already active");
+    }
+}
+
+/** The World Echo is not active (already resolved or not found). */
+class WorldEchoNotActiveException extends RuntimeException {
+    WorldEchoNotActiveException() {
+        super("World Echo is not active");
+    }
+}
+
+class WorldEchoNotFoundException extends RuntimeException {
+    WorldEchoNotFoundException() {
+        super("World Echo not found");
+    }
+}

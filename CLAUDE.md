@@ -98,9 +98,14 @@ Read both before feature work.
   (grant gatherable), market browse, list-for-sale (escrow), buy (gold buyer→seller + item move),
   cancel. REST under `/api/economy`. Verified live: forage→list→browse→buy (gold + item move,
   can't-buy-own 403, sold→409).
-- **Still open:** public **World Echoes** (server-shared open-world tale events); real-time
-  combat + movement/AoI to feed sieges and make the shared world live.
-- **Next:** World Echoes → realtime (movement/world snapshots/combat) → E10 Godot.
+- **World Echoes DONE.** `narrative` pkg (Flyway `V9`): `world_echo` + `world_echo_participation`,
+  `WorldEchoService` — summon a public Echo (resonance-gated), anyone contributes, reaching the
+  goal restores it for EVERY participant (era unlock each + one Living-Timeline restoration).
+  REST under `/api/narrative/echoes`. Verified live: summon→dup 409→Alice+Bob contribute→goal→
+  RESOLVED→both get era 2.
+- **Still open / next:** real-time **movement + world snapshots** over WS and **combat** (to feed
+  sieges/encounters and make the shared world live) → then E10 Godot, E12 observability, E13
+  content pipeline.
 
 ## Build / verify commands (Windows)
 

@@ -32,6 +32,17 @@ public final class NarrativeViews {
         }
     }
 
+    /** A public World Echo: the whole server's shared progress toward restoring a Tale. */
+    public record WorldEchoView(
+            UUID id,
+            String taleCode,
+            String taleTitle,
+            String status,
+            long progress,
+            long goal,
+            long participantCount) {
+    }
+
     /** The live state of a Watcher inside a Tale. */
     public record TaleStateView(
             UUID taleId,

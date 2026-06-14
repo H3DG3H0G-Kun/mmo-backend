@@ -5,7 +5,10 @@ import ge.mmo.world.narrative.InstanceService;
 import ge.mmo.world.narrative.NarrativeService;
 import ge.mmo.world.narrative.NarrativeViews.ResonanceView;
 import ge.mmo.world.narrative.NarrativeViews.TaleStateView;
+import ge.mmo.world.narrative.NarrativeViews.WorldEchoView;
+import ge.mmo.world.narrative.WorldEchoService;
 import ge.mmo.world.web.dto.AdvanceTaleRequest;
+import ge.mmo.world.web.dto.EchoContributeRequest;
 import ge.mmo.world.web.dto.EnterTaleRequest;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,10 +30,12 @@ public class NarrativeController {
 
     private final NarrativeService narrative;
     private final InstanceService instances;
+    private final WorldEchoService echoes;
 
-    public NarrativeController(NarrativeService narrative, InstanceService instances) {
+    public NarrativeController(NarrativeService narrative, InstanceService instances, WorldEchoService echoes) {
         this.narrative = narrative;
         this.instances = instances;
+        this.echoes = echoes;
     }
 
     /** Tales whose Resonance is open for the character here and now (the Heralds present). */
@@ -78,5 +83,33 @@ public class NarrativeController {
     public TaleStateView partyInstance(@AuthenticationPrincipal AuthPrincipal principal,
                                        @RequestParam UUID characterId) {
         return instances.stateForParty(principal.accountId(), characterId);
+    }
+
+    // --- World Echoes (public, server-shared) ---
+
+    /** Summon a public Echo of a Tale (validated by the summoner's Resonance). */
+    @PostMapping("/echoes/tales/{taleCode}/summon")
+    public WorldEchoView summonEcho(@AuthenticationPrincipal AuthPrincipal principal,
+                                    @PathVariable String taleCode,
+                                    @Valid @RequestBody EnterTaleRequest req) {
+        return echoes.summon(principal.accountId(), req.characterId(), taleCode, req.place(), req.states());
+    }
+
+    /** Contribute to a public Echo; reaching its goal restores it for all participants. */
+    @PostMapping("/echoes/{echoId}/contribute")
+    public WorldEchoView contributeEcho(@AuthenticationPrincipal AuthPrincipal principal,
+                                        @PathVariable UUID echoId,
+                                        @Valid @RequestBody EchoContributeRequest req) {
+        return echoes.contribute(principal.accountId(), req.characterId(), echoId, req.points());
+    }
+
+    @GetMapping("/echoes")
+    public List<WorldEchoView> activeEchoes() {
+        return echoes.listActive();
+    }
+
+    @GetMapping("/echoes/{echoId}")
+    public WorldEchoView echo(@PathVariable UUID echoId) {
+        return echoes.get(echoId);
     }
 }

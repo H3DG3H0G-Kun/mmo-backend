@@ -37,3 +37,17 @@ interface TaleProgressRepository extends JpaRepository<TaleProgress, UUID> {
 interface TaleInstanceRepository extends JpaRepository<TaleInstance, UUID> {
     Optional<TaleInstance> findByPartyIdAndStatus(UUID partyId, TaleInstance.Status status);
 }
+
+interface WorldEchoRepository extends JpaRepository<WorldEcho, UUID> {
+    Optional<WorldEcho> findByTaleIdAndStatus(UUID taleId, WorldEcho.Status status);
+
+    List<WorldEcho> findByStatus(WorldEcho.Status status);
+}
+
+interface WorldEchoParticipationRepository extends JpaRepository<WorldEchoParticipation, UUID> {
+    Optional<WorldEchoParticipation> findByWorldEchoIdAndCharacterId(UUID worldEchoId, UUID characterId);
+
+    List<WorldEchoParticipation> findByWorldEchoId(UUID worldEchoId);
+
+    long countByWorldEchoId(UUID worldEchoId);
+}
