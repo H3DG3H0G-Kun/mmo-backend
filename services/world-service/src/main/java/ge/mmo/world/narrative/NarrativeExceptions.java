@@ -32,3 +32,31 @@ class InvalidChoiceException extends RuntimeException {
         super(detail);
     }
 }
+
+/** Starting/advancing a co-op run requires the character to be in a party. */
+class PartyRequiredException extends RuntimeException {
+    PartyRequiredException() {
+        super("Character must be in a party for a co-op tale");
+    }
+}
+
+/** Only the party leader may start a co-op run. */
+class NotInstanceLeaderException extends RuntimeException {
+    NotInstanceLeaderException() {
+        super("Only the party leader may begin a co-op tale");
+    }
+}
+
+/** The party already has an active co-op run. */
+class InstanceAlreadyActiveException extends RuntimeException {
+    InstanceAlreadyActiveException() {
+        super("The party is already in a tale");
+    }
+}
+
+/** No active co-op run for the party. */
+class NoActiveInstanceException extends RuntimeException {
+    NoActiveInstanceException() {
+        super("The party is not in a tale");
+    }
+}

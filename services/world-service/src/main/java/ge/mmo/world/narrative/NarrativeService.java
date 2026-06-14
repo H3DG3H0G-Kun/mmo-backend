@@ -3,7 +3,6 @@ package ge.mmo.world.narrative;
 import ge.mmo.world.character.CharacterService;
 import ge.mmo.world.character.PlayerCharacter;
 import ge.mmo.world.timeline.TimelineService;
-import ge.mmo.world.narrative.NarrativeEnums.Interaction;
 import ge.mmo.world.narrative.NarrativeEnums.Progress;
 import ge.mmo.world.narrative.NarrativeViews.BeatView;
 import ge.mmo.world.narrative.NarrativeViews.ResonanceView;
@@ -33,12 +32,15 @@ public class NarrativeService {
     private final TriggerConditionRepository conditions;
     private final TaleProgressRepository progressRepo;
     private final ResonanceEvaluator evaluator;
+    private final ResonanceContextFactory contextFactory;
+    private final BeatNavigator navigator;
     private final CharacterService characters;
     private final TimelineService timeline;
 
     public NarrativeService(SagaRepository sagas, TaleRepository tales, BeatRepository beats,
                             BeatEdgeRepository edges, TriggerConditionRepository conditions,
                             TaleProgressRepository progressRepo, ResonanceEvaluator evaluator,
+                            ResonanceContextFactory contextFactory, BeatNavigator navigator,
                             CharacterService characters, TimelineService timeline) {
         this.sagas = sagas;
         this.tales = tales;
@@ -47,6 +49,8 @@ public class NarrativeService {
         this.conditions = conditions;
         this.progressRepo = progressRepo;
         this.evaluator = evaluator;
+        this.contextFactory = contextFactory;
+        this.navigator = navigator;
         this.characters = characters;
         this.timeline = timeline;
     }
@@ -56,7 +60,7 @@ public class NarrativeService {
     public List<ResonanceView> availableResonances(UUID accountId, UUID characterId,
                                                    String place, Set<String> states) {
         PlayerCharacter character = characters.requireOwned(accountId, characterId);
-        ResonanceContext ctx = contextFor(character, place, states);
+        ResonanceContext ctx = contextFactory.forCharacter(character, place, states);
         Map<UUID, Progress> statusByTale = progressRepo.findByCharacterId(characterId).stream()
                 .collect(Collectors.toMap(TaleProgress::getTaleId, TaleProgress::getStatus));
 
@@ -85,7 +89,7 @@ public class NarrativeService {
             return stateOf(tale, existing.get());
         }
 
-        ResonanceContext ctx = contextFor(character, place, states);
+        ResonanceContext ctx = contextFactory.forCharacter(character, place, states);
         if (!evaluator.opens(conditions.findByTaleId(tale.getId()), ctx)) {
             throw new ResonanceClosedException(taleCode);
         }
@@ -126,29 +130,13 @@ public class NarrativeService {
         }
 
         List<BeatEdge> outgoing = edges.findByFromBeatId(current.getId());
-        BeatEdge chosen = selectEdge(current, outgoing, choiceKey);
+        BeatEdge chosen = navigator.selectEdge(current, outgoing, choiceKey);
         Beat next = beats.findById(chosen.getToBeatId())
                 .orElseThrow(() -> new TaleNotFoundException(taleCode + " (next beat missing)"));
         progress.moveTo(next.getId());
         progressRepo.save(progress);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
                 progress.getStatus().name(), BeatView.of(next), null);
-    }
-
-    private BeatEdge selectEdge(Beat current, List<BeatEdge> outgoing, String choiceKey) {
-        if (outgoing.isEmpty()) {
-            throw new InvalidChoiceException("Beat " + current.getCode() + " has no outgoing edge");
-        }
-        if (current.getInteraction() == Interaction.CHOOSE) {
-            if (choiceKey == null || choiceKey.isBlank()) {
-                throw new InvalidChoiceException("This beat requires a choiceKey");
-            }
-            return outgoing.stream()
-                    .filter(e -> choiceKey.equals(e.getChoiceKey()))
-                    .findFirst()
-                    .orElseThrow(() -> new InvalidChoiceException("No branch for choiceKey: " + choiceKey));
-        }
-        return outgoing.getFirst();
     }
 
     private TaleStateView stateOf(Tale tale, TaleProgress progress) {
@@ -158,17 +146,5 @@ public class NarrativeService {
                 progress.getStatus().name(),
                 progress.getStatus() == Progress.COMPLETED ? null : beat,
                 progress.getStatus() == Progress.COMPLETED ? tale.getUnlocksEraId() : null);
-    }
-
-    private ResonanceContext contextFor(PlayerCharacter character, String place, Set<String> states) {
-        List<TaleProgress> all = progressRepo.findByCharacterId(character.getId());
-        Set<UUID> completedIds = all.stream()
-                .filter(p -> p.getStatus() == Progress.COMPLETED)
-                .map(TaleProgress::getTaleId)
-                .collect(Collectors.toSet());
-        Set<String> completedCodes = tales.findAllById(completedIds).stream()
-                .map(Tale::getCode)
-                .collect(Collectors.toSet());
-        return new ResonanceContext(character.getCurrentEra().getCode(), place, states, completedCodes);
     }
 }

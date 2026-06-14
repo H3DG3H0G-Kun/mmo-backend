@@ -74,13 +74,16 @@ Read both before feature work.
   travel/recordRestoration), REST under `/api/world` (eras, travel, timeline), Flyway `V3`. Tale
   completion now persistently unlocks the era + increments the Living Timeline. Verified live:
   locked era → 409, complete tale → era unlocks → travel 200 → counter ticks.
-- **E08 (party) DONE.** `party` package: `party` + `party_member` (Flyway `V4`), `PartyService`
-  (create/join/leave/disband/myParty, one party per character, leader promotion on leave,
-  full/closed/leader guards), REST under `/api/party`. Verified live: create→join→leave(promote)
-  →disband across two accounts. **Still open in E08:** binding Tales to a party as a shared
-  instance (party-shared TaleProgress) + public World Echoes — next.
-- **Next:** party-shared Tale instances, then E11 contracts (OpenAPI/WS schemas),
-  E14 the Lineage 2 social/territory layer (clans/sieges/economy), E10 Godot.
+- **E08 DONE.** Party (`party` pkg, Flyway `V4`): create/join/leave(promote)/disband, one party
+  per character. **Co-op Tale instances** (`tale_instance`, Flyway `V5`): `InstanceService` —
+  leader starts a party-shared run, any member advances the shared beat, completion fans the
+  reward out to every member (one Living-Timeline restoration). Shared beat-graph traversal
+  extracted to `BeatNavigator`; resonance-context building to `ResonanceContextFactory` (used by
+  solo + co-op). REST under `/api/party` and `/api/narrative/party/*`. Verified live: leader-only
+  start (403), one-active (409), Bob→Alice→Bob advance, both members get era 2.
+- **Still open:** public **World Echoes** (server-shared open-world tale events).
+- **Next:** E11 contracts (OpenAPI/WS schemas), E14 the Lineage 2 social/territory layer
+  (clans/sieges/economy), E10 Godot.
 
 ## Build / verify commands (Windows)
 

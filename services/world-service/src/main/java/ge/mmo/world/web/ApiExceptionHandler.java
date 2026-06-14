@@ -33,11 +33,12 @@ public class ApiExceptionHandler {
             case "CharacterNameTakenException", "TooManyCharactersException",
                  "ResonanceClosedException", "NoActiveProgressException",
                  "EraLockedException", "AlreadyInPartyException",
-                 "PartyFullException", "PartyClosedException" -> HttpStatus.CONFLICT;
+                 "PartyFullException", "PartyClosedException",
+                 "PartyRequiredException", "InstanceAlreadyActiveException" -> HttpStatus.CONFLICT;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
-                 "NotInPartyException" -> HttpStatus.NOT_FOUND;
-            case "NotPartyLeaderException" -> HttpStatus.FORBIDDEN;
+                 "NotInPartyException", "NoActiveInstanceException" -> HttpStatus.NOT_FOUND;
+            case "NotPartyLeaderException", "NotInstanceLeaderException" -> HttpStatus.FORBIDDEN;
             case "InvalidChoiceException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "NoStartingEraException" -> HttpStatus.INTERNAL_SERVER_ERROR;
             default -> null;

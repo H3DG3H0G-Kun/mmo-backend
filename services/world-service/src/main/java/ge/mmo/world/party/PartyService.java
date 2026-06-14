@@ -104,6 +104,26 @@ public class PartyService {
         return view(party);
     }
 
+    /** The id of the party this character belongs to, if any. */
+    @Transactional(readOnly = true)
+    public Optional<UUID> partyIdOf(UUID characterId) {
+        return members.findByCharacterId(characterId).map(PartyMember::getPartyId);
+    }
+
+    /** The character ids of everyone currently in the party. */
+    @Transactional(readOnly = true)
+    public List<UUID> memberCharacterIds(UUID partyId) {
+        return members.findByPartyIdOrderByJoinedAtAsc(partyId).stream()
+                .map(PartyMember::getCharacterId)
+                .toList();
+    }
+
+    /** True if the character is the leader of the given party. */
+    @Transactional(readOnly = true)
+    public boolean isLeader(UUID partyId, UUID characterId) {
+        return parties.findById(partyId).map(p -> p.getLeaderCharacterId().equals(characterId)).orElse(false);
+    }
+
     private void requireNotInParty(UUID characterId) {
         if (members.findByCharacterId(characterId).isPresent()) {
             throw new AlreadyInPartyException();

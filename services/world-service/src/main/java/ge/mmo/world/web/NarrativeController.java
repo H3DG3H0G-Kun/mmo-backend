@@ -1,6 +1,7 @@
 package ge.mmo.world.web;
 
 import ge.mmo.common.security.AuthPrincipal;
+import ge.mmo.world.narrative.InstanceService;
 import ge.mmo.world.narrative.NarrativeService;
 import ge.mmo.world.narrative.NarrativeViews.ResonanceView;
 import ge.mmo.world.narrative.NarrativeViews.TaleStateView;
@@ -25,9 +26,11 @@ import java.util.UUID;
 public class NarrativeController {
 
     private final NarrativeService narrative;
+    private final InstanceService instances;
 
-    public NarrativeController(NarrativeService narrative) {
+    public NarrativeController(NarrativeService narrative, InstanceService instances) {
         this.narrative = narrative;
+        this.instances = instances;
     }
 
     /** Tales whose Resonance is open for the character here and now (the Heralds present). */
@@ -51,5 +54,29 @@ public class NarrativeController {
                                  @PathVariable String taleCode,
                                  @Valid @RequestBody AdvanceTaleRequest req) {
         return narrative.advance(principal.accountId(), req.characterId(), taleCode, req.choiceKey());
+    }
+
+    // --- Co-op (party-shared) runs ---
+
+    /** Party leader starts a shared run of a Tale (validated by the leader's Resonance). */
+    @PostMapping("/party/tales/{taleCode}/start")
+    public TaleStateView startParty(@AuthenticationPrincipal AuthPrincipal principal,
+                                    @PathVariable String taleCode,
+                                    @Valid @RequestBody EnterTaleRequest req) {
+        return instances.start(principal.accountId(), req.characterId(), taleCode, req.place(), req.states());
+    }
+
+    /** Any party member advances the shared beat; completion rewards the whole party. */
+    @PostMapping("/party/advance")
+    public TaleStateView advanceParty(@AuthenticationPrincipal AuthPrincipal principal,
+                                      @Valid @RequestBody AdvanceTaleRequest req) {
+        return instances.advance(principal.accountId(), req.characterId(), req.choiceKey());
+    }
+
+    /** The party's current shared run state. */
+    @GetMapping("/party/instance")
+    public TaleStateView partyInstance(@AuthenticationPrincipal AuthPrincipal principal,
+                                       @RequestParam UUID characterId) {
+        return instances.stateForParty(principal.accountId(), characterId);
     }
 }

@@ -33,3 +33,7 @@ interface TaleProgressRepository extends JpaRepository<TaleProgress, UUID> {
 
     List<TaleProgress> findByCharacterId(UUID characterId);
 }
+
+interface TaleInstanceRepository extends JpaRepository<TaleInstance, UUID> {
+    Optional<TaleInstance> findByPartyIdAndStatus(UUID partyId, TaleInstance.Status status);
+}
