@@ -108,12 +108,11 @@ Read both before feature work.
   `ENTITY_MOVED`/`ENTITY_LEFT` events. `GameWebSocketHandler` registers presence on `ENTER_WORLD`,
   broadcasts join/move/leave to others in the era. Contract doc updated. Verified live with TWO
   concurrent WS clients: B's snapshot saw A, A saw B join, A moved → B got `ENTITY_MOVED`.
-- **Combat DONE (unit-verified).** `combat` pkg (Flyway `V10`): `enemy_def` (seeded Distortions)
-  + `encounter`. `CombatService` — deterministic turn-based: start (one active per character),
-  attack (Watcher hits 25; Distortion retaliates with its attackPower; win/lose decided server-
-  side), victory awards the enemy's gold via `EconomyService.reward`. REST under `/api/combat`.
-  50 tests green. NOTE: live (curl) E2E still pending — Docker Desktop crashed mid-verify;
-  re-run the combat flow once the engine is back.
+- **Combat DONE.** `combat` pkg (Flyway `V10`): `enemy_def` (seeded Distortions) + `encounter`.
+  `CombatService` — deterministic turn-based: start (one active per character), attack (Watcher
+  hits 25; Distortion retaliates with its attackPower; win/lose decided server-side), victory
+  awards the enemy's gold via `EconomyService.reward`. REST under `/api/combat`. Verified live:
+  fight Echo of the Crown 100hp→0 over 4 attacks, char 100→70, WON, gold 100→150; guards 409.
 - **Still open / next:** E10 Godot client → E12 observability/load → E13 content pipeline; later
   wire combat victories into siege/encounter contribution + persistent character stats/HP.
   Presence is in-memory (single-instance); multi-instance AoI would need Redis/Kafka fan-out.
