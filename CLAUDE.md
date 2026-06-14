@@ -81,9 +81,11 @@ Read both before feature work.
   extracted to `BeatNavigator`; resonance-context building to `ResonanceContextFactory` (used by
   solo + co-op). REST under `/api/party` and `/api/narrative/party/*`. Verified live: leader-only
   start (403), one-active (409), Bob→Alice→Bob advance, both members get era 2.
+- **E11 (contracts v1) DONE.** Hand-authored contract for the live backend in `contracts/`:
+  `rest/endpoints.md`, `ws/protocol.md`, `VERSIONS.md`. Source of truth for clients (Godot);
+  machine-readable OpenAPI/JSON-Schema generation can layer on later.
 - **Still open:** public **World Echoes** (server-shared open-world tale events).
-- **Next:** E11 contracts (OpenAPI/WS schemas), E14 the Lineage 2 social/territory layer
-  (clans/sieges/economy), E10 Godot.
+- **Next:** E14 the Lineage 2 social/territory layer (clans → sieges → economy), E10 Godot.
 
 ## Build / verify commands (Windows)
 

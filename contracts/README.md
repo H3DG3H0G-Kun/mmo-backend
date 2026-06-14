@@ -4,14 +4,14 @@ Shared, transport-independent **contract** between the backend and clients (Godo
 The message contract matters more than the transport — see
 [docs/BUILD_PROMPT.md](../docs/BUILD_PROMPT.md) principle #3.
 
-Planned contents (filled in during **E11 — Contracts & Versioning**):
+Contents (**v1**, documents the live backend):
 
-- `rest/` — OpenAPI specs for REST/HTTP-2 endpoints (auth, character, profile, admin).
-- `ws/` — JSON Schemas for WebSocket **commands** (client→server intentions) and **events**
-  (server→client). Transport-independent so we can later move to UDP/ENet/protobuf/FlatBuffers
-  without rewriting game logic.
-- `examples/` — concrete example messages per command/event.
-- `VERSIONS.md` — protocol version history and compatibility rules.
+- [`rest/endpoints.md`](rest/endpoints.md) — REST contract: auth, characters, world/timeline,
+  narrative (solo + co-op), party. Request/response shapes, auth, status codes.
+- [`ws/protocol.md`](ws/protocol.md) — WebSocket protocol: the transport-independent
+  `{type,data}` envelope, commands, events, error codes, an example session.
+- [`VERSIONS.md`](VERSIONS.md) — protocol version history and compatibility rules.
 
-> Empty-but-structured for now. The backend is the source of truth; clients send intentions,
-> the backend validates and decides.
+> The backend is the source of truth; clients send intentions, the backend validates and decides.
+> These docs are the hand-authored source of truth for v1; machine-readable OpenAPI/JSON-Schema
+> generation can layer on later without changing the contract.
