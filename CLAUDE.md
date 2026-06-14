@@ -56,7 +56,16 @@ Read both before feature work.
 
 ## Current state (keep this section honest as work lands)
 
-- Phase 0 (hardening) **not yet started**: CI workflow is broken, Kafka still on ZooKeeper,
-  Spring Boot at 3.5.5 (target 4.x), `contracts/` and `clients/godot-client/` not created.
+- **Phase 0 (hardening) DONE & verified:** CI fixed (uses Maven wrapper), Kafka on **KRaft**
+  (no ZooKeeper, boot-verified), **Spring Boot 4.0.0** (`mvnw verify` green on Java 25),
+  `contracts/` + `clients/godot-client/` created, Maven wrapper added.
 - Foundation done: Docker Compose infra, observability baseline, Windows dev scripts,
   seed reset (`dev-reset.bat dev`, verified via `mmo_meta.seed_runs`).
+- **Next: E06 — MMO Foundation Slice** (auth → character → world entry → narrative core).
+
+## Build / verify commands (Windows)
+
+- Build + test: `./mvnw.cmd -B -ntp verify` (or `mvnw.cmd` from repo root).
+- Local infra: `scripts\windows\dev-up.bat` / `dev-down.bat` / `dev-reset.bat dev`.
+- Note: repo lives under OneDrive — if `clean` fails on a locked `target/`, delete it manually
+  (OneDrive sync lock), then re-run.

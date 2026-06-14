@@ -12,7 +12,7 @@ Runs locally via Docker Compose:
 
 - **PostgreSQL** (db: `mmorpg`, user/pass: `mmo`)
 - **Redis**
-- **Kafka + Zookeeper**
+- **Kafka** (KRaft mode, no ZooKeeper)
 - **Kafka UI**
 - **Observability stack**
     - Prometheus
