@@ -37,15 +37,18 @@ public class ApiExceptionHandler {
                  "PartyRequiredException", "InstanceAlreadyActiveException",
                  "AlreadyInClanException", "ClanNameTakenException", "ClanTagTakenException",
                  "ClanFullException", "NoClanInviteException",
-                 "ClanRequiredException", "SiegeAlreadyOpenException", "SiegeStateException" -> HttpStatus.CONFLICT;
+                 "ClanRequiredException", "SiegeAlreadyOpenException", "SiegeStateException",
+                 "InsufficientItemsException", "InsufficientGoldException",
+                 "ListingNotActiveException", "NoGatherableItemsException" -> HttpStatus.CONFLICT;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
                  "NotInPartyException", "NoActiveInstanceException",
                  "NotInClanException", "ClanNotFoundException",
-                 "PlaceNotFoundException", "SiegeNotFoundException" -> HttpStatus.NOT_FOUND;
+                 "PlaceNotFoundException", "SiegeNotFoundException",
+                 "ItemNotFoundException", "ListingNotFoundException" -> HttpStatus.NOT_FOUND;
             case "NotPartyLeaderException", "NotInstanceLeaderException",
                  "InsufficientClanRankException", "NotClanLeaderException",
-                 "NotASiegeParticipantException" -> HttpStatus.FORBIDDEN;
+                 "NotASiegeParticipantException", "ListingOwnershipException" -> HttpStatus.FORBIDDEN;
             case "InvalidChoiceException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "NoStartingEraException" -> HttpStatus.INTERNAL_SERVER_ERROR;
             default -> null;

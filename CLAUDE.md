@@ -93,9 +93,14 @@ Read both before feature work.
   clan leaders) → start → contribute (any participant-clan member; combat will feed this later) →
   resolve (top-scoring clan captures the place). One open siege per place. REST under `/api/sieges`.
   Verified live: two clans contest Armaztsikhe, Kartli outscores Iberia 50–10, fortress changes hands.
-- **Still open:** public **World Echoes** (server-shared open-world tale events); the **player
-  economy** (the rest of E14); real-time combat to feed siege/encounter contribution.
-- **Next:** player economy (items/trade/shops) → E10 Godot.
+- **E14 (economy) DONE.** `economy` pkg (Flyway `V8`): `item_def` (seeded) + `wallet` (lazy,
+  100 starting gold) + `inventory_item` + `shop_listing`. `EconomyService`: inventory, forage
+  (grant gatherable), market browse, list-for-sale (escrow), buy (gold buyer→seller + item move),
+  cancel. REST under `/api/economy`. Verified live: forage→list→browse→buy (gold + item move,
+  can't-buy-own 403, sold→409).
+- **Still open:** public **World Echoes** (server-shared open-world tale events); real-time
+  combat + movement/AoI to feed sieges and make the shared world live.
+- **Next:** World Echoes → realtime (movement/world snapshots/combat) → E10 Godot.
 
 ## Build / verify commands (Windows)
 
