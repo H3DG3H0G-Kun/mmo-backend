@@ -40,6 +40,17 @@ public class Beat {
     protected Beat() {
     }
 
+    // Used by the content importer (same package).
+    Beat(UUID id, UUID taleId, String code, int ordinal, String narration, Interaction interaction, boolean terminal) {
+        this.id = id;
+        this.taleId = taleId;
+        this.code = code;
+        this.ordinal = ordinal;
+        this.narration = narration;
+        this.interaction = interaction;
+        this.terminal = terminal;
+    }
+
     public UUID getId() {
         return id;
     }

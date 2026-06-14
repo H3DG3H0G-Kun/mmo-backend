@@ -28,6 +28,10 @@ mmo:
     secret: ${MMO_JWT_SECRET:dev-only-insecure-secret-change-me-32bytes!!}
     issuer: ${MMO_JWT_ISSUER:mmo-auth}
     access-ttl: ${MMO_JWT_ACCESS_TTL:PT1H}
+  admin:
+    # Bootstrap admin (for content authoring). Override in real environments.
+    username: ${MMO_ADMIN_USERNAME:admin}
+    password: ${MMO_ADMIN_PASSWORD:admin-dev-secret}
 
 management:
   endpoints:

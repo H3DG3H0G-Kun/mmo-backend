@@ -118,9 +118,16 @@ Read both before feature work.
   both; auth + world Dockerfiles fixed for the multi-module build; `world-service` added to the
   compose `app` profile. NOTE: full container-scrape→Grafana dashboards not run end-to-end
   (needs the `app`-profile containers up); metrics endpoints themselves are verified.
-- **Still open / next:** E13 content pipeline (YAML/JSON import + admin) → E10 Godot client
-  (scaffold only; can't run Godot here). Later: wire combat into siege/encounter contribution,
-  persistent character stats/HP, multi-instance AoI (Redis/Kafka fan-out), Kafka event backbone.
+- **E13 (content import) DONE.** `ContentImportService` (narrative pkg) imports a JSON
+  `ContentPackage` (Saga→Tale→Beat graph + edges + triggers), insert-only by code; narrative
+  entities got package-private constructors for it. ADMIN-gated `POST /api/admin/content/import`;
+  auth-service bootstraps an admin account (`mmo.admin.*`, default admin/admin-dev-secret,
+  roles PLAYER,ADMIN). Verified live: admin imported სტუმარ-მასპინძელი ("Guest and Host") as
+  pure JSON → it resonated at mountain+STORM → a player entered and completed it; re-import 409,
+  bad enum 422. NOTE: non-admin denial currently returns 401 (custom entry-point quirk), not 403.
+- **Still open / next:** E10 Godot client (scaffold only; can't run Godot here) + admin UI.
+  Later: wire combat into siege/encounter contribution, persistent character stats/HP,
+  multi-instance AoI (Redis/Kafka fan-out), Kafka event backbone, refresh tokens/rate-limit.
 
 ## Build / verify commands (Windows)
 

@@ -31,6 +31,14 @@ public class TriggerCondition {
     protected TriggerCondition() {
     }
 
+    // Used by the content importer (same package).
+    TriggerCondition(UUID id, UUID taleId, ConditionType type, String value) {
+        this.id = id;
+        this.taleId = taleId;
+        this.type = type;
+        this.value = value;
+    }
+
     public UUID getId() {
         return id;
     }

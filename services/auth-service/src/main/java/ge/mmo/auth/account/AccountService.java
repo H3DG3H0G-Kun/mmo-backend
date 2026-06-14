@@ -46,4 +46,15 @@ public class AccountService {
     public Account require(UUID id) {
         return accounts.findById(id).orElseThrow(InvalidCredentialsException::new);
     }
+
+    /** Idempotently ensure an admin account exists (used at startup to bootstrap content authoring). */
+    @Transactional
+    public void ensureAdmin(String username, String rawPassword) {
+        if (accounts.existsByUsernameIgnoreCase(username)) {
+            return;
+        }
+        Account admin = new Account(UUID.randomUUID(), username, null, passwordEncoder.encode(rawPassword));
+        admin.assignRoles("PLAYER,ADMIN");
+        accounts.save(admin);
+    }
 }

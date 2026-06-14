@@ -49,6 +49,10 @@ public class Account {
         return List.of(roles.split(","));
     }
 
+    public void assignRoles(String roles) {
+        this.roles = roles;
+    }
+
     public UUID getId() {
         return id;
     }

@@ -37,6 +37,16 @@ public class Saga {
     protected Saga() {
     }
 
+    // Used by the content importer (same package).
+    Saga(UUID id, String code, String title, Strand strand, Integer eraId, int ordinal) {
+        this.id = id;
+        this.code = code;
+        this.title = title;
+        this.strand = strand;
+        this.eraId = eraId;
+        this.ordinal = ordinal;
+    }
+
     public UUID getId() {
         return id;
     }

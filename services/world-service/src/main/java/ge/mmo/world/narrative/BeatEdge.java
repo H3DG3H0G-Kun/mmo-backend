@@ -27,6 +27,14 @@ public class BeatEdge {
     protected BeatEdge() {
     }
 
+    // Used by the content importer (same package).
+    BeatEdge(UUID id, UUID fromBeatId, UUID toBeatId, String choiceKey) {
+        this.id = id;
+        this.fromBeatId = fromBeatId;
+        this.toBeatId = toBeatId;
+        this.choiceKey = choiceKey;
+    }
+
     public UUID getId() {
         return id;
     }

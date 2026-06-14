@@ -41,6 +41,17 @@ public class Tale {
     protected Tale() {
     }
 
+    // Used by the content importer (same package).
+    Tale(UUID id, UUID sagaId, String code, String title, Tier tier, int ordinal, Integer unlocksEraId) {
+        this.id = id;
+        this.sagaId = sagaId;
+        this.code = code;
+        this.title = title;
+        this.tier = tier;
+        this.ordinal = ordinal;
+        this.unlocksEraId = unlocksEraId;
+    }
+
     public UUID getId() {
         return id;
     }

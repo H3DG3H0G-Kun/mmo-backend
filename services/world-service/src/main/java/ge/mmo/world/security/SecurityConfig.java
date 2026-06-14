@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.time.Duration;
@@ -31,9 +32,15 @@ public class SecurityConfig {
     }
 
     @Bean
+    AccessDeniedHandler accessDeniedHandler() {
+        return (request, response, ex) -> response.sendError(HttpStatus.FORBIDDEN.value(), "Forbidden");
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http,
                                     JwtService jwtService,
-                                    AuthenticationEntryPoint entryPoint) throws Exception {
+                                    AuthenticationEntryPoint entryPoint,
+                                    AccessDeniedHandler accessDeniedHandler) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -43,8 +50,10 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/**").permitAll()
                         // The WebSocket handshake authenticates via its own first message, not this filter.
                         .requestMatchers("/ws/**").permitAll()
+                        // Content authoring is admin-only.
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
-                .exceptionHandling(e -> e.authenticationEntryPoint(entryPoint))
+                .exceptionHandling(e -> e.authenticationEntryPoint(entryPoint).accessDeniedHandler(accessDeniedHandler))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService),
                         UsernamePasswordAuthenticationFilter.class);
         return http.build();

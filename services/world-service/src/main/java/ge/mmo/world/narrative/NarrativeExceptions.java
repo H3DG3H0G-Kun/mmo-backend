@@ -80,3 +80,17 @@ class WorldEchoNotFoundException extends RuntimeException {
         super("World Echo not found");
     }
 }
+
+/** Imported content collides with existing content (same code). */
+class ContentConflictException extends RuntimeException {
+    ContentConflictException(String detail) {
+        super(detail);
+    }
+}
+
+/** Imported content is malformed (bad enum, missing field, dangling beat reference). */
+class ContentValidationException extends RuntimeException {
+    ContentValidationException(String detail) {
+        super(detail);
+    }
+}

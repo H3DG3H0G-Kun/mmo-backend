@@ -41,7 +41,9 @@ public class ApiExceptionHandler {
                  "InsufficientItemsException", "InsufficientGoldException",
                  "ListingNotActiveException", "NoGatherableItemsException",
                  "WorldEchoActiveException", "WorldEchoNotActiveException",
-                 "AlreadyInEncounterException", "EncounterNotActiveException" -> HttpStatus.CONFLICT;
+                 "AlreadyInEncounterException", "EncounterNotActiveException",
+                 "ContentConflictException" -> HttpStatus.CONFLICT;
+            case "ContentValidationException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
                  "NotInPartyException", "NoActiveInstanceException",

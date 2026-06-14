@@ -80,3 +80,17 @@ interaction ∈ WITNESS | AID | WARD | CHOOSE | RESTORE
 PartyView = { id, leaderCharacterId, status:"OPEN"|"CLOSED"|"DISBANDED", maxSize,
               members: [{ characterId, name, leader }] }
 ```
+
+### Admin — content authoring (ROLE_ADMIN)
+- `POST /api/admin/content/import` — body is a content document (Saga + Tales + Beats + Edges +
+  Triggers); imports it as playable content. `201` → `{ sagaCode, tales, beats }`.
+  `409` saga/tale code already exists. `422` malformed (bad enum / dangling beat ref).
+  Non-admins are denied (currently `401`). Body shape:
+
+```
+{ "saga": { "code", "title", "strand":"HISTORY|MYTH|WORD", "eraId", "ordinal" },
+  "tales": [ { "code", "title", "tier":"TRUE_TALE|ECHO", "ordinal", "unlocksEraId",
+    "beats":   [ { "code", "ordinal", "narration", "interaction":"WITNESS|AID|WARD|CHOOSE|RESTORE", "terminal" } ],
+    "edges":   [ { "from", "to", "choiceKey" } ],
+    "triggers":[ { "type":"ERA|PLACE|STATE|PRIOR_TALE", "value" } ] } ] }
+```
