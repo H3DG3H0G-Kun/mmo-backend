@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watcher — Content Studio</title>
+  <style>
+    :root {
+      --bg: #14110f; --panel: #1f1b18; --edge: #3a322c; --ink: #ece3d6;
+      --muted: #a8998a; --gold: #c8a560; --good: #6db07a; --bad: #d2706b; --accent: #7a6cff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: "Segoe UI", system-ui, "Noto Sans Georgian", sans-serif; line-height: 1.5;
+    }
+    header {
+      padding: 18px 24px; border-bottom: 1px solid var(--edge);
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    header h1 { font-size: 19px; margin: 0; letter-spacing: .3px; }
+    header .sub { color: var(--muted); font-size: 13px; }
+    main { max-width: 1080px; margin: 0 auto; padding: 22px; display: grid; gap: 18px; }
+    .card { background: var(--panel); border: 1px solid var(--edge); border-radius: 10px; padding: 18px; }
+    .card h2 { margin: 0 0 12px; font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+    label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+    input, textarea {
+      width: 100%; background: #110e0c; border: 1px solid var(--edge); color: var(--ink);
+      border-radius: 7px; padding: 9px 11px; font-size: 14px; font-family: inherit;
+    }
+    textarea { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 13px; min-height: 360px; resize: vertical; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .row > div { flex: 1; min-width: 180px; }
+    button {
+      background: var(--gold); color: #1a1410; border: 0; border-radius: 7px;
+      padding: 9px 16px; font-weight: 600; font-size: 14px; cursor: pointer; margin-top: 12px;
+    }
+    button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--edge); }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .pill { display: inline-block; padding: 2px 9px; border-radius: 99px; font-size: 12px; border: 1px solid var(--edge); }
+    .pill.ok { color: var(--good); border-color: var(--good); }
+    .pill.no { color: var(--bad); border-color: var(--bad); }
+    #out { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 13px; min-height: 24px; }
+    .good { color: var(--good); } .bad { color: var(--bad); } .muted { color: var(--muted); }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Watcher · Content Studio</h1>
+    <span class="sub">author Georgian tales as data — no SQL, no code</span>
+  </header>
+  <main>
+    <section class="card">
+      <h2>1 · Sign in (admin)</h2>
+      <div class="row">
+        <div>
+          <label>Auth service URL</label>
+          <input id="authUrl" value="http://localhost:8080" />
+        </div>
+        <div>
+          <label>World service URL (blank = this origin)</label>
+          <input id="worldUrl" placeholder="(this origin)" />
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Username</label><input id="user" value="admin" /></div>
+        <div><label>Password</label><input id="pass" type="password" value="admin-dev-secret" /></div>
+      </div>
+      <button id="loginBtn">Sign in</button>
+      <span id="who" class="muted" style="margin-left:12px"></span>
+    </section>
+
+    <section class="card">
+      <h2>2 · Author &amp; import a tale</h2>
+      <p class="hint">A content package is a Saga with its Tales, Beats (Witness/Aid/Ward/Choose/Restore),
+        Edges (the beat graph), and Triggers (the Resonance: ERA / PLACE / STATE / PRIOR_TALE).
+        Codes must be unique. Edit the codes below, then Import.</p>
+      <textarea id="json" spellcheck="false"></textarea>
+      <div>
+        <button id="importBtn" disabled>Import content</button>
+        <button class="ghost" id="fmtBtn">Format JSON</button>
+        <button class="ghost" id="tplBtn">Reset to template</button>
+      </div>
+      <label style="margin-top:16px">Result</label>
+      <div id="out" class="muted">— sign in, then import —</div>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    let token = null;
+
+    const TEMPLATE = {
+      saga: { code: "SAGA_GUEST_HOST", title: "Guest and Host", strand: "WORD", eraId: 1, ordinal: 2 },
+      tales: [{
+        code: "TALE_MOUNTAIN_MEETING",
+        title: "The Mountain Meeting",
+        tier: "TRUE_TALE",
+        ordinal: 1,
+        unlocksEraId: null,
+        beats: [
+          { code: "ARRIVE", ordinal: 1, narration: "On a storm-lashed peak, two strangers meet and the law of guest and host is invoked.", interaction: "WITNESS", terminal: false },
+          { code: "WARD_THE_BOND", ordinal: 2, narration: "A Distortion would turn host against guest. Hold the sacred bond true.", interaction: "WARD", terminal: false },
+          { code: "REMEMBERED", ordinal: 3, narration: "The bond holds; the meeting is remembered as it was first sung.", interaction: "WITNESS", terminal: true }
+        ],
+        edges: [
+          { from: "ARRIVE", to: "WARD_THE_BOND", choiceKey: null },
+          { from: "WARD_THE_BOND", to: "REMEMBERED", choiceKey: null }
+        ],
+        triggers: [
+          { type: "PLACE", value: "mountain" },
+          { type: "STATE", value: "STORM" }
+        ]
+      }]
+    };
+
+    const worldBase = () => ($("worldUrl").value.trim() || window.location.origin);
+    const setOut = (msg, cls) => { const o = $("out"); o.textContent = msg; o.className = cls || ""; };
+
+    function loadTemplate() { $("json").value = JSON.stringify(TEMPLATE, null, 2); }
+    loadTemplate();
+
+    $("tplBtn").onclick = loadTemplate;
+    $("fmtBtn").onclick = () => {
+      try { $("json").value = JSON.stringify(JSON.parse($("json").value), null, 2); setOut("Formatted.", "muted"); }
+      catch (e) { setOut("Invalid JSON: " + e.message, "bad"); }
+    };
+
+    $("loginBtn").onclick = async () => {
+      setOut("Signing in…", "muted");
+      try {
+        const r = await fetch($("authUrl").value.trim() + "/api/auth/login", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: $("user").value, password: $("pass").value })
+        });
+        if (!r.ok) { setOut("Login failed (" + r.status + ")", "bad"); return; }
+        const data = await r.json();
+        token = data.accessToken;
+        const roles = data.account.roles || [];
+        const admin = roles.includes("ADMIN");
+        $("who").innerHTML = "Signed in as <b>" + data.account.username + "</b> " +
+          '<span class="pill ' + (admin ? "ok\">ADMIN" : "no\">NOT ADMIN") + "</span>";
+        $("importBtn").disabled = !admin;
+        setOut(admin ? "Ready to import." : "This account is not an admin — import is disabled.", admin ? "good" : "bad");
+      } catch (e) { setOut("Network error: " + e.message + " (is auth-service up + CORS enabled?)", "bad"); }
+    };
+
+    $("importBtn").onclick = async () => {
+      let pkg;
+      try { pkg = JSON.parse($("json").value); }
+      catch (e) { setOut("Invalid JSON: " + e.message, "bad"); return; }
+      setOut("Importing…", "muted");
+      try {
+        const r = await fetch(worldBase() + "/api/admin/content/import", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+          body: JSON.stringify(pkg)
+        });
+        const text = await r.text();
+        if (r.status === 201) {
+          const s = JSON.parse(text);
+          setOut("✓ Imported saga '" + s.sagaCode + "' — " + s.tales + " tale(s), " + s.beats + " beat(s).\n" +
+                 "Players can now discover it where its Resonance opens.", "good");
+        } else {
+          setOut("✗ Import failed (" + r.status + ")\n" + text, "bad");
+        }
+      } catch (e) { setOut("Network error: " + e.message, "bad"); }
+    };
+  </script>
+</body>
+</html>

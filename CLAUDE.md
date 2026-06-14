@@ -125,7 +125,14 @@ Read both before feature work.
   roles PLAYER,ADMIN). Verified live: admin imported სტუმარ-მასპინძელი ("Guest and Host") as
   pure JSON → it resonated at mountain+STORM → a player entered and completed it; re-import 409,
   bad enum 422. NOTE: non-admin denial currently returns 401 (custom entry-point quirk), not 403.
-- **Still open / next:** E10 Godot client (scaffold only; can't run Godot here) + admin UI.
+- **Admin Content Studio DONE.** Self-contained web panel at `world-service` `/studio/index.html`
+  (static): admin login (cross-origin to auth) + author/import a tale via `/api/admin/content/import`.
+  Dev CORS added to both services (`WebCorsConfig`, permissive — lock down per-env). Verified live:
+  page served 200, auth login CORS preflight ok, world CORS ok, import path works. Open
+  `http://localhost:8090/studio/` (or `:18090` when run locally) after starting the stack.
+- **Client direction:** eventual 3D game client → **Unity** (most AI-buildable mature 3D; C#).
+  Built but unverifiable here — generate scripts/scenes, user runs the editor.
+- **Still open / next:** E10 Unity/Godot game client (scaffold only; can't run here).
   Later: wire combat into siege/encounter contribution, persistent character stats/HP,
   multi-instance AoI (Redis/Kafka fan-out), Kafka event backbone, refresh tokens/rate-limit.
 

@@ -42,12 +42,15 @@ public class SecurityConfig {
                                     AuthenticationEntryPoint entryPoint,
                                     AccessDeniedHandler accessDeniedHandler) throws Exception {
         http
+                .cors(org.springframework.security.config.Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // Only health/info/prometheus/metrics are exposed (see application.yml);
                         // permit them so Prometheus can scrape. Lock down per-environment later.
                         .requestMatchers("/actuator/**").permitAll()
+                        // The Content Studio static page (served from /static/studio).
+                        .requestMatchers("/", "/studio/**").permitAll()
                         // The WebSocket handshake authenticates via its own first message, not this filter.
                         .requestMatchers("/ws/**").permitAll()
                         // Content authoring is admin-only.
