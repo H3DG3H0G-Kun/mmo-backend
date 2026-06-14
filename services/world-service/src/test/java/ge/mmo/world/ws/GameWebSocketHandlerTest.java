@@ -6,6 +6,7 @@ import ge.mmo.common.security.AuthPrincipal;
 import ge.mmo.common.security.InvalidTokenException;
 import ge.mmo.common.security.JwtService;
 import ge.mmo.world.character.PlayerCharacter;
+import ge.mmo.world.presence.PresenceService;
 import ge.mmo.world.session.WorldSessionService;
 import ge.mmo.world.world.Era;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,7 @@ class GameWebSocketHandlerTest {
     private final ObjectMapper json = new ObjectMapper();
     private JwtService jwt;
     private WorldSessionService sessions;
+    private PresenceService presence;
     private GameWebSocketHandler handler;
 
     private WebSocketSession session;
@@ -42,7 +44,10 @@ class GameWebSocketHandlerTest {
     void setUp() throws Exception {
         jwt = mock(JwtService.class);
         sessions = mock(WorldSessionService.class);
-        handler = new GameWebSocketHandler(jwt, sessions);
+        presence = mock(PresenceService.class);
+        when(presence.join(any(), any(), any(), any())).thenReturn(List.of());
+        when(presence.presenceOf(any())).thenReturn(Optional.empty());
+        handler = new GameWebSocketHandler(jwt, sessions, presence);
 
         session = mock(WebSocketSession.class);
         attrs = new HashMap<>();
@@ -52,6 +57,14 @@ class GameWebSocketHandlerTest {
             sent.add(((TextMessage) inv.getArgument(0)).getPayload());
             return null;
         }).when(session).sendMessage(any());
+    }
+
+    private List<String> sentTypes() throws Exception {
+        List<String> types = new ArrayList<>();
+        for (String s : sent) {
+            types.add(json.readTree(s).path("type").asText());
+        }
+        return types;
     }
 
     private void receive(String payload) throws Exception {
@@ -115,7 +128,8 @@ class GameWebSocketHandlerTest {
         receive("""
                 {"type":"ENTER_WORLD","data":{"characterId":"%s"}}""".formatted(charId));
 
-        assertThat(lastType()).isEqualTo(WsProtocol.E_WORLD_ENTERED);
+        // WORLD_ENTERED then a WORLD_SNAPSHOT of others already present.
+        assertThat(sentTypes()).containsSequence(WsProtocol.E_WORLD_ENTERED, WsProtocol.E_WORLD_SNAPSHOT);
     }
 
     @Test
@@ -131,6 +145,16 @@ class GameWebSocketHandlerTest {
         JsonNode node = json.readTree(sent.getLast());
         assertThat(node.path("type").asText()).isEqualTo(WsProtocol.E_ERROR);
         assertThat(node.path("data").path("code").asText()).isEqualTo(WsProtocol.ERR_NOT_FOUND);
+    }
+
+    @Test
+    void moveBeforeEnteringWorldIsRejected() throws Exception {
+        // presence.move returns Optional.empty() (not in world) by mock default.
+        receive("""
+                {"type":"MOVE","data":{"x":1,"y":2,"z":3}}""");
+        JsonNode node = json.readTree(sent.getLast());
+        assertThat(node.path("type").asText()).isEqualTo(WsProtocol.E_ERROR);
+        assertThat(node.path("data").path("code").asText()).isEqualTo(WsProtocol.ERR_NOT_IN_WORLD);
     }
 
     @Test

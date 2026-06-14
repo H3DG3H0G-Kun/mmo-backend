@@ -12,11 +12,16 @@ public final class WsProtocol {
     // --- Commands: client -> server (intentions) ---
     public static final String C_SESSION_HELLO = "SESSION_HELLO"; // {token}
     public static final String C_ENTER_WORLD = "ENTER_WORLD";     // {characterId}
+    public static final String C_MOVE = "MOVE";                   // {x, y, z}
     public static final String C_PING = "PING";
 
     // --- Events: server -> client (decisions/state) ---
     public static final String E_SESSION_WELCOME = "SESSION_WELCOME"; // {accountId, username}
     public static final String E_WORLD_ENTERED = "WORLD_ENTERED";     // {characterId, name, era}
+    public static final String E_WORLD_SNAPSHOT = "WORLD_SNAPSHOT";   // {entities:[{characterId,name,x,y,z}]}
+    public static final String E_ENTITY_JOINED = "ENTITY_JOINED";     // {characterId, name, x, y, z}
+    public static final String E_ENTITY_MOVED = "ENTITY_MOVED";       // {characterId, x, y, z}
+    public static final String E_ENTITY_LEFT = "ENTITY_LEFT";         // {characterId}
     public static final String E_PONG = "PONG";
     public static final String E_ERROR = "ERROR";                     // {code, message}
 
@@ -26,4 +31,5 @@ public final class WsProtocol {
     public static final String ERR_INVALID_TOKEN = "INVALID_TOKEN";
     public static final String ERR_NOT_FOUND = "NOT_FOUND";
     public static final String ERR_UNKNOWN_TYPE = "UNKNOWN_TYPE";
+    public static final String ERR_NOT_IN_WORLD = "NOT_IN_WORLD";
 }

@@ -103,9 +103,14 @@ Read both before feature work.
   goal restores it for EVERY participant (era unlock each + one Living-Timeline restoration).
   REST under `/api/narrative/echoes`. Verified live: summon→dup 409→Alice+Bob contribute→goal→
   RESOLVED→both get era 2.
-- **Still open / next:** real-time **movement + world snapshots** over WS and **combat** (to feed
-  sieges/encounters and make the shared world live) → then E10 Godot, E12 observability, E13
-  content pipeline.
+- **Realtime movement & presence DONE.** `presence` pkg: in-memory `PresenceService` (thread-safe;
+  era = area-of-interest). WS protocol extended: `MOVE` command; `WORLD_SNAPSHOT`/`ENTITY_JOINED`/
+  `ENTITY_MOVED`/`ENTITY_LEFT` events. `GameWebSocketHandler` registers presence on `ENTER_WORLD`,
+  broadcasts join/move/leave to others in the era. Contract doc updated. Verified live with TWO
+  concurrent WS clients: B's snapshot saw A, A saw B join, A moved → B got `ENTITY_MOVED`.
+- **Still open / next:** **combat** (to feed sieges/encounters) → E10 Godot client → E12
+  observability/load → E13 content pipeline. Persistence/scale notes: presence is in-memory
+  (single-instance); multi-instance AoI would need Redis/Kafka fan-out later.
 
 ## Build / verify commands (Windows)
 
