@@ -23,6 +23,7 @@
     <modules>
         <module>libs/common</module>
         <module>services/auth-service</module>
+        <module>services/world-service</module>
     </modules>
 
     <dependencyManagement>
