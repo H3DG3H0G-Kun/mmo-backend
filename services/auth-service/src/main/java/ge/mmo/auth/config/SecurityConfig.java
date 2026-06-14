@@ -43,7 +43,9 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
-                        .requestMatchers("/actuator/health/**", "/actuator/info").permitAll()
+                        // Only health/info/prometheus/metrics are exposed (see application.yml);
+                        // permit them so Prometheus can scrape. Lock down per-environment later.
+                        .requestMatchers("/actuator/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(entryPoint))
                 .addFilterBefore(new JwtAuthenticationFilter(jwtService),

@@ -113,9 +113,14 @@ Read both before feature work.
   hits 25; Distortion retaliates with its attackPower; win/lose decided server-side), victory
   awards the enemy's gold via `EconomyService.reward`. REST under `/api/combat`. Verified live:
   fight Echo of the Crown 100hp→0 over 4 attacks, char 100→70, WON, gold 100→150; guards 409.
-- **Still open / next:** E10 Godot client → E12 observability/load → E13 content pipeline; later
-  wire combat victories into siege/encounter contribution + persistent character stats/HP.
-  Presence is in-memory (single-instance); multi-instance AoI would need Redis/Kafka fan-out.
+- **E12 (observability) DONE (metrics layer).** Both services expose Micrometer metrics at
+  `/actuator/prometheus` (verified live, tagged `application=<svc>`); `prometheus.yml` scrapes
+  both; auth + world Dockerfiles fixed for the multi-module build; `world-service` added to the
+  compose `app` profile. NOTE: full container-scrape→Grafana dashboards not run end-to-end
+  (needs the `app`-profile containers up); metrics endpoints themselves are verified.
+- **Still open / next:** E13 content pipeline (YAML/JSON import + admin) → E10 Godot client
+  (scaffold only; can't run Godot here). Later: wire combat into siege/encounter contribution,
+  persistent character stats/HP, multi-instance AoI (Redis/Kafka fan-out), Kafka event backbone.
 
 ## Build / verify commands (Windows)
 

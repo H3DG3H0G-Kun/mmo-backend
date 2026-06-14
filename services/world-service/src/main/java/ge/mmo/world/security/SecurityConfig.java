@@ -38,7 +38,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/actuator/health/**", "/actuator/info").permitAll()
+                        // Only health/info/prometheus/metrics are exposed (see application.yml);
+                        // permit them so Prometheus can scrape. Lock down per-environment later.
+                        .requestMatchers("/actuator/**").permitAll()
                         // The WebSocket handshake authenticates via its own first message, not this filter.
                         .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated())

@@ -155,6 +155,36 @@ services:
       MMO_REDIS_PORT: 6379
       MMO_KAFKA_BOOTSTRAP: kafka:29092
 
+  world-service:
+    profiles: ["app"]
+    build:
+      context: ../..
+      dockerfile: services/world-service/Dockerfile
+    container_name: mmo_world_service
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      kafka:
+        condition: service_started
+    ports:
+      - "${WORLD_SERVICE_PORT:-8090}:8090"
+    env_file:
+      - ./env/dev.env
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-local}
+      WORLD_SERVICE_PORT: 8090
+      MMO_DB_HOST: postgres
+      MMO_DB_PORT: 5432
+      MMO_DB_NAME: ${POSTGRES_DB:-mmorpg}
+      MMO_DB_USER: ${POSTGRES_USER:-mmo}
+      MMO_DB_PASS: ${POSTGRES_PASSWORD:-mmo}
+      MMO_REDIS_HOST: redis
+      MMO_REDIS_PORT: 6379
+      MMO_KAFKA_BOOTSTRAP: kafka:29092
+
 volumes:
   mmo_postgres_data:
   mmo_redis_data:

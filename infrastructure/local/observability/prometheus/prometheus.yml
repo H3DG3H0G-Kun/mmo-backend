@@ -7,8 +7,14 @@ scrape_configs:
     static_configs:
       - targets: ["prometheus:9090"]
 
-  # If your auth-service exposes /actuator/prometheus, Prometheus will scrape it.
+  # Services expose Micrometer metrics at /actuator/prometheus.
+  # (Reachable when the services run via the compose "app" profile.)
   - job_name: auth-service
     metrics_path: /actuator/prometheus
     static_configs:
       - targets: ["auth-service:8080"]
+
+  - job_name: world-service
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["world-service:8090"]
