@@ -165,6 +165,20 @@ public class ClanService {
         return view(requireClan(membership.getClanId()));
     }
 
+    /** The clan this character belongs to, if any. */
+    @Transactional(readOnly = true)
+    public Optional<UUID> clanIdOf(UUID characterId) {
+        return members.findByCharacterId(characterId).map(ClanMember::getClanId);
+    }
+
+    /** True if this character is the LEADER of their clan. */
+    @Transactional(readOnly = true)
+    public boolean isClanLeader(UUID characterId) {
+        return members.findByCharacterId(characterId)
+                .map(m -> m.getRank() == ClanRank.LEADER)
+                .orElse(false);
+    }
+
     private void requireRank(ClanMember member, ClanRank min) {
         if (!member.getRank().atLeast(min)) {
             throw new InsufficientClanRankException();

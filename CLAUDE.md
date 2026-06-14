@@ -88,9 +88,14 @@ Read both before feature work.
   ranks LEADER/OFFICER/MEMBER, `ClanService` (create/invite/accept/leave[+promote]/kick/setRank
   [leadership transfer]/myClan), backend rank guards, REST under `/api/clans`. Verified live:
   create→dup-tag 409→invite→accept→rank guards (member/officer can't outrank leader)→promote.
-- **Still open:** public **World Echoes** (server-shared open-world tale events); **sieges**
-  over places of power; the **player economy** (the rest of E14).
-- **Next:** sieges (clans contest places of power) → economy, then E10 Godot.
+- **E14 (sieges) DONE.** `siege` pkg (Flyway `V7`): `place_of_power` + `siege` + `siege_participant`,
+  seeded places (Armaztsikhe, Nekresi). `SiegeService` lifecycle: declare (leader) → join (other
+  clan leaders) → start → contribute (any participant-clan member; combat will feed this later) →
+  resolve (top-scoring clan captures the place). One open siege per place. REST under `/api/sieges`.
+  Verified live: two clans contest Armaztsikhe, Kartli outscores Iberia 50–10, fortress changes hands.
+- **Still open:** public **World Echoes** (server-shared open-world tale events); the **player
+  economy** (the rest of E14); real-time combat to feed siege/encounter contribution.
+- **Next:** player economy (items/trade/shops) → E10 Godot.
 
 ## Build / verify commands (Windows)
 
