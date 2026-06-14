@@ -40,14 +40,16 @@ public class ApiExceptionHandler {
                  "ClanRequiredException", "SiegeAlreadyOpenException", "SiegeStateException",
                  "InsufficientItemsException", "InsufficientGoldException",
                  "ListingNotActiveException", "NoGatherableItemsException",
-                 "WorldEchoActiveException", "WorldEchoNotActiveException" -> HttpStatus.CONFLICT;
+                 "WorldEchoActiveException", "WorldEchoNotActiveException",
+                 "AlreadyInEncounterException", "EncounterNotActiveException" -> HttpStatus.CONFLICT;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
                  "NotInPartyException", "NoActiveInstanceException",
                  "NotInClanException", "ClanNotFoundException",
                  "PlaceNotFoundException", "SiegeNotFoundException",
                  "ItemNotFoundException", "ListingNotFoundException",
-                 "WorldEchoNotFoundException" -> HttpStatus.NOT_FOUND;
+                 "WorldEchoNotFoundException",
+                 "EnemyNotFoundException", "EncounterNotFoundException" -> HttpStatus.NOT_FOUND;
             case "NotPartyLeaderException", "NotInstanceLeaderException",
                  "InsufficientClanRankException", "NotClanLeaderException",
                  "NotASiegeParticipantException", "ListingOwnershipException" -> HttpStatus.FORBIDDEN;

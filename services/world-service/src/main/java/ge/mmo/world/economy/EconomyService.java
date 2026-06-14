@@ -119,6 +119,17 @@ public class EconomyService {
         return inventoryView(characterId);
     }
 
+    /** Award gold to a character (e.g. a combat or quest reward). Lazily creates the wallet. */
+    @Transactional
+    public void reward(UUID characterId, long gold) {
+        if (gold <= 0) {
+            return;
+        }
+        Wallet wallet = walletFor(characterId);
+        wallet.credit(gold);
+        wallets.save(wallet);
+    }
+
     // --- internals ---
 
     private Wallet walletFor(UUID characterId) {
