@@ -83,6 +83,10 @@
                     <version>3.13.0</version>
                     <configuration>
                         <release>${java.version}</release>
+                        <!-- Emit method parameter names so Spring MVC can bind @RequestParam /
+                             @PathVariable without explicit names (spring-boot-starter-parent
+                             sets this for us; we use a custom parent, so set it here). -->
+                        <parameters>true</parameters>
                     </configuration>
                 </plugin>
             </plugins>

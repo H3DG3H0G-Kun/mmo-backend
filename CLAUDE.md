@@ -61,11 +61,17 @@ Read both before feature work.
   `contracts/` + `clients/godot-client/` created, Maven wrapper added.
 - Foundation done: Docker Compose infra, observability baseline, Windows dev scripts,
   seed reset (`dev-reset.bat dev`, verified via `mmo_meta.seed_runs`).
-- **E06 in progress.** DONE: `auth-service` real (register/login/JWT + `/me`), `libs/common`
-  shared JwtService, Flyway schema `auth`, security, tests — verified end-to-end vs Postgres.
-  **Next:** `world-service` (modular monolith) — character creation (REST), WebSocket session
-  handshake validating the JWT, world/era entry, then the E07 narrative engine
-  (Saga/Thread/Beat + Resonance triggers).
+- **E06 DONE.** `auth-service` (register/login/JWT + `/me`), `libs/common` shared JwtService,
+  `world-service` (character creation, world/era entry, WebSocket handshake). Verified
+  end-to-end live across both services (REST + `/ws`).
+- **E07 DONE.** Narrative engine in `world-service` (`narrative` package): `Saga → Tale → Beat`
+  graph, composable Resonance `TriggerCondition`s, `ResonanceEvaluator`, `NarrativeService`
+  (resonances/enter/advance with `TaleProgress`), REST under `/api/narrative`, Flyway `V2`
+  seeding the Parnavaz tale. Verified live: walk→resonate→enter→Witness/Ward→complete→era unlock.
+  (A "Tale" in code = the design's "Thread".)
+- **Next: E08/E09** — instances & party (Tales as solo/party/raid instances, public World Echoes)
+  and the world/timeline (persist era unlocks → the Living Timeline). Era-unlock persistence is
+  currently surfaced by the engine but not yet stored (deferred to E09).
 
 ## Build / verify commands (Windows)
 
