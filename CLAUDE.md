@@ -69,3 +69,8 @@ Read both before feature work.
 - Local infra: `scripts\windows\dev-up.bat` / `dev-down.bat` / `dev-reset.bat dev`.
 - Note: repo lives under OneDrive — if `clean` fails on a locked `target/`, delete it manually
   (OneDrive sync lock), then re-run.
+- **Gotcha:** this machine has a **native Postgres** service also listening on host `5432`,
+  which shadows the Docker `mmo_postgres` container for `localhost` connections (and has no
+  `mmo` role). When running a service against the container, either stop the native Postgres
+  service or publish the container on another port (e.g. `POSTGRES_PORT=55432 docker compose
+  ... up -d --force-recreate postgres` and set `MMO_DB_PORT=55432`).
