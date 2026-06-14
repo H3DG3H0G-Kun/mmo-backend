@@ -34,11 +34,15 @@ public class ApiExceptionHandler {
                  "ResonanceClosedException", "NoActiveProgressException",
                  "EraLockedException", "AlreadyInPartyException",
                  "PartyFullException", "PartyClosedException",
-                 "PartyRequiredException", "InstanceAlreadyActiveException" -> HttpStatus.CONFLICT;
+                 "PartyRequiredException", "InstanceAlreadyActiveException",
+                 "AlreadyInClanException", "ClanNameTakenException", "ClanTagTakenException",
+                 "ClanFullException", "NoClanInviteException" -> HttpStatus.CONFLICT;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
-                 "NotInPartyException", "NoActiveInstanceException" -> HttpStatus.NOT_FOUND;
-            case "NotPartyLeaderException", "NotInstanceLeaderException" -> HttpStatus.FORBIDDEN;
+                 "NotInPartyException", "NoActiveInstanceException",
+                 "NotInClanException", "ClanNotFoundException" -> HttpStatus.NOT_FOUND;
+            case "NotPartyLeaderException", "NotInstanceLeaderException",
+                 "InsufficientClanRankException" -> HttpStatus.FORBIDDEN;
             case "InvalidChoiceException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "NoStartingEraException" -> HttpStatus.INTERNAL_SERVER_ERROR;
             default -> null;

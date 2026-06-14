@@ -84,8 +84,13 @@ Read both before feature work.
 - **E11 (contracts v1) DONE.** Hand-authored contract for the live backend in `contracts/`:
   `rest/endpoints.md`, `ws/protocol.md`, `VERSIONS.md`. Source of truth for clients (Godot);
   machine-readable OpenAPI/JSON-Schema generation can layer on later.
-- **Still open:** public **World Echoes** (server-shared open-world tale events).
-- **Next:** E14 the Lineage 2 social/territory layer (clans → sieges → economy), E10 Godot.
+- **E14 (clans) DONE.** `clan` pkg (Flyway `V6`): `clan` + `clan_member` + `clan_invite`,
+  ranks LEADER/OFFICER/MEMBER, `ClanService` (create/invite/accept/leave[+promote]/kick/setRank
+  [leadership transfer]/myClan), backend rank guards, REST under `/api/clans`. Verified live:
+  create→dup-tag 409→invite→accept→rank guards (member/officer can't outrank leader)→promote.
+- **Still open:** public **World Echoes** (server-shared open-world tale events); **sieges**
+  over places of power; the **player economy** (the rest of E14).
+- **Next:** sieges (clans contest places of power) → economy, then E10 Godot.
 
 ## Build / verify commands (Windows)
 
