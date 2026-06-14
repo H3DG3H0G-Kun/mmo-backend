@@ -5,6 +5,7 @@ import ge.mmo.world.world.EraRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -42,6 +43,12 @@ public class CharacterService {
     @Transactional(readOnly = true)
     public List<PlayerCharacter> listForAccount(UUID accountId) {
         return characters.findByAccountIdOrderByCreatedAtAsc(accountId);
+    }
+
+    /** Fetch characters by id (used to render party member lists). */
+    @Transactional(readOnly = true)
+    public List<PlayerCharacter> byIds(Collection<UUID> ids) {
+        return characters.findAllById(ids);
     }
 
     /** Fetch a character the account owns, or throw. Used by world/instance entry validation. */

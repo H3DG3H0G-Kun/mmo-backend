@@ -32,9 +32,12 @@ public class ApiExceptionHandler {
         HttpStatus status = switch (type) {
             case "CharacterNameTakenException", "TooManyCharactersException",
                  "ResonanceClosedException", "NoActiveProgressException",
-                 "EraLockedException" -> HttpStatus.CONFLICT;
+                 "EraLockedException", "AlreadyInPartyException",
+                 "PartyFullException", "PartyClosedException" -> HttpStatus.CONFLICT;
             case "CharacterNotFoundException", "TaleNotFoundException",
-                 "EraNotFoundException" -> HttpStatus.NOT_FOUND;
+                 "EraNotFoundException", "PartyNotFoundException",
+                 "NotInPartyException" -> HttpStatus.NOT_FOUND;
+            case "NotPartyLeaderException" -> HttpStatus.FORBIDDEN;
             case "InvalidChoiceException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "NoStartingEraException" -> HttpStatus.INTERNAL_SERVER_ERROR;
             default -> null;

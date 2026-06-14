@@ -74,8 +74,13 @@ Read both before feature work.
   travel/recordRestoration), REST under `/api/world` (eras, travel, timeline), Flyway `V3`. Tale
   completion now persistently unlocks the era + increments the Living Timeline. Verified live:
   locked era → 409, complete tale → era unlocks → travel 200 → counter ticks.
-- **Next: E08** — party & instances (Tales as solo/party/raid runs, public World Echoes), then
-  E11 contracts, E14 the Lineage 2 social/territory layer, E10 Godot.
+- **E08 (party) DONE.** `party` package: `party` + `party_member` (Flyway `V4`), `PartyService`
+  (create/join/leave/disband/myParty, one party per character, leader promotion on leave,
+  full/closed/leader guards), REST under `/api/party`. Verified live: create→join→leave(promote)
+  →disband across two accounts. **Still open in E08:** binding Tales to a party as a shared
+  instance (party-shared TaleProgress) + public World Echoes — next.
+- **Next:** party-shared Tale instances, then E11 contracts (OpenAPI/WS schemas),
+  E14 the Lineage 2 social/territory layer (clans/sieges/economy), E10 Godot.
 
 ## Build / verify commands (Windows)
 
