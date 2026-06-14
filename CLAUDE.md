@@ -61,7 +61,11 @@ Read both before feature work.
   `contracts/` + `clients/godot-client/` created, Maven wrapper added.
 - Foundation done: Docker Compose infra, observability baseline, Windows dev scripts,
   seed reset (`dev-reset.bat dev`, verified via `mmo_meta.seed_runs`).
-- **Next: E06 — MMO Foundation Slice** (auth → character → world entry → narrative core).
+- **E06 in progress.** DONE: `auth-service` real (register/login/JWT + `/me`), `libs/common`
+  shared JwtService, Flyway schema `auth`, security, tests — verified end-to-end vs Postgres.
+  **Next:** `world-service` (modular monolith) — character creation (REST), WebSocket session
+  handshake validating the JWT, world/era entry, then the E07 narrative engine
+  (Saga/Thread/Beat + Resonance triggers).
 
 ## Build / verify commands (Windows)
 
