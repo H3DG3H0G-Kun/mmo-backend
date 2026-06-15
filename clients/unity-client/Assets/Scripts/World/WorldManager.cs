@@ -29,8 +29,17 @@ namespace Watcher.World
             _localId = localCharacterId;
 
             _localPlayer = MakeCapsule("You:" + localName, new Color(0.78f, 0.65f, 0.38f)); // gold
-            _localPlayer.transform.position = Vector3.zero;
-            _lastSentPos = Vector3.zero;
+            _localPlayer.transform.position = new Vector3(0f, 1f, 0f); // sit on the plane
+            _lastSentPos = _localPlayer.transform.position;
+
+            // Make the main camera follow the local Watcher.
+            var cam = Camera.main;
+            if (cam != null)
+            {
+                var follow = cam.GetComponent<FollowCamera>();
+                if (follow == null) follow = cam.gameObject.AddComponent<FollowCamera>();
+                follow.Target = _localPlayer.transform;
+            }
 
             socket.OnSnapshot += OnSnapshot;
             socket.OnEntityJoined += OnEntityJoined;
@@ -100,7 +109,7 @@ namespace Watcher.World
             w.SetTarget(pos);
         }
 
-        private static Vector3 ToWorld(float backendX, float backendY) => new(backendX, 0f, backendY);
+        private static Vector3 ToWorld(float backendX, float backendY) => new(backendX, 1f, backendY);
 
         private static GameObject MakeCapsule(string name, Color color)
         {
