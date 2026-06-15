@@ -26,8 +26,8 @@ the client authenticates by sending `SESSION_HELLO` as its first message.
 |------|------|---------|
 | `SESSION_WELCOME` | `{ "accountId", "username" }` | Token accepted; session authenticated. |
 | `WORLD_ENTERED` | `{ "characterId", "name", "era": { "id", "code", "name" } }` | Spawned into the world. |
-| `WORLD_SNAPSHOT` | `{ "entities": [{ "characterId", "name", "x", "y", "z" }] }` | The other Watchers already in your era (sent right after `WORLD_ENTERED`). |
-| `ENTITY_JOINED` | `{ "characterId", "name", "x", "y", "z" }` | Another Watcher entered your era. |
+| `WORLD_SNAPSHOT` | `{ "entities": [Entity] }` | Everyone already in your era — other Watchers (`kind:"PLAYER"`) **and** server NPCs (`kind:"NPC"`, with a `role`). Sent right after `WORLD_ENTERED`. |
+| `ENTITY_JOINED` | `Entity` (`kind:"PLAYER"`) | Another Watcher entered your era. |
 | `ENTITY_MOVED` | `{ "characterId", "x", "y", "z" }` | Another Watcher moved. |
 | `ENTITY_LEFT` | `{ "characterId" }` | Another Watcher left your era (disconnected). |
 | `PONG` | `{}` | Reply to `PING`. |
@@ -38,8 +38,18 @@ the client authenticates by sending `SESSION_HELLO` as its first message.
 `INVALID_TOKEN` (bad/expired/missing token) · `NOT_FOUND` (e.g. character not yours) ·
 `NOT_IN_WORLD` (`MOVE` before `ENTER_WORLD`) · `UNKNOWN_TYPE` (unrecognized command).
 
+### Entity shape
+```
+Entity = { characterId, name, x, y, z, kind }   // kind ∈ "PLAYER" | "NPC"
+          // NPC entities also carry: role ∈ "VENDOR" | "HERALD" | "TOWNSFOLK" | "GUARD"
+          // NPC characterId is the npc code (e.g. "npc_pharna"); NPCs are static (no ENTITY_MOVED).
+```
+Interact with a `VENDOR` NPC by opening the market (`GET /api/economy/market`). NPCs in an era are
+also listable over REST: `GET /api/world/npcs?characterId=<uuid>` → `[{ code, name, role, locationCode, x, y }]`.
+
 > The era is the **area-of-interest** unit for v1: snapshots and entity events are scoped to the
-> Watcher's current era. Presence is in-memory and ephemeral (rebuilt on reconnect).
+> Watcher's current era. Player presence is in-memory/ephemeral (rebuilt on reconnect); NPCs are
+> server-defined data, included in each joining Watcher's snapshot.
 
 ## Example session
 

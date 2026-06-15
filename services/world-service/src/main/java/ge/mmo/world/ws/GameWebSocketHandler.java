@@ -9,6 +9,7 @@ import ge.mmo.world.character.PlayerCharacter;
 import ge.mmo.world.presence.Presence;
 import ge.mmo.world.presence.PresenceService;
 import ge.mmo.world.session.WorldSessionService;
+import ge.mmo.world.world.NpcService;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -17,6 +18,8 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,11 +40,14 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
     private final JwtService jwt;
     private final WorldSessionService sessions;
     private final PresenceService presence;
+    private final NpcService npcs;
 
-    public GameWebSocketHandler(JwtService jwt, WorldSessionService sessions, PresenceService presence) {
+    public GameWebSocketHandler(JwtService jwt, WorldSessionService sessions, PresenceService presence,
+                                NpcService npcs) {
         this.jwt = jwt;
         this.sessions = sessions;
         this.presence = presence;
+        this.npcs = npcs;
     }
 
     @Override
@@ -115,10 +121,11 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
     private void spawnIntoWorld(WebSocketSession session, PlayerCharacter character) {
         trySend(session, WsProtocol.E_WORLD_ENTERED, worldEntered(character));
         String era = character.getCurrentEra().getCode();
-        // Register presence; snapshot the others already here, then announce ourselves to them.
+        // Register presence; snapshot = other Watchers already here (kind=PLAYER) + the era's NPCs.
         var others = presence.join(session, character.getId(), character.getName(), era);
-        trySend(session, WsProtocol.E_WORLD_SNAPSHOT,
-                Map.of("entities", others.stream().map(this::entity).toList()));
+        List<Map<String, Object>> entities = new ArrayList<>(others.stream().map(this::entity).toList());
+        npcs.inEra(character.getCurrentEra().getId()).forEach(n -> entities.add(npcEntity(n)));
+        trySend(session, WsProtocol.E_WORLD_SNAPSHOT, Map.of("entities", entities));
         presence.presenceOf(session.getId()).ifPresent(self ->
                 broadcast(era, session.getId(), WsProtocol.E_ENTITY_JOINED, entity(self)));
     }
@@ -160,7 +167,12 @@ public class GameWebSocketHandler extends TextWebSocketHandler {
 
     private Map<String, Object> entity(Presence p) {
         return Map.of("characterId", p.characterId().toString(), "name", p.name(),
-                "x", p.x(), "y", p.y(), "z", p.z());
+                "x", p.x(), "y", p.y(), "z", p.z(), "kind", "PLAYER");
+    }
+
+    private Map<String, Object> npcEntity(NpcService.NpcView n) {
+        return Map.of("characterId", n.code(), "name", n.name(),
+                "x", n.x(), "y", n.y(), "z", 0.0, "kind", "NPC", "role", n.role());
     }
 
     private Map<String, Object> worldEntered(PlayerCharacter c) {

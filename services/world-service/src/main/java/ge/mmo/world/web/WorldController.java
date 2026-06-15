@@ -9,6 +9,8 @@ import ge.mmo.world.web.dto.TravelRequest;
 import ge.mmo.world.web.dto.TravelToRequest;
 import ge.mmo.world.world.LocationService;
 import ge.mmo.world.world.LocationViews.LocationsResponse;
+import ge.mmo.world.world.NpcService;
+import ge.mmo.world.world.NpcService.NpcView;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +30,12 @@ public class WorldController {
 
     private final TimelineService timeline;
     private final LocationService locations;
+    private final NpcService npcs;
 
-    public WorldController(TimelineService timeline, LocationService locations) {
+    public WorldController(TimelineService timeline, LocationService locations, NpcService npcs) {
         this.timeline = timeline;
         this.locations = locations;
+        this.npcs = npcs;
     }
 
     /** All eras with this character's unlock status. */
@@ -72,5 +76,12 @@ public class WorldController {
     public LocationsResponse travelTo(@AuthenticationPrincipal AuthPrincipal principal,
                                       @Valid @RequestBody TravelToRequest req) {
         return locations.travelTo(principal.accountId(), req.characterId(), req.locationCode());
+    }
+
+    /** NPCs present in the character's current era (also delivered via the WS presence stream). */
+    @GetMapping("/npcs")
+    public List<NpcView> npcs(@AuthenticationPrincipal AuthPrincipal principal,
+                             @RequestParam UUID characterId) {
+        return npcs.forCharacter(principal.accountId(), characterId);
     }
 }

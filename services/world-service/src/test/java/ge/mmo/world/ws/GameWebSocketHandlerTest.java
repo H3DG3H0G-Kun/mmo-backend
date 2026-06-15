@@ -9,6 +9,7 @@ import ge.mmo.world.character.PlayerCharacter;
 import ge.mmo.world.presence.PresenceService;
 import ge.mmo.world.session.WorldSessionService;
 import ge.mmo.world.world.Era;
+import ge.mmo.world.world.NpcService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.socket.TextMessage;
@@ -47,7 +48,9 @@ class GameWebSocketHandlerTest {
         presence = mock(PresenceService.class);
         when(presence.join(any(), any(), any(), any())).thenReturn(List.of());
         when(presence.presenceOf(any())).thenReturn(Optional.empty());
-        handler = new GameWebSocketHandler(jwt, sessions, presence);
+        NpcService npcs = mock(NpcService.class);
+        when(npcs.inEra(any())).thenReturn(List.of());
+        handler = new GameWebSocketHandler(jwt, sessions, presence, npcs);
 
         session = mock(WebSocketSession.class);
         attrs = new HashMap<>();
