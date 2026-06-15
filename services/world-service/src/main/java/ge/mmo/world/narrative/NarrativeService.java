@@ -98,7 +98,7 @@ public class NarrativeService {
         TaleProgress progress = new TaleProgress(UUID.randomUUID(), characterId, tale.getId(), first.getId());
         progressRepo.save(progress);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
-                progress.getStatus().name(), BeatView.of(first), null);
+                progress.getStatus().name(), BeatView.of(first, edges.findByFromBeatId(first.getId())), null);
     }
 
     /**
@@ -136,12 +136,13 @@ public class NarrativeService {
         progress.moveTo(next.getId());
         progressRepo.save(progress);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
-                progress.getStatus().name(), BeatView.of(next), null);
+                progress.getStatus().name(), BeatView.of(next, edges.findByFromBeatId(next.getId())), null);
     }
 
     private TaleStateView stateOf(Tale tale, TaleProgress progress) {
         BeatView beat = progress.getCurrentBeatId() == null ? null
-                : beats.findById(progress.getCurrentBeatId()).map(BeatView::of).orElse(null);
+                : beats.findById(progress.getCurrentBeatId())
+                .map(b -> BeatView.of(b, edges.findByFromBeatId(b.getId()))).orElse(null);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
                 progress.getStatus().name(),
                 progress.getStatus() == Progress.COMPLETED ? null : beat,

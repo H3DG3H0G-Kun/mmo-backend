@@ -26,8 +26,11 @@ public record ContentPackage(SagaDef saga, List<TaleDef> tales) {
     public record BeatDef(String code, int ordinal, String narration, String interaction, boolean terminal) {
     }
 
-    /** A directed edge between beats (by code). {@code choiceKey} only for CHOOSE beats. */
-    public record EdgeDef(String from, String to, String choiceKey) {
+    /**
+     * A directed edge between beats (by code). {@code choiceKey} only for CHOOSE beats;
+     * {@code label} is the optional authored button text (null → humanized key).
+     */
+    public record EdgeDef(String from, String to, String choiceKey, String label) {
     }
 
     public record TriggerDef(String type, String value) {

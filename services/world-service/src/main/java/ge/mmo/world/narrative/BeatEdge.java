@@ -24,15 +24,20 @@ public class BeatEdge {
     @Column(name = "choice_key")
     private String choiceKey;
 
+    /** Authored display label for a CHOOSE branch; null falls back to a humanized choiceKey. */
+    @Column(name = "label")
+    private String label;
+
     protected BeatEdge() {
     }
 
     // Used by the content importer (same package).
-    BeatEdge(UUID id, UUID fromBeatId, UUID toBeatId, String choiceKey) {
+    BeatEdge(UUID id, UUID fromBeatId, UUID toBeatId, String choiceKey, String label) {
         this.id = id;
         this.fromBeatId = fromBeatId;
         this.toBeatId = toBeatId;
         this.choiceKey = choiceKey;
+        this.label = label;
     }
 
     public UUID getId() {
@@ -49,5 +54,9 @@ public class BeatEdge {
 
     public String getChoiceKey() {
         return choiceKey;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

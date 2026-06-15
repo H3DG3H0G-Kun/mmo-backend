@@ -78,7 +78,7 @@ public class ContentImportService {
             for (EdgeDef ed : nullSafe(td.edges())) {
                 UUID from = requireBeat(beatIdByCode, ed.from(), td.code());
                 UUID to = requireBeat(beatIdByCode, ed.to(), td.code());
-                edges.save(new BeatEdge(UUID.randomUUID(), from, to, ed.choiceKey()));
+                edges.save(new BeatEdge(UUID.randomUUID(), from, to, ed.choiceKey(), ed.label()));
             }
             for (TriggerDef tr : nullSafe(td.triggers())) {
                 ConditionType type = parse(ConditionType.class, tr.type(), "trigger.type");

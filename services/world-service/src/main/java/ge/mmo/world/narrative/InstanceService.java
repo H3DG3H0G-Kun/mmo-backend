@@ -77,7 +77,7 @@ public class InstanceService {
                 .orElseThrow(() -> new TaleNotFoundException(taleCode + " (no beats)"));
         instances.save(new TaleInstance(UUID.randomUUID(), tale.getId(), partyId, first.getId()));
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
-                TaleInstance.Status.ACTIVE.name(), BeatView.of(first), null);
+                TaleInstance.Status.ACTIVE.name(), BeatView.of(first, edges.findByFromBeatId(first.getId())), null);
     }
 
     /** Any party member advances the shared beat; completing it rewards the whole party. */
@@ -106,7 +106,7 @@ public class InstanceService {
         instance.moveTo(next.getId());
         instances.save(instance);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
-                TaleInstance.Status.ACTIVE.name(), BeatView.of(next), null);
+                TaleInstance.Status.ACTIVE.name(), BeatView.of(next, edges.findByFromBeatId(next.getId())), null);
     }
 
     @Transactional(readOnly = true)
@@ -118,7 +118,8 @@ public class InstanceService {
         Tale tale = tales.findById(instance.getTaleId())
                 .orElseThrow(() -> new TaleNotFoundException(instance.getTaleId().toString()));
         BeatView beat = instance.getCurrentBeatId() == null ? null
-                : beats.findById(instance.getCurrentBeatId()).map(BeatView::of).orElse(null);
+                : beats.findById(instance.getCurrentBeatId())
+                .map(b -> BeatView.of(b, edges.findByFromBeatId(b.getId()))).orElse(null);
         return new TaleStateView(tale.getId(), tale.getCode(), tale.getTitle(),
                 instance.getStatus().name(), beat, null);
     }

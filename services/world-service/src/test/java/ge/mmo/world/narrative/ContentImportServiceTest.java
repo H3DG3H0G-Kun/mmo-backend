@@ -49,7 +49,7 @@ class ContentImportServiceTest {
                 List.of(new TaleDef("TALE_MOUNTAIN_MEETING", "The Mountain Meeting", "TRUE_TALE", 1, null,
                         List.of(new BeatDef("ARRIVE", 1, "On a storm-lashed peak two strangers meet.", "WITNESS", false),
                                 new BeatDef("HONOR", 2, "Hold the bond of guest and host true.", "WARD", true)),
-                        List.of(new EdgeDef("ARRIVE", "HONOR", null)),
+                        List.of(new EdgeDef("ARRIVE", "HONOR", null, null)),
                         List.of(new TriggerDef("PLACE", "mountain"), new TriggerDef("STATE", "STORM")))));
     }
 
