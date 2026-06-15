@@ -122,6 +122,24 @@ public class SiegeService {
         return view(siege);
     }
 
+    /** True if the clan is contesting this siege and the siege is currently ACTIVE. */
+    @Transactional(readOnly = true)
+    public boolean isActiveParticipant(UUID siegeId, UUID clanId) {
+        return sieges.findById(siegeId)
+                .filter(s -> s.getStatus() == Siege.Status.ACTIVE)
+                .flatMap(s -> participants.findBySiegeIdAndClanId(siegeId, clanId))
+                .isPresent();
+    }
+
+    /** Add combat-won score to a clan's siege contribution (called by the combat engine). */
+    @Transactional
+    public void recordCombatContribution(UUID siegeId, UUID clanId, long points) {
+        participants.findBySiegeIdAndClanId(siegeId, clanId).ifPresent(p -> {
+            p.addScore(Math.max(0, points));
+            participants.save(p);
+        });
+    }
+
     private UUID requireLeaderClan(UUID accountId, UUID characterId) {
         characters.requireOwned(accountId, characterId);
         UUID clanId = clans.clanIdOf(characterId).orElseThrow(ClanRequiredException::new);

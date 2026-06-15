@@ -36,6 +36,10 @@ public class Encounter {
     @Column(nullable = false)
     private Status status = Status.ACTIVE;
 
+    /** If set, victory in this encounter contributes to this siege (combat -> siege loop). */
+    @Column(name = "siege_id")
+    private UUID siegeId;
+
     @Column(name = "started_at", nullable = false)
     private Instant startedAt = Instant.now();
 
@@ -93,5 +97,13 @@ public class Encounter {
 
     public Status getStatus() {
         return status;
+    }
+
+    public UUID getSiegeId() {
+        return siegeId;
+    }
+
+    public void setSiegeId(UUID siegeId) {
+        this.siegeId = siegeId;
     }
 }

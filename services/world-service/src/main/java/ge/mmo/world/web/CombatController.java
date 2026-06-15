@@ -39,7 +39,7 @@ public class CombatController {
     @PostMapping("/encounters")
     public ResponseEntity<EncounterView> start(@AuthenticationPrincipal AuthPrincipal principal,
                                                @Valid @RequestBody StartEncounterRequest req) {
-        EncounterView view = combat.start(principal.accountId(), req.characterId(), req.enemyCode());
+        EncounterView view = combat.start(principal.accountId(), req.characterId(), req.enemyCode(), req.siegeId());
         return ResponseEntity.status(HttpStatus.CREATED).body(view);
     }
 

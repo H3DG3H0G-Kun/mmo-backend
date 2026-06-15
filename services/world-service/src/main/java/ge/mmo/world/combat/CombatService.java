@@ -1,9 +1,11 @@
 package ge.mmo.world.combat;
 
 import ge.mmo.world.character.CharacterService;
+import ge.mmo.world.clan.ClanService;
 import ge.mmo.world.combat.CombatViews.EncounterView;
 import ge.mmo.world.combat.CombatViews.EnemyView;
 import ge.mmo.world.economy.EconomyService;
+import ge.mmo.world.siege.SiegeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +15,8 @@ import java.util.UUID;
 /**
  * Backend-authoritative combat. v1 is deterministic and turn-based: each ATTACK, the Watcher
  * strikes the Distortion, and (if it survives) the Distortion strikes back — the server resolves
- * all damage and decides win/lose. Victory awards the enemy's gold. This is the verb behind WARD
- * beats and will later feed siege/encounter contribution.
+ * all damage and decides win/lose. Victory awards the enemy's gold and, if the fight was joined
+ * for a siege your clan contests, adds the Distortion's strength to your clan's siege score.
  */
 @Service
 public class CombatService {
@@ -26,13 +28,18 @@ public class CombatService {
     private final EncounterRepository encounters;
     private final CharacterService characters;
     private final EconomyService economy;
+    private final SiegeService sieges;
+    private final ClanService clans;
 
     public CombatService(EnemyDefRepository enemies, EncounterRepository encounters,
-                         CharacterService characters, EconomyService economy) {
+                         CharacterService characters, EconomyService economy,
+                         SiegeService sieges, ClanService clans) {
         this.enemies = enemies;
         this.encounters = encounters;
         this.characters = characters;
         this.economy = economy;
+        this.sieges = sieges;
+        this.clans = clans;
     }
 
     @Transactional(readOnly = true)
@@ -43,13 +50,30 @@ public class CombatService {
     /** Begin a fight against a Distortion. One active encounter per character. */
     @Transactional
     public EncounterView start(UUID accountId, UUID characterId, String enemyCode) {
+        return start(accountId, characterId, enemyCode, null);
+    }
+
+    /**
+     * Begin a fight, optionally "for" a siege. If {@code siegeId} is given, the character's clan
+     * must be contesting that ACTIVE siege; victory then feeds the clan's siege score.
+     */
+    @Transactional
+    public EncounterView start(UUID accountId, UUID characterId, String enemyCode, UUID siegeId) {
         characters.requireOwned(accountId, characterId);
         if (encounters.findByCharacterIdAndStatus(characterId, Encounter.Status.ACTIVE).isPresent()) {
             throw new AlreadyInEncounterException();
         }
+        if (siegeId != null) {
+            UUID clanId = clans.clanIdOf(characterId).orElseThrow(NotInSiegeContextException::new);
+            if (!sieges.isActiveParticipant(siegeId, clanId)) {
+                throw new NotInSiegeContextException();
+            }
+        }
         EnemyDef enemy = enemies.findByCode(enemyCode).orElseThrow(() -> new EnemyNotFoundException(enemyCode));
-        Encounter encounter = encounters.save(new Encounter(
-                UUID.randomUUID(), enemy.getId(), characterId, enemy.getMaxHp(), CHARACTER_MAX_HP));
+        Encounter encounter = new Encounter(
+                UUID.randomUUID(), enemy.getId(), characterId, enemy.getMaxHp(), CHARACTER_MAX_HP);
+        encounter.setSiegeId(siegeId);
+        encounters.save(encounter);
         return view(encounter, enemy, 0);
     }
 
@@ -69,6 +93,11 @@ public class CombatService {
             encounter.win();
             economy.reward(characterId, enemy.getGoldReward());
             awarded = enemy.getGoldReward();
+            // Combat -> siege: a Distortion felled for a siege adds its strength to the clan's score.
+            if (encounter.getSiegeId() != null) {
+                clans.clanIdOf(characterId).ifPresent(clanId ->
+                        sieges.recordCombatContribution(encounter.getSiegeId(), clanId, enemy.getMaxHp()));
+            }
         } else {
             encounter.damageCharacter(enemy.getAttackPower());
             if (encounter.getCharacterHp() <= 0) {

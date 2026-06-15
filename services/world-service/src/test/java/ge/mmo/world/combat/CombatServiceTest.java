@@ -22,6 +22,8 @@ class CombatServiceTest {
     private EncounterRepository encounters;
     private CharacterService characters;
     private EconomyService economy;
+    private ge.mmo.world.siege.SiegeService sieges;
+    private ge.mmo.world.clan.ClanService clans;
     private CombatService service;
 
     private final UUID acc = UUID.randomUUID();
@@ -35,7 +37,9 @@ class CombatServiceTest {
         encounters = mock(EncounterRepository.class);
         characters = mock(CharacterService.class);
         economy = mock(EconomyService.class);
-        service = new CombatService(enemies, encounters, characters, economy);
+        sieges = mock(ge.mmo.world.siege.SiegeService.class);
+        clans = mock(ge.mmo.world.clan.ClanService.class);
+        service = new CombatService(enemies, encounters, characters, economy, sieges, clans);
         when(characters.requireOwned(any(), any())).thenReturn(mock(PlayerCharacter.class));
     }
 
@@ -86,5 +90,34 @@ class CombatServiceTest {
                 .thenReturn(Optional.of(new Encounter(encId, enemyId, charId, 100, 100)));
         assertThatThrownBy(() -> service.start(acc, charId, "ECHO_OF_THE_CROWN"))
                 .isInstanceOf(AlreadyInEncounterException.class);
+    }
+
+    @Test
+    void startForSiegeYourClanIsNotContestingIsRejected() {
+        UUID siegeId = UUID.randomUUID();
+        UUID clanId = UUID.randomUUID();
+        when(encounters.findByCharacterIdAndStatus(charId, Encounter.Status.ACTIVE)).thenReturn(Optional.empty());
+        when(clans.clanIdOf(charId)).thenReturn(Optional.of(clanId));
+        when(sieges.isActiveParticipant(siegeId, clanId)).thenReturn(false);
+
+        assertThatThrownBy(() -> service.start(acc, charId, "ECHO_OF_THE_CROWN", siegeId))
+                .isInstanceOf(NotInSiegeContextException.class);
+    }
+
+    @Test
+    void winningASiegeEncounterFeedsTheClanScore() {
+        UUID siegeId = UUID.randomUUID();
+        UUID clanId = UUID.randomUUID();
+        Encounter encounter = new Encounter(encId, enemyId, charId, 20, 100); // one hit kills
+        encounter.setSiegeId(siegeId);
+        EnemyDef enemy = enemy(10, 50);
+        when(enemy.getMaxHp()).thenReturn(160);
+        when(encounters.findById(encId)).thenReturn(Optional.of(encounter));
+        when(enemies.findById(enemyId)).thenReturn(Optional.of(enemy));
+        when(clans.clanIdOf(charId)).thenReturn(Optional.of(clanId));
+
+        service.attack(acc, charId, encId);
+
+        verify(sieges).recordCombatContribution(siegeId, clanId, 160L);
     }
 }

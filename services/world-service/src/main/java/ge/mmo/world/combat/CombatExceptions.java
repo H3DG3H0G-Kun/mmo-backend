@@ -29,3 +29,10 @@ class AlreadyInEncounterException extends RuntimeException {
         super("Character is already in a fight");
     }
 }
+
+/** Tried to fight for a siege the character's clan is not contesting (or that is not active). */
+class NotInSiegeContextException extends RuntimeException {
+    NotInSiegeContextException() {
+        super("Your clan is not contesting that active siege");
+    }
+}

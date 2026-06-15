@@ -111,3 +111,20 @@ PartyView = { id, leaderCharacterId, status:"OPEN"|"CLOSED"|"DISBANDED", maxSize
     "edges":   [ { "from", "to", "choiceKey" } ],
     "triggers":[ { "type":"ERA|PLACE|STATE|PRIOR_TALE", "value" } ] } ] }
 ```
+
+### Combat (Distortions)
+Backend-authoritative turn-based fights against Distortions (enemy defs). One active encounter
+per character. `status` ∈ `ACTIVE | WON | LOST`.
+
+- `GET /api/combat/enemies` → `[{ code, name, maxHp, attackPower, goldReward }]`.
+- `POST /api/combat/encounters` — body `{ characterId, enemyCode, siegeId? }` → `201` `EncounterView`.
+  `409` already fighting. If `siegeId` is given, the character's clan must be contesting that
+  **ACTIVE** siege (else `409`); victory then adds the Distortion's `maxHp` to the clan's siege score.
+- `POST /api/combat/encounters/{encounterId}/attack` — body `{ characterId }` → `200` `EncounterView`
+  (one round: you strike; survivor strikes back). On the killing blow: `status:"WON"`, `goldAwarded`
+  set, and (if a siege encounter) the clan's siege score rises. `409` if the encounter is over.
+- `GET /api/combat/encounters/active?characterId=<uuid>` → `200` `EncounterView`.
+
+```
+EncounterView = { id, enemyCode, enemyName, enemyHp, characterHp, status, goldAwarded }
+```

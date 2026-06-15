@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public record StartEncounterRequest(
         @NotNull UUID characterId,
-        @NotBlank String enemyCode) {
+        @NotBlank String enemyCode,
+        UUID siegeId) {
 }
