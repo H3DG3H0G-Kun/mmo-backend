@@ -42,7 +42,7 @@ public class ApiExceptionHandler {
                  "ListingNotActiveException", "NoGatherableItemsException",
                  "WorldEchoActiveException", "WorldEchoNotActiveException",
                  "AlreadyInEncounterException", "EncounterNotActiveException",
-                 "ContentConflictException" -> HttpStatus.CONFLICT;
+                 "ContentConflictException", "LocationNotConnectedException" -> HttpStatus.CONFLICT;
             case "ContentValidationException" -> HttpStatus.UNPROCESSABLE_ENTITY;
             case "CharacterNotFoundException", "TaleNotFoundException",
                  "EraNotFoundException", "PartyNotFoundException",
@@ -51,7 +51,8 @@ public class ApiExceptionHandler {
                  "PlaceNotFoundException", "SiegeNotFoundException",
                  "ItemNotFoundException", "ListingNotFoundException",
                  "WorldEchoNotFoundException",
-                 "EnemyNotFoundException", "EncounterNotFoundException" -> HttpStatus.NOT_FOUND;
+                 "EnemyNotFoundException", "EncounterNotFoundException",
+                 "LocationNotFoundException" -> HttpStatus.NOT_FOUND;
             case "NotPartyLeaderException", "NotInstanceLeaderException",
                  "InsufficientClanRankException", "NotClanLeaderException",
                  "NotASiegeParticipantException", "ListingOwnershipException" -> HttpStatus.FORBIDDEN;

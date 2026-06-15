@@ -47,6 +47,23 @@ EraView           = { id, code, name, ordinal }
   `409` era locked. `404` era unknown.
 - `GET /api/world/timeline` → `200` `[{ eraId, code, name, ordinal, restoredCount }]` (server-wide).
 
+### World geography (locations + travel)
+Locations are per-era named places; a location's `code` is the `place` you pass to narrative
+resonance/enter. `type` ∈ `TOWN | LANDMARK | SACRED | PLACE_OF_POWER | WILDS` (client uses `TOWN`
+for "inTown" ambient). `connected` = reachable from the character's current location (true for all
+when the character has just arrived in the era / has no current location).
+
+- `GET /api/world/locations?characterId=<uuid>` → `200` `LocationsResponse` (the character's era).
+- `GET /api/world/locations/era/{eraCode}` → `200` `LocationsResponse` (browse; `currentLocationCode` null, all `connected` true).
+- `POST /api/world/travel-to` — body `{ characterId, locationCode }` → `200` refreshed `LocationsResponse`.
+  `409` not connected to current location. `404` no such location in the character's era.
+  (Intra-era only; crossing eras uses `POST /api/world/travel`.)
+
+```
+LocationsResponse = { eraCode, currentLocationCode | null,
+                      locations: [{ code, name, type, region, x, y, description, connected }] }
+```
+
 ### Narrative — solo
 - `GET /api/narrative/resonances?characterId=<uuid>&place=<code>&states=A,B`
   → `200` `[{ taleId, code, title, tier, sagaTitle, status }]` (Tales whose Resonance opens here).

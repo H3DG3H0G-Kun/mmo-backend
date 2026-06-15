@@ -30,6 +30,9 @@ public class PlayerCharacter {
     @JoinColumn(name = "current_era_id", nullable = false)
     private Era currentEra;
 
+    @Column(name = "current_location_id")
+    private UUID currentLocationId;
+
     @Column(name = "created_at", nullable = false)
     private Instant createdAt = Instant.now();
 
@@ -46,6 +49,16 @@ public class PlayerCharacter {
     /** Move this Watcher to another era (travel must be validated by the backend first). */
     public void moveToEra(Era era) {
         this.currentEra = era;
+        this.currentLocationId = null; // arriving in a new era; pick a location there next
+    }
+
+    /** Set the Watcher's current location within its era (backend-validated travel). */
+    public void moveToLocation(UUID locationId) {
+        this.currentLocationId = locationId;
+    }
+
+    public UUID getCurrentLocationId() {
+        return currentLocationId;
     }
 
     public UUID getId() {

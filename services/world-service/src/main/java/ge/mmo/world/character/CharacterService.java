@@ -70,4 +70,11 @@ public class CharacterService {
         character.moveToEra(era);
         return characters.save(character);
     }
+
+    /** Persist an intra-era move to a location (the world layer validates connectivity first). */
+    @Transactional
+    public PlayerCharacter placeAt(PlayerCharacter character, java.util.UUID locationId) {
+        character.moveToLocation(locationId);
+        return characters.save(character);
+    }
 }

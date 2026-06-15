@@ -6,9 +6,13 @@ import ge.mmo.world.timeline.TimelineViews.EraStatusView;
 import ge.mmo.world.timeline.TimelineViews.TimelineEraView;
 import ge.mmo.world.web.dto.CharacterResponse;
 import ge.mmo.world.web.dto.TravelRequest;
+import ge.mmo.world.web.dto.TravelToRequest;
+import ge.mmo.world.world.LocationService;
+import ge.mmo.world.world.LocationViews.LocationsResponse;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +27,11 @@ import java.util.UUID;
 public class WorldController {
 
     private final TimelineService timeline;
+    private final LocationService locations;
 
-    public WorldController(TimelineService timeline) {
+    public WorldController(TimelineService timeline, LocationService locations) {
         this.timeline = timeline;
+        this.locations = locations;
     }
 
     /** All eras with this character's unlock status. */
@@ -46,5 +52,25 @@ public class WorldController {
     @GetMapping("/timeline")
     public List<TimelineEraView> timeline() {
         return timeline.livingTimeline();
+    }
+
+    /** Locations in the character's current era, flagged by reachability from where they stand. */
+    @GetMapping("/locations")
+    public LocationsResponse locations(@AuthenticationPrincipal AuthPrincipal principal,
+                                       @RequestParam UUID characterId) {
+        return locations.forCharacter(principal.accountId(), characterId);
+    }
+
+    /** All locations of a named era (for maps/browsing). */
+    @GetMapping("/locations/era/{eraCode}")
+    public LocationsResponse locationsByEra(@PathVariable String eraCode) {
+        return locations.forEra(eraCode);
+    }
+
+    /** Travel within the current era to a connected location. */
+    @PostMapping("/travel-to")
+    public LocationsResponse travelTo(@AuthenticationPrincipal AuthPrincipal principal,
+                                      @Valid @RequestBody TravelToRequest req) {
+        return locations.travelTo(principal.accountId(), req.characterId(), req.locationCode());
     }
 }
