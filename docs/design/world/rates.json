@@ -1,0 +1,64 @@
+{
+  "_note": "RATES TABLES (WORLD_DESIGN.md §5). `status: live` = already in code; `status: proposed` = for the backend session. Codes reconciled to existing seeds (item_def V8, enemy_def V10, world_echo V9, EconomyService constants).",
+
+  "itemBaseValues": {
+    "_status": "proposed",
+    "_proposes": "item_def.base_value column; vendor anchor + economic baseline. Player market stays free-priced.",
+    "values": [
+      { "itemCode": "MOUNTAIN_HERB", "baseValue": 5, "source": "forage-lowland" },
+      { "itemCode": "IRON_ORE", "baseValue": 8, "source": "forage-wilds-highland" },
+      { "itemCode": "MEMORY_RELIC", "baseValue": 40, "source": "tale-reward" }
+    ]
+  },
+
+  "forageRegions": {
+    "_status": "proposed",
+    "_extends": "current global forage (FORAGE_QUANTITY=3, random gatherable). Weight draw by forager's location.forageRegion. Fallback = current global random if unset.",
+    "regions": [
+      { "region": "LOWLAND", "quantity": 3, "weights": { "MOUNTAIN_HERB": 70, "IRON_ORE": 30 } },
+      { "region": "WILDS", "quantity": 3, "weights": { "IRON_ORE": 60, "MOUNTAIN_HERB": 40 } },
+      { "region": "HIGHLAND", "quantity": 4, "weights": { "IRON_ORE": 70, "MOUNTAIN_HERB": 30 } }
+    ]
+  },
+
+  "economyConstants": {
+    "startingGold": { "value": 100, "status": "live", "source": "EconomyService.STARTING_GOLD" },
+    "forageQuantityDefault": { "value": 3, "status": "live", "source": "EconomyService.FORAGE_QUANTITY" },
+    "marketFeePercent": { "value": 5, "status": "proposed", "_note": "gold sink in buy(): buyer pays total, seller receives total*0.95, 5% burned. Currently 0%." }
+  },
+
+  "enemies": {
+    "_note": "Combat = the WARD verb. EnemyView{code,name,maxHp,attackPower,goldReward}.",
+    "defs": [
+      { "code": "NISLI_WISP", "name": "Nisli Wisp", "maxHp": 40, "attackPower": 6, "goldReward": 12, "status": "proposed", "_role": "common WILDS trash" },
+      { "code": "ECHO_OF_THE_CROWN", "name": "Echo of the Crown", "maxHp": 100, "attackPower": 10, "goldReward": 50, "status": "live", "_role": "First Crown WARD boss (V10)" },
+      { "code": "ASPECT_OF_BETRAYAL", "name": "Aspect of Betrayal", "maxHp": 160, "attackPower": 18, "goldReward": 90, "status": "live", "_role": "reserved for EARLY_KING / Oath of Kings (V10)" }
+    ]
+  },
+
+  "spawns": {
+    "_status": "proposed",
+    "_proposes": "spawn table: location -> enemy, density (concurrent), respawnSeconds. Encounter-bound bosses are NOT world-spawned.",
+    "parnavaz": [
+      { "locationCode": "aragvi_marches", "enemyCode": "NISLI_WISP", "density": 6, "respawnSeconds": 45, "kind": "FREE_ROAM" },
+      { "boundToTaleBeat": "TALE_FARNAVAZ_CROWN/WARD_THE_FOUNDING", "enemyCode": "ECHO_OF_THE_CROWN", "density": 1, "kind": "ENCOUNTER_BOUND" }
+    ]
+  },
+
+  "worldEchoGoals": {
+    "_status": "proposed",
+    "_seeds": "world_echo.goal (V9, currently unseeded per-row bigint).",
+    "goals": [
+      { "taleCode": "TALE_FARNAVAZ_CROWN", "goal": 500, "_rationale": "small starter set-piece for the first public Echo" }
+    ]
+  },
+
+  "eraUnlockPacing": {
+    "_note": "One gateway (era-unlocking) HISTORY tale per era; 6-8 beats; trans-era MYTH/WORD tales reachable at places without an ERA gate.",
+    "gateways": [
+      { "eraCode": "PARNAVAZ", "taleCode": "TALE_FARNAVAZ_CROWN", "place": "throne_hall", "unlocksEra": "EARLY_KING", "status": "live", "beats": 8 },
+      { "eraCode": null, "taleCode": "TALE_AMIRANI_BOUND", "place": "peak", "requiresState": "STORM", "unlocksEra": null, "status": "live", "_note": "myth -> Codex only" },
+      { "eraCode": "EARLY_KING", "taleCode": "TALE_WATCHFIRE_OF_ARMAZI", "place": "armazi_mount", "unlocksEra": "NINO", "status": "live", "beats": 6 }
+    ]
+  }
+}

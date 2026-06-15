@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_ASSYRIAN_FATHERS",
+    "title": "ცამეტი ასურელი მამა — The Thirteen Assyrian Fathers",
+    "strand": "HISTORY",
+    "eraId": 6,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_ASSYRIAN_FATHERS",
+      "title": "ასურელი მამები — The Assyrian Fathers",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "ERA", "value": "VAKHTANG" },
+        { "type": "PLACE", "value": "davit_gareja" }
+      ],
+      "beats": [
+        {
+          "code": "THE_THIRTEEN_COME",
+          "ordinal": 1,
+          "narration": "In the sixth century thirteen holy men come from the lands of Syria to Kartli — the ასურელი მამები, the Assyrian Fathers — to deepen a young Christian nation's faith. Witness their arrival: not conquerors, not kings, but quiet men who will change the country by building places to remember in.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "INTO_THE_WILDERNESS",
+          "ordinal": 2,
+          "narration": "They scatter into the harshest country — and დავით (David) goes into the bare ochre desert of Gareja, to live in a cave in the cliff where nothing grows. Witness men who seek the emptiest places on purpose, to fill them with prayer and, in time, with libraries.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "AID_THE_FOUNDING",
+          "ordinal": 3,
+          "narration": "Cell by cell, cave by cave, the monasteries take shape — Davit Gareja in the desert, Shio-Mgvime in its gorge, and more. Aid the founding: carry the first water, cut the first cells, help raise the houses of memory that will outlast every dynasty. What is built here is not a fortress but a vessel for keeping.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_HEARTH_OF_PRAYER",
+          "ordinal": 4,
+          "narration": "The wilderness and the long centuries press on the new foundations — the Aspect of the Old Dark, the simple likelihood that such fragile places will be abandoned and forgotten. Ward the hearths of prayer in their first vulnerable years, so the lamp that is lit here is not let go out.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_MONASTERIES",
+          "ordinal": 5,
+          "narration": "The monasteries take root, and become what they will be for fourteen centuries: the scriptoria where monks copy and keep the manuscripts, the verse, the chronicles — the very memory this whole game is sworn to. Restore them. In keeping these walls you keep the keepers of memory itself.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_FATHERS_REMEMBERED",
+          "ordinal": 6,
+          "narration": "The Thirteen are remembered as the founders of Georgian monasticism — and through the houses they raised, every later age's memory was copied, hidden in war, and carried forward. You have kept the keepers. Of all the threads, this one quietly holds the rest. It holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_THIRTEEN_COME", "to": "INTO_THE_WILDERNESS", "choiceKey": null },
+        { "from": "INTO_THE_WILDERNESS", "to": "AID_THE_FOUNDING", "choiceKey": null },
+        { "from": "AID_THE_FOUNDING", "to": "WARD_THE_HEARTH_OF_PRAYER", "choiceKey": null },
+        { "from": "WARD_THE_HEARTH_OF_PRAYER", "to": "RESTORE_THE_MONASTERIES", "choiceKey": null },
+        { "from": "RESTORE_THE_MONASTERIES", "to": "THE_FATHERS_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "saga": {
+    "code": "SAGA_TAMAR",
+    "title": "ოქროს ხანა — The Golden Age",
+    "strand": "HISTORY",
+    "eraId": 3,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_TAMAR_CROWN",
+      "title": "თამარ მეფე — The Tamar Crown",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 4,
+      "triggers": [
+        { "type": "ERA", "value": "GOLDEN_AGE" },
+        { "type": "PLACE", "value": "vardzia" }
+      ],
+      "beats": [
+        {
+          "code": "THE_COURT_AT_VARDZIA",
+          "ordinal": 1,
+          "narration": "In the cave-city of Vardzia, carved into the cliff above the Mtkvari, sits თამარ — titled not queen but mepe, king — at the height of the Golden Age. Witness a reign the people would remember as their brightest noon: poets, builders, and a court that gathered the whole Caucasus to it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_HOW_TO_SEE",
+          "ordinal": 2,
+          "narration": "An age is seen from above and from below. Will you witness Tamar's reign from beside her, among the councilors and the great decisions, or from among the people, in whose memory the Golden Age truly lives? Both are the true age.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "AS_THE_QUEENS_COUNCILOR",
+          "ordinal": 3,
+          "narration": "You stand in the council, where Tamar holds together a kingdom of rival nobles by wisdom more than by force, and patronage flows to the churches, the academies, and a certain poet of the panther's skin. Witness power held lightly and used well.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "AMONG_THE_PEOPLE",
+          "ordinal": 3,
+          "narration": "You walk the markets and the villages, where the name of Tamar is already passing from a queen into a blessing — the age when, the people will always say, the land was whole and just. Witness how a Golden Age is made as much of memory as of gold.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "BASIANI",
+          "ordinal": 4,
+          "narration": "At Basiani the great coalition that came to humble Georgia is turned back, and the kingdom stands secure from sea to sea. Witness the deliverance — not a lust for conquest, but a people, for one rare span, safe in its own house.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AGAINST_DIMINISHING",
+          "ordinal": 5,
+          "narration": "An Aspect gathers that does not attack the age but belittles it — the Distortion that would have the Golden Age remembered as a fable, a thing too bright to have been real, and so quietly let go. Ward the truth of it: that this height was real, was earned, and can be a height again.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_GOLDEN_LIGHT",
+          "ordinal": 6,
+          "narration": "Restore the Golden Age's light to the Living Chronicle — not as nostalgia, but as a promise kept on record: that the homeland has been whole and just before, and that the memory of it is itself a kind of compass. Tamar is venerated as a saint; her grave was hidden so that no enemy could ever desecrate it. Keep her as the people keep her.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_GOLDEN_AGE_REMEMBERED",
+          "ordinal": 7,
+          "narration": "The Golden Age burns at the center of the timeline, and from it the Word itself will pour — for this is the age that gave the language its greatest poem. You have kept the height. The Myth-Weave of the Word opens beyond it.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_COURT_AT_VARDZIA", "to": "CHOOSE_HOW_TO_SEE", "choiceKey": null },
+        { "from": "CHOOSE_HOW_TO_SEE", "to": "AS_THE_QUEENS_COUNCILOR", "choiceKey": "councilor" },
+        { "from": "CHOOSE_HOW_TO_SEE", "to": "AMONG_THE_PEOPLE", "choiceKey": "people" },
+        { "from": "AS_THE_QUEENS_COUNCILOR", "to": "BASIANI", "choiceKey": null },
+        { "from": "AMONG_THE_PEOPLE", "to": "BASIANI", "choiceKey": null },
+        { "from": "BASIANI", "to": "WARD_AGAINST_DIMINISHING", "choiceKey": null },
+        { "from": "WARD_AGAINST_DIMINISHING", "to": "RESTORE_THE_GOLDEN_LIGHT", "choiceKey": null },
+        { "from": "RESTORE_THE_GOLDEN_LIGHT", "to": "THE_GOLDEN_AGE_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

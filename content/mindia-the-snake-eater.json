@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_MINDIA",
+    "title": "აღორძინებული სიტყვა — The Reborn Word",
+    "strand": "WORD",
+    "eraId": 13,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_MINDIA_SNAKE_EATER",
+      "title": "მინდია — The Snake-Eater",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "forest" },
+        { "type": "STATE", "value": "MIST" }
+      ],
+      "beats": [
+        {
+          "code": "THE_SNAKE_EATEN",
+          "ordinal": 1,
+          "narration": "In Vazha-Pshavela's verse, the captive მინდია, despairing in the devis' hold, eats the flesh of the serpent hoping only to die. Instead he wakes changed. Witness the moment a man swallows death and is given, instead, a strange and terrible gift.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_LANGUAGE_OF_ALL_THINGS",
+          "ordinal": 2,
+          "narration": "Mindia rises understanding the speech of all living things — the herbs that say how they heal, the trees that ask not to be cut, the beasts that bargain for their lives. He becomes a healer and a sage who takes from the world only with its consent. Witness a human being living, for a while, in perfect harmony with the living earth.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_WEIGHT_OF_THE_WORLD",
+          "ordinal": 3,
+          "narration": "But a man has a family, a village, a war to feed — and they need wood that the trees beg him not to cut, and meat the beasts plead to keep, and weapons the earth would rather he not forge. The community cannot hear what he hears; they ask of him only what they need. Witness the unbearable weight that forces the sage to break his own harmony.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_HARMONY",
+          "ordinal": 4,
+          "narration": "Each compromise dims the gift, and over it gathers the Aspect of Disenchantment — the severing of humanity from nature's voice, the forgetting that we ever could listen at all. You cannot spare Mindia his fate; the gift will leave him. Ward the harmony's meaning: that this listening was real, and its loss is a true grief, not a fable.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_LISTENING",
+          "ordinal": 5,
+          "narration": "The language deserts Mindia, and bereft of it he cannot go on, and dies. We could not save him — but restore what his story is for: the memory that a human being once heard the herbs and the trees and the beasts, and that such harmony is not a child's tale but a thing we lost and might, in some small way, choose again. Re-light the listening in the Chronicle.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "WHAT_MINDIA_HEARD",
+          "ordinal": 6,
+          "narration": "Mindia is gone, but what he heard is kept — Vazha's plea that the world is alive and speaking, and that to forget how to listen is its own kind of death. You have kept it. The mist moves through the forest as if it, too, were trying to say something. The thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_SNAKE_EATEN", "to": "THE_LANGUAGE_OF_ALL_THINGS", "choiceKey": null },
+        { "from": "THE_LANGUAGE_OF_ALL_THINGS", "to": "THE_WEIGHT_OF_THE_WORLD", "choiceKey": null },
+        { "from": "THE_WEIGHT_OF_THE_WORLD", "to": "WARD_THE_HARMONY", "choiceKey": null },
+        { "from": "WARD_THE_HARMONY", "to": "RESTORE_THE_LISTENING", "choiceKey": null },
+        { "from": "RESTORE_THE_LISTENING", "to": "WHAT_MINDIA_HEARD", "choiceKey": null }
+      ]
+    }
+  ]
+}

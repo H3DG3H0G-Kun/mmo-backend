@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_AGHMASHENEBELI",
+    "title": "აღმაშენებლის ხანა — The Age of David the Builder",
+    "strand": "HISTORY",
+    "eraId": 9,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_DIDGORI",
+      "title": "დიდგორი — Didgori",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 3,
+      "triggers": [
+        { "type": "ERA", "value": "AGHMASHENEBELI" },
+        { "type": "PLACE", "value": "didgori" }
+      ],
+      "beats": [
+        {
+          "code": "THE_EVE_OF_DIDGORI",
+          "ordinal": 1,
+          "narration": "On the eve of Didgori, the twelfth of August, 1121, King დავით აღმაშენებელი kneels in prayer while a vast Seljuk coalition fills the plain below. He is outnumbered many times over. Witness a king who built churches and academies now stake the recovered life of his nation on a single morning.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_MUSTER",
+          "ordinal": 2,
+          "narration": "David has remade his army from a scattered, broken thing into one disciplined host — Georgians, and allies, bound to a single will. Aid the muster: carry the word along the lines, close the ranks for the narrow valley where numbers will not save the enemy.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_LINE",
+          "ordinal": 3,
+          "narration": "The Aspect of the Invading Tide breaks against the Georgian line — the erasing pressure of a century of raids, that would leave Kartli a road for armies and nothing of its own. This is the great defensive stand, the meaning of Ward. Hold the line at Didgori until the Tide breaks upon it.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_WONDROUS_VICTORY",
+          "ordinal": 4,
+          "narration": "The host is broken and the day is won — ძლევაჲ საკვირველი, the wondrous victory, that the chroniclers could explain only as a gift from God. Witness the morning a nation that had nearly been erased stood up whole on the field.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "RECLAIM_TBILISI",
+          "ordinal": 5,
+          "narration": "The next year David takes Tbilisi back after four centuries and makes it again the capital — and enters it as a builder, not a destroyer. Restore the city to the crown and the crown to its memory. The Builder's name will mean exactly this: not conquest, but a homeland set back upon its foundations.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_BUILDER_REMEMBERED",
+          "ordinal": 6,
+          "narration": "David lays his own grave at the gate of Gelati, to be trodden by all who pass — a king who would be humble even in stone. The Golden Age opens before his people. You have kept it; the thread blazes in the Living Chronicle. The way to the apex is open.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_EVE_OF_DIDGORI", "to": "THE_MUSTER", "choiceKey": null },
+        { "from": "THE_MUSTER", "to": "WARD_THE_LINE", "choiceKey": null },
+        { "from": "WARD_THE_LINE", "to": "THE_WONDROUS_VICTORY", "choiceKey": null },
+        { "from": "THE_WONDROUS_VICTORY", "to": "RECLAIM_TBILISI", "choiceKey": null },
+        { "from": "RECLAIM_TBILISI", "to": "THE_BUILDER_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

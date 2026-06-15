@@ -1,0 +1,79 @@
+{
+  "_note": "PARNAVAZ NPCs (WORLD_DESIGN.md §4). Proposed `npc` shape. Streamed on the presence feed as {id, kind:'NPC', role, name, x, y, interactive, interactionCode}, where x,y = location centre + offset. Heralds are resonance-gated (only manifest when their tale's Resonance + STATE are open).",
+  "eraCode": "PARNAVAZ",
+  "npcs": [
+    {
+      "code": "HERALD_FIRST_CROWN",
+      "name": "მახარობელი — Herald of the First Crown",
+      "role": "HERALD",
+      "locationCode": "throne_hall",
+      "offsetX": 0, "offsetY": 2,
+      "behavior": "STATIC",
+      "interactive": true,
+      "interaction": "TALE",
+      "taleCode": "TALE_FARNAVAZ_CROWN",
+      "vendorCode": null,
+      "folk": null,
+      "_gate": "Manifest only while resonances for TALE_FARNAVAZ_CROWN are open here (ERA=PARNAVAZ + PLACE=throne_hall)."
+    },
+    {
+      "code": "HERALD_STORM_PEAK",
+      "name": "The Elder of the Storm-Peak",
+      "role": "HERALD",
+      "locationCode": "peak",
+      "offsetX": 0, "offsetY": 1,
+      "behavior": "STATIC",
+      "interactive": true,
+      "interaction": "TALE",
+      "taleCode": "TALE_AMIRANI_BOUND",
+      "vendorCode": null,
+      "folk": null,
+      "_gate": "Manifest only during STATE=STORM (Amirani resonance: PLACE=peak + STATE=STORM)."
+    },
+    {
+      "code": "VENDOR_KVIRIA",
+      "name": "Kviria, the Mtskheta Trader",
+      "role": "VENDOR",
+      "locationCode": "mtskheta",
+      "offsetX": -3, "offsetY": 1,
+      "behavior": "STATIC",
+      "interactive": true,
+      "interaction": "MARKET",
+      "taleCode": null,
+      "vendorCode": "mtskheta",
+      "folk": "KARTLIAN"
+    },
+    {
+      "code": "VENDOR_SMITH",
+      "name": "The Smith of the Aragvi",
+      "role": "VENDOR",
+      "locationCode": "pasanauri",
+      "offsetX": 2, "offsetY": 0,
+      "behavior": "STATIC",
+      "interactive": true,
+      "interaction": "MARKET",
+      "taleCode": null,
+      "vendorCode": "pasanauri",
+      "folk": "MTIULI"
+    },
+    {
+      "code": "GUARD_ARMAZI",
+      "name": "The Warden of the Mount",
+      "role": "GUARD",
+      "locationCode": "armazi_mount",
+      "offsetX": 0, "offsetY": 3,
+      "behavior": "STATIC",
+      "interactive": true,
+      "interaction": "DIALOGUE",
+      "taleCode": null,
+      "vendorCode": null,
+      "folk": null,
+      "_flavour": "Speaks the siege/place-of-power context for ARMAZTSIKHE."
+    },
+    { "code": "FOLK_KARTLI_1", "name": "Kartlian townsfolk", "role": "TOWNSFOLK", "locationCode": "mtskheta", "offsetX": 4, "offsetY": -2, "behavior": "WANDER", "interactive": false, "interaction": "NONE", "taleCode": null, "vendorCode": null, "folk": "KARTLIAN" },
+    { "code": "FOLK_KARTLI_2", "name": "Kartlian townsfolk", "role": "TOWNSFOLK", "locationCode": "mtskheta", "offsetX": -5, "offsetY": 4, "behavior": "WANDER", "interactive": false, "interaction": "NONE", "taleCode": null, "vendorCode": null, "folk": "KARTLIAN" },
+    { "code": "FOLK_KARTLI_3", "name": "Kartlian townsfolk", "role": "TOWNSFOLK", "locationCode": "mtskheta", "offsetX": 2, "offsetY": 7, "behavior": "WANDER", "interactive": false, "interaction": "NONE", "taleCode": null, "vendorCode": null, "folk": "KARTLIAN" },
+    { "code": "FOLK_MTIULI_1", "name": "Highland folk", "role": "TOWNSFOLK", "locationCode": "pasanauri", "offsetX": -3, "offsetY": 2, "behavior": "WANDER", "interactive": false, "interaction": "NONE", "taleCode": null, "vendorCode": null, "folk": "MTIULI" },
+    { "code": "FOLK_MTIULI_2", "name": "Highland folk", "role": "TOWNSFOLK", "locationCode": "pasanauri", "offsetX": 3, "offsetY": -3, "behavior": "WANDER", "interactive": false, "interaction": "NONE", "taleCode": null, "vendorCode": null, "folk": "MTIULI" }
+  ]
+}

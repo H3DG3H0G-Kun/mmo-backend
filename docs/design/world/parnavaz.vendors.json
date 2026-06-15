@@ -1,0 +1,28 @@
+{
+  "_note": "Vendor rosters (WORLD_DESIGN.md §3). NPC static shops, distinct from the player-to-player market (EconomyService). Prices anchor to item base values (rates.json §5A). Item codes are the existing item_def seed (V8).",
+  "vendors": [
+    {
+      "code": "mtskheta",
+      "name": "Kviria, the Mtskheta Trader",
+      "folk": "KARTLIAN",
+      "sells": [
+        { "itemCode": "MOUNTAIN_HERB", "price": 6 }
+      ],
+      "buys": [
+        { "itemCode": "MOUNTAIN_HERB", "price": 4 },
+        { "itemCode": "IRON_ORE", "price": 6 }
+      ]
+    },
+    {
+      "code": "pasanauri",
+      "name": "The Smith of the Aragvi",
+      "folk": "MTIULI",
+      "sells": [
+        { "itemCode": "IRON_ORE", "price": 10 }
+      ],
+      "buys": [
+        { "itemCode": "MOUNTAIN_HERB", "price": 5 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "saga": {
+    "code": "SAGA_DEMETRE",
+    "title": "შლა — The Sundering",
+    "strand": "HISTORY",
+    "eraId": 10,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_SELF_SACRIFICER",
+      "title": "დემეტრე თავდადებული — The Self-Sacrificer",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 11,
+      "triggers": [
+        { "type": "ERA", "value": "SUNDERING" },
+        { "type": "PLACE", "value": "ordu" }
+      ],
+      "beats": [
+        {
+          "code": "THE_SUMMONS",
+          "ordinal": 1,
+          "narration": "The Sundering is on the land — the Mongol yoke, the kingdom broken into tribute and fear. King დემეტრე is summoned to the Ilkhan's camp, the ordu, where a plot has turned the khan's suspicion against him. To go is almost certain death; to refuse is to bring the Mongol armies down upon Georgia. Witness a king handed an impossible scale to balance.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_WHOM_TO_SEE",
+          "ordinal": 2,
+          "narration": "Stand where you will best keep this memory. Will you witness the king's own counsel, the long night in which he weighs his life against his people's, or will you stand among the villages and cities that his choice will spare or doom? Both see the truth of what he does.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "HIS_COUNSEL",
+          "ordinal": 3,
+          "narration": "You witness Demetre's advisors beg him to flee to the mountains and let the storm fall elsewhere. He will not. If his death buys his people peace, he reasons, then his death is the cheaper price. Witness a crown understood as a debt owed to those beneath it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_PEOPLE_HE_SHIELDS",
+          "ordinal": 3,
+          "narration": "You walk among the people who do not yet know that their lives are being weighed in a distant tent. Children, fields, half-rebuilt churches — the ordinary homeland that a Mongol reprisal would burn. Witness what a king's self-sacrifice is actually for.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "HE_GOES",
+          "ordinal": 4,
+          "narration": "Demetre goes to the ordu, and is executed there in 1289, giving himself so that Georgia is spared. He is the Self-Sacrificer — თავდადებული — and the Church will keep him a saint. Witness the going; do not look away from a death freely chosen for a people's sake. It is your own watch, mirrored in a man.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_MEANING",
+          "ordinal": 5,
+          "narration": "The Unremembering would make his death meaningless — one more name lost in the Sundering, a king who simply died far from home. Ward the meaning. Stand so that it is remembered not as a defeat but as a gift: a soul that chose its people's memory over its own life. The Mongol storm was a force, not a face to hate; the thing to keep is the sacrifice.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_SELF_SACRIFICE_REMEMBERED",
+          "ordinal": 6,
+          "narration": "Georgia endures the Sundering, and Demetre's name endures with it — the king who gave himself so his people would still be there to remember him. You have kept it. The thread holds, even through the dark.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_SUMMONS", "to": "CHOOSE_WHOM_TO_SEE", "choiceKey": null },
+        { "from": "CHOOSE_WHOM_TO_SEE", "to": "HIS_COUNSEL", "choiceKey": "counsel" },
+        { "from": "CHOOSE_WHOM_TO_SEE", "to": "THE_PEOPLE_HE_SHIELDS", "choiceKey": "people" },
+        { "from": "HIS_COUNSEL", "to": "HE_GOES", "choiceKey": null },
+        { "from": "THE_PEOPLE_HE_SHIELDS", "to": "HE_GOES", "choiceKey": null },
+        { "from": "HE_GOES", "to": "WARD_THE_MEANING", "choiceKey": null },
+        { "from": "WARD_THE_MEANING", "to": "THE_SELF_SACRIFICE_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

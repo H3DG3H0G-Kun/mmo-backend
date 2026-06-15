@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_KETEVAN",
+    "title": "ქეთევან დედოფალი — Queen Ketevan",
+    "strand": "HISTORY",
+    "eraId": 11,
+    "ordinal": 3
+  },
+  "tales": [
+    {
+      "code": "TALE_KETEVAN_MARTYR",
+      "title": "ქეთევან დედოფალი — Queen Ketevan the Martyr",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "ERA", "value": "SAAKADZE" },
+        { "type": "PLACE", "value": "shiraz" }
+      ],
+      "beats": [
+        {
+          "code": "THE_QUEEN_HOSTAGE",
+          "ordinal": 1,
+          "narration": "Far from Kakheti, in Shiraz, Queen ქეთევან is held a hostage at the court of Shah Abbas — a sovereign of Georgia kept as a captive of empire. Witness a queen who has already lost her kingdom's freedom and holds, still, the one thing they cannot take without her consent.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_DEMAND",
+          "ordinal": 2,
+          "narration": "The demand comes: renounce her faith and convert, and live in honour; refuse, and die in torment. This is not a quarrel between peoples or faiths — it is coercion, the Unremembering's bluntest tool, the attempt to make a soul erase itself. Witness her refuse, without hatred and without fear.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_HER_WITNESS",
+          "ordinal": 3,
+          "narration": "In 1624 they torture Ketevan to death for that refusal. You cannot save her; that is the truth of the tale, and her choice is hers. Ward her witness — stand so that her death is remembered as the sovereign act of conscience it was, not erased into one more cruelty of a hard age. The foe is the coercion, never a people.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_HER_MEMORY",
+          "ordinal": 4,
+          "narration": "Her relics are carried home, and Kakheti keeps her as a saint and a queen who would not be unmade. Restore her memory — the proof that a captive with no army and no crown left still held a power no empire could seize: the refusal to forget who she was. The tyranny killed the woman and lost the memory.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "KETEVAN_REMEMBERED",
+          "ordinal": 5,
+          "narration": "Queen Ketevan stands in the Chronicle among the homeland's bravest — a martyr whose courage outshone the throne she had lost. You have kept her. The thread holds, even out of the heart of exile and empire.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_QUEEN_HOSTAGE", "to": "THE_DEMAND", "choiceKey": null },
+        { "from": "THE_DEMAND", "to": "WARD_HER_WITNESS", "choiceKey": null },
+        { "from": "WARD_HER_WITNESS", "to": "RESTORE_HER_MEMORY", "choiceKey": null },
+        { "from": "RESTORE_HER_MEMORY", "to": "KETEVAN_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

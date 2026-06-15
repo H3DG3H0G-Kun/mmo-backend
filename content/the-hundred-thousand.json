@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_HUNDRED_THOUSAND",
+    "title": "ასი ათასი მოწამე — The Hundred Thousand",
+    "strand": "HISTORY",
+    "eraId": 10,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_HUNDRED_THOUSAND_MARTYRS",
+      "title": "ასი ათასი მოწამე — The Hundred Thousand",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "ERA", "value": "SUNDERING" },
+        { "type": "PLACE", "value": "metekhi_bridge" }
+      ],
+      "beats": [
+        {
+          "code": "THE_CITY_FALLEN",
+          "ordinal": 1,
+          "narration": "In 1227 Jalal ad-Din's army takes Tbilisi, and the Sundering reaches the heart of the city. On the bridge across the Mtkvari the conqueror lays the holy icons face-up upon the stones. Witness a city fallen, and a cruelty devised not for the body but for the soul.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_CHOICE_ON_THE_BRIDGE",
+          "ordinal": 2,
+          "narration": "The order is given: cross the bridge by treading on the icons and live, or refuse and be killed where you stand. One by one, then in their tens of thousands, the citizens of Tbilisi step to the bridge and will not trample what they hold sacred. Witness the choice — made not by an army but by ordinary people, each alone with it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_FAITHFUL",
+          "ordinal": 3,
+          "narration": "The Aspect of the Erasing Tide moves down the bridge — the conqueror's true aim, which was never the city's walls but its memory of itself. The foe is that erasing will, never the soldiers or their faith. You cannot stay the swords; the hundred thousand have chosen. Ward the meaning of their choosing, so the bridge is remembered as the place a city refused to be unmade.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_MEMORY",
+          "ordinal": 4,
+          "narration": "A hundred thousand die in the river's bend, and the Church keeps them ever after as the Hundred Thousand Martyrs of Tbilisi. Restore their memory — not as a number, but as a hundred thousand separate refusals to forget who they were. The Tide took the city for a season; the memory it could not take at all.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_MARTYRS_REMEMBERED",
+          "ordinal": 5,
+          "narration": "Tbilisi is burned and bereaved, but the Hundred Thousand are remembered by name of their deed every year that the city stands. You have kept them. Out of the deepest dark of the Sundering, the thread still holds — because they would not let it break.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_CITY_FALLEN", "to": "THE_CHOICE_ON_THE_BRIDGE", "choiceKey": null },
+        { "from": "THE_CHOICE_ON_THE_BRIDGE", "to": "WARD_THE_FAITHFUL", "choiceKey": null },
+        { "from": "WARD_THE_FAITHFUL", "to": "RESTORE_THE_MEMORY", "choiceKey": null },
+        { "from": "RESTORE_THE_MEMORY", "to": "THE_MARTYRS_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

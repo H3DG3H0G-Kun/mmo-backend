@@ -1,0 +1,351 @@
+{
+  "saga": {
+    "code": "SAGA_VEPKHISTQAOSANI",
+    "title": "ვეფხისტყაოსანი — The Knight in the Panther's Skin",
+    "strand": "WORD",
+    "eraId": 4,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_PANTHERS_SKIN_OPENING",
+      "title": "დასაწყისი — The Opening",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "ERA", "value": "RUSTAVELI" },
+        { "type": "PLACE", "value": "court" }
+      ],
+      "beats": [
+        {
+          "code": "THE_COURT_OF_ROSTEVAN",
+          "ordinal": 1,
+          "narration": "Shota Rustaveli's verse opens, and you stand in the court of King როსტევან of Arabia as he sets his daughter თინათინ upon the throne. The poem is dedicated to Tamar, the king's own Golden Age made into song. Witness the first lines of the greatest poem the language holds — a Saga you will enter many times.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_KNIGHT_IN_THE_PANTHER_SKIN",
+          "ordinal": 2,
+          "narration": "On a hunt the king's men find a stranger by a stream, weeping, clad in a panther's skin, who vanishes when approached — ტარიელ, lost in grief for his stolen love ნესტან-დარეჯან. Witness the image that names the whole poem: sorrow worn like a skin, and a love that will set three friends against the world.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "AVTANDILS_OATH",
+          "ordinal": 3,
+          "narration": "ავთანდილ, who loves Tinatin, is sent to find the panther-skinned knight, and he swears the oath that drives the epic — friendship and love above safety, for „სჯობს სიცოცხლესა ნაძრახსა სიკვდილი სახელოვანი“ (a glorious death is better than a shameful life). Aid the swearing of the oath that binds the brotherhood.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_PATH",
+          "ordinal": 4,
+          "narration": "The poem now branches as memory does. Will you follow ავთანდილ out onto the long road of the search, or stay with ტარიელ in the cave of his grief and learn the whole of his loss first? Both are true paths through the same verse.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "FOLLOW_AVTANDIL",
+          "ordinal": 5,
+          "narration": "You ride with Avtandil across the world's roads, where loyalty is tested and the bond of sworn brothers — მოყვრობა — is shown to be the poem's truest treasure. Witness friendship made into a force that moves the plot of the world.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "TARIELS_GRIEF",
+          "ordinal": 5,
+          "narration": "You remain with Tariel and hear the whole tale of his loss — Nestan-Darejan torn from him and shut away by the Kajni in the fortress of Kajeti. Witness a grief so deep it wears a beast's skin, and the resolve that will not let the beloved be forgotten.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AGAINST_THE_KAJI",
+          "ordinal": 6,
+          "narration": "Out of the verse itself rises a ქაჯი — the sorcerer-spirit of Kajeti, the same falsifier our whole watch contends with, here in its first and truest home. It would twist the poem into despair, make the panther's grief a dead end, and bury Nestan from memory. Ward the meaning: that the brotherhood will reach Kajeti, and that love kept is never lost.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_SAGA_OPENS",
+          "ordinal": 7,
+          "narration": "The grief steadies into resolve; the road to Kajeti lies open, and the great Saga is begun. This was only its first Thread. You have opened the Word's highest book — and where you stand now, the panther-knight's own tale is waiting to be heard. The Living Chronicle keeps the panther's thread.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_COURT_OF_ROSTEVAN", "to": "THE_KNIGHT_IN_THE_PANTHER_SKIN", "choiceKey": null },
+        { "from": "THE_KNIGHT_IN_THE_PANTHER_SKIN", "to": "AVTANDILS_OATH", "choiceKey": null },
+        { "from": "AVTANDILS_OATH", "to": "CHOOSE_THE_PATH", "choiceKey": null },
+        { "from": "CHOOSE_THE_PATH", "to": "FOLLOW_AVTANDIL", "choiceKey": "avtandil" },
+        { "from": "CHOOSE_THE_PATH", "to": "TARIELS_GRIEF", "choiceKey": "tariel" },
+        { "from": "FOLLOW_AVTANDIL", "to": "WARD_AGAINST_THE_KAJI", "choiceKey": null },
+        { "from": "TARIELS_GRIEF", "to": "WARD_AGAINST_THE_KAJI", "choiceKey": null },
+        { "from": "WARD_AGAINST_THE_KAJI", "to": "THE_SAGA_OPENS", "choiceKey": null }
+      ]
+    },
+    {
+      "code": "TALE_TARIELS_TALE",
+      "title": "ტარიელის ამბავი — Tariel's Tale",
+      "tier": "TRUE_TALE",
+      "ordinal": 2,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_PANTHERS_SKIN_OPENING" }
+      ],
+      "beats": [
+        {
+          "code": "THE_CAVE_AND_ASMAT",
+          "ordinal": 1,
+          "narration": "In a cave hung with the panther's skin, Tariel's faithful ასმათ tends him, and at last he tells his tale. Witness the grief given words for the first time — for a sorrow witnessed truly is a sorrow that can begin to be healed.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "INDIA_AND_NESTAN",
+          "ordinal": 2,
+          "narration": "He was the amirbari, the great commander of India under King Parsadan, and he loved the king's daughter ნესტან-დარეჯან, and she him — a love between equals, she no less a sovereign in spirit than he a knight. Witness the height from which his grief would later fall.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_FORCED_BETROTHAL",
+          "ordinal": 3,
+          "narration": "The king betroths Nestan to a foreign prince of Khwarezm, never asking her heart. Nestan, fierce and clear, charges Tariel to act — not to lose her meekly, but to be worthy of her. Witness a woman of the poem who is no prize but a will of her own.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_SUITOR_SLAIN",
+          "ordinal": 4,
+          "narration": "Tariel strikes the foreign prince down and breaks the betrothal — and the court turns against him. This is the poem as Rustaveli wrote it; you do not change it, you keep it. Witness the deed that sets the whole tragedy in motion.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "NESTAN_CAST_AWAY",
+          "ordinal": 5,
+          "narration": "Nestan's sorceress aunt დავარ, in fury, has her seized and carried off by sea to vanish from the world; and Tariel, finding her gone, goes half-mad with loss, takes the panther's skin, and wanders. Witness the casting-away that is the wound at the poem's heart.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AGAINST_GRIEF",
+          "ordinal": 6,
+          "narration": "The Aspect of the Panther's Grief rises — the despair that would have Tariel give up, sink into the cave, and let Nestan pass out of all memory. This is no enemy to be cut down; it is sorrow itself. Ward the meaning: that grief this deep is proof of love this true, and that love will not abandon the search.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_GRIEF_HELD_TRUE",
+          "ordinal": 7,
+          "narration": "The telling ends, and the grief, witnessed and shared, becomes something that can move again toward hope. You have kept Tariel's tale whole. Now it wants companions — for no one carries such a sorrow alone, and a brother is already coming. The thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_CAVE_AND_ASMAT", "to": "INDIA_AND_NESTAN", "choiceKey": null },
+        { "from": "INDIA_AND_NESTAN", "to": "THE_FORCED_BETROTHAL", "choiceKey": null },
+        { "from": "THE_FORCED_BETROTHAL", "to": "THE_SUITOR_SLAIN", "choiceKey": null },
+        { "from": "THE_SUITOR_SLAIN", "to": "NESTAN_CAST_AWAY", "choiceKey": null },
+        { "from": "NESTAN_CAST_AWAY", "to": "WARD_AGAINST_GRIEF", "choiceKey": null },
+        { "from": "WARD_AGAINST_GRIEF", "to": "THE_GRIEF_HELD_TRUE", "choiceKey": null }
+      ]
+    },
+    {
+      "code": "TALE_THE_BROTHERHOOD",
+      "title": "ძმადნაფიცობა — The Sworn Brothers",
+      "tier": "TRUE_TALE",
+      "ordinal": 3,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_TARIELS_TALE" }
+      ],
+      "beats": [
+        {
+          "code": "AVTANDIL_RETURNS",
+          "ordinal": 1,
+          "narration": "Avtandil, who could have returned to his own love and his own crown, comes back to the cave instead — to a grieving stranger who is no kin of his. Witness the choice that makes the poem immortal: to turn back for another's sorrow.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_OATH_OF_BROTHERS",
+          "ordinal": 2,
+          "narration": "Tariel and Avtandil swear ძმადნაფიცობა, sworn brotherhood, each pledging not to spare himself for the other — „ხამს, მოყვარე მოყვრისათვის თავი ჭირსა არ დაჰრიდოს“. Aid the oath. In Rustaveli's world friendship is not lesser than love; it is its equal and its ally.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "PRIDON_THE_THIRD",
+          "ordinal": 3,
+          "narration": "They come to ნურადინ-ფრიდონ of Mulghazanzar, who had once seen, far out at sea, a strange ship bearing a captive maiden of unearthly beauty — Nestan, carried to her prison. He joins the bond: three brothers now, and a first true thread of where she was taken. Witness the brotherhood become three.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_GREATER_ENGINE",
+          "ordinal": 4,
+          "narration": "The poem holds two forces that move its heroes — the love that calls Tariel to Nestan and Avtandil to Tinatin, and the friendship that binds the three. Which will you witness as the greater engine of the tale? Rustaveli's answer is that they are one; both paths are true.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "FOR_LOVE",
+          "ordinal": 5,
+          "narration": "You witness how love drives each knight past every reasonable limit — and how Rustaveli makes the beloveds, Nestan and Tinatin, sovereigns in their own right, never trophies. Witness love as the poem's first fire.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "FOR_FRIENDSHIP",
+          "ordinal": 5,
+          "narration": "You witness how the sworn bond carries them where love alone could not — three crowns risking everything for one man's lost bride. Witness friendship as the poem's equal fire, the thing that actually storms the fortress.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_BOND",
+          "ordinal": 6,
+          "narration": "An Aspect of Despair works to fray the bond before it can act — the whisper that the cause is hopeless, that three should not throw their lives after one lost woman. Ward the brotherhood. Hold it true, for it is the bond, not any single sword, that will take Kajeti.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THREE_AS_ONE",
+          "ordinal": 7,
+          "narration": "The three stand as one, sworn and resolved, and the trail points at last to Kajeti. You have kept the brotherhood whole. The search for where Nestan truly lies is the next thread. It holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "AVTANDIL_RETURNS", "to": "THE_OATH_OF_BROTHERS", "choiceKey": null },
+        { "from": "THE_OATH_OF_BROTHERS", "to": "PRIDON_THE_THIRD", "choiceKey": null },
+        { "from": "PRIDON_THE_THIRD", "to": "CHOOSE_THE_GREATER_ENGINE", "choiceKey": null },
+        { "from": "CHOOSE_THE_GREATER_ENGINE", "to": "FOR_LOVE", "choiceKey": "love" },
+        { "from": "CHOOSE_THE_GREATER_ENGINE", "to": "FOR_FRIENDSHIP", "choiceKey": "friendship" },
+        { "from": "FOR_LOVE", "to": "WARD_THE_BOND", "choiceKey": null },
+        { "from": "FOR_FRIENDSHIP", "to": "WARD_THE_BOND", "choiceKey": null },
+        { "from": "WARD_THE_BOND", "to": "THREE_AS_ONE", "choiceKey": null }
+      ]
+    },
+    {
+      "code": "TALE_THE_SEARCH_FOR_NESTAN",
+      "title": "ნესტანის ძიება — The Search",
+      "tier": "TRUE_TALE",
+      "ordinal": 4,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_THE_BROTHERHOOD" }
+      ],
+      "beats": [
+        {
+          "code": "THE_SEA_CITY_GULANSHARO",
+          "ordinal": 1,
+          "narration": "The search leads Avtandil to გულანშარო, the rich sea-city of merchants, where rumor moves with the tide. Witness the world widen — the poem leaves the cave and the court for harbors, trade, and the long human network through which a lost woman might be traced.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "PHATMAN",
+          "ordinal": 2,
+          "narration": "ფატმან, a merchant woman of the city, had once sheltered Nestan and knows what became of her. Aid the winning of her trust and her word — for the thread of memory the whole epic needs now runs through one woman who chose to help a stranger.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "THE_WORD_OF_KAJETI",
+          "ordinal": 3,
+          "narration": "Phatman tells it plain at last: Nestan is held in კაჯეთი, the fortress of the Kajni, the sorcerer-spirits, behind walls no ordinary force can break. Witness the moment the search ends and the rescue begins — the beloved is found, and she is in the hardest place in the world.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_TRAIL",
+          "ordinal": 4,
+          "narration": "The Kajni do not want to be found; an Aspect of their falsifying works to scatter the trail, tangle the rumors, and make Phatman's word seem a dream. Ward the trail. Hold the true knowledge of where Nestan lies against the spirits whose whole craft is to make memory lie.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_PATH_TO_KAJETI",
+          "ordinal": 5,
+          "narration": "The way to Kajeti is fixed and certain, and Avtandil rides to bring his brothers the news. You have kept the search whole. All that remains is the hardest thing — to take the fortress and free her. The thread holds toward the climax.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_SEA_CITY_GULANSHARO", "to": "PHATMAN", "choiceKey": null },
+        { "from": "PHATMAN", "to": "THE_WORD_OF_KAJETI", "choiceKey": null },
+        { "from": "THE_WORD_OF_KAJETI", "to": "WARD_THE_TRAIL", "choiceKey": null },
+        { "from": "WARD_THE_TRAIL", "to": "THE_PATH_TO_KAJETI", "choiceKey": null }
+      ]
+    },
+    {
+      "code": "TALE_THE_TAKING_OF_KAJETI",
+      "title": "კაჯეთის აღება — The Taking of Kajeti",
+      "tier": "TRUE_TALE",
+      "ordinal": 5,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_THE_SEARCH_FOR_NESTAN" }
+      ],
+      "beats": [
+        {
+          "code": "THE_FORTRESS_OF_THE_KAJI",
+          "ordinal": 1,
+          "narration": "Before the brothers rises კაჯეთი — the stronghold of the Kajni, where Nestan-Darejan is held, the truest home of the falsifiers our whole watch contends with. Witness the fortress: the place where, in the oldest verse of the language, the war against the twisting of memory is already being fought.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_THREE_HUNDRED_EACH",
+          "ordinal": 2,
+          "narration": "Tariel, Avtandil, and Pridon divide the assault, each leading his three hundred, each to a gate — the stratagem by which three crowns and their friendship will do what no single host could. Aid the plan. The bond sworn in the cave becomes, here, an order of battle.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_KAJI_HOST",
+          "ordinal": 3,
+          "narration": "The gates break and the Kajni pour out, sorcery and steel, to hold their prison shut and their lie intact. This is the epic's climax and the cosmology's truest Ward — the Kajni in their own fortress, the falsifiers at full strength. Storm Kajeti at the brothers' side and break the host that would keep love imprisoned and memory false.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "FREE_NESTAN",
+          "ordinal": 4,
+          "narration": "The fortress falls, and Tariel takes Nestan-Darejan's hand at last — the beloved freed, the long grief ended, the panther's skin set down. Restore her to the world and to the poem's joy. In this game's whole language, this is the deepest restoration: love kept through everything, and proven never lost.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_THREE_CROWNS_IN_CONCORD",
+          "ordinal": 5,
+          "narration": "Tariel weds Nestan and they rule India; Avtandil weds Tinatin and rules Arabia; Pridon returns crowned to Mulghazanzar — three kingdoms bound in friendship, ruling with open hands, for „რასაცა გასცემ შენია, რაც არა — დაკარგულია“ (what you give is yours; what you keep is lost). Witness the concord that is Rustaveli's vision of a world set right.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_SAGA_KEPT_WHOLE",
+          "ordinal": 6,
+          "narration": "The whole of ვეფხისტყაოსანი is restored to the Living Chronicle — love, friendship, courage, and generosity, the Word's highest book kept entire. You have carried the greatest poem of the language home. The panther's skin hangs now in the Matiane, not as grief, but as triumph.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_FORTRESS_OF_THE_KAJI", "to": "THE_THREE_HUNDRED_EACH", "choiceKey": null },
+        { "from": "THE_THREE_HUNDRED_EACH", "to": "WARD_THE_KAJI_HOST", "choiceKey": null },
+        { "from": "WARD_THE_KAJI_HOST", "to": "FREE_NESTAN", "choiceKey": null },
+        { "from": "FREE_NESTAN", "to": "THE_THREE_CROWNS_IN_CONCORD", "choiceKey": null },
+        { "from": "THE_THREE_CROWNS_IN_CONCORD", "to": "THE_SAGA_KEPT_WHOLE", "choiceKey": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "saga": {
+    "code": "SAGA_VAKHTANG",
+    "title": "ვახტანგის ხანა — The Age of Vakhtang Gorgasali",
+    "strand": "HISTORY",
+    "eraId": 6,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_WOLF_HEADS_CITY",
+      "title": "მგელთავის ქალაქი — The Wolf-Head's City",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 7,
+      "triggers": [
+        { "type": "ERA", "value": "VAKHTANG" },
+        { "type": "PLACE", "value": "tbilisi_springs" }
+      ],
+      "beats": [
+        {
+          "code": "THE_HUNT_AND_THE_SPRINGS",
+          "ordinal": 1,
+          "narration": "King ვახტანგ გორგასალი — the wolf-head, whose helmet turned the Persians' courage to water — hunts in the wooded gorge of the Mtkvari. His falcon strikes a pheasant, and both fall into a spring that steams in the cold air: tbili, warm. Witness the moment a capital is born from a hunter's chance.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "LAY_THE_FIRST_STONE",
+          "ordinal": 2,
+          "narration": "Here, the king says, will stand a city — Tbilisi, by the warm waters — and the seat of Kartli will come down from Mtskheta to meet the river road. Aid the laying of the first stone of the city that will be burned and rebuilt a hundred times and never, finally, forgotten.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_CITY",
+          "ordinal": 3,
+          "narration": "A city is two things at once — a hearth and a wall. Will you witness Tbilisi rise as a place of warm springs and gathering, or as the fortress of Kala that must hold the gorge against every tide from the south? Both are the true city.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "BUILD_BY_THE_SPRINGS",
+          "ordinal": 4,
+          "narration": "You walk among the bath-houses and the first markets, where the warm waters draw travelers and traders and the city learns to be a home. This is the Tbilisi that will always sing in its squares — the inhabited warmth that no empire could ever quite put out.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "FORTIFY_KALA",
+          "ordinal": 4,
+          "narration": "You walk the walls of Kala above the river, where Vakhtang sets the guard that must hold the gorge. The city is a shield as much as a hearth; its whole long life will be a defense. Witness the wall that will be raised again after every burning.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_YOUNG_CITY",
+          "ordinal": 5,
+          "narration": "The Foreign Tide gathers against the young capital — not this people or that, but the erasing pressure that would have Tbilisi un-founded, the springs forgotten, the gorge left nameless. Ward the city in its first and most fragile hour, so that it lives to be remembered.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_CITY_REMEMBERED",
+          "ordinal": 6,
+          "narration": "Tbilisi stands above its warm springs, and the wolf-head king's gamble becomes the heart of a nation. The Living Chronicle keeps the thread bright. You have kept it — the city that is always burned and always sung back into being.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_HUNT_AND_THE_SPRINGS", "to": "LAY_THE_FIRST_STONE", "choiceKey": null },
+        { "from": "LAY_THE_FIRST_STONE", "to": "CHOOSE_THE_CITY", "choiceKey": null },
+        { "from": "CHOOSE_THE_CITY", "to": "BUILD_BY_THE_SPRINGS", "choiceKey": "springs" },
+        { "from": "CHOOSE_THE_CITY", "to": "FORTIFY_KALA", "choiceKey": "kala" },
+        { "from": "BUILD_BY_THE_SPRINGS", "to": "WARD_THE_YOUNG_CITY", "choiceKey": null },
+        { "from": "FORTIFY_KALA", "to": "WARD_THE_YOUNG_CITY", "choiceKey": null },
+        { "from": "WARD_THE_YOUNG_CITY", "to": "THE_CITY_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

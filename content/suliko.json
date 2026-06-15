@@ -1,0 +1,83 @@
+{
+  "saga": {
+    "code": "SAGA_SULIKO",
+    "title": "სულიკო — Suliko",
+    "strand": "WORD",
+    "eraId": 13,
+    "ordinal": 4
+  },
+  "tales": [
+    {
+      "code": "TALE_SULIKO",
+      "title": "სულიკო — Suliko",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "grave" },
+        { "type": "STATE", "value": "DUSK" }
+      ],
+      "beats": [
+        {
+          "code": "SEARCHING_FOR_SULIKO",
+          "ordinal": 1,
+          "narration": "At dusk a grieving heart wanders the hills seeking a lost grave, asking of the whole world the one question of Akaki Tsereteli's song: „სად ხარ, ჩემო სულიკო?“ — where are you, my Suliko? Witness the gentlest tale of all: a love that will not accept that death is the end of it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_WHERE_SHE_LIVES",
+          "ordinal": 2,
+          "narration": "The song answers in three voices, and you may listen for the beloved in any of them — the rose blooming on the briar, the nightingale singing in the dark, the star trembling in the evening sky. Where will you seek Suliko? Each answer is true.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "ASK_THE_ROSE",
+          "ordinal": 3,
+          "narration": "You bend to the wild rose on the thorn, and in its quiet blooming you feel the beloved's gentleness answer back. Witness how the living world keeps what we have loved — a rose remembering a face.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "ASK_THE_NIGHTINGALE",
+          "ordinal": 3,
+          "narration": "You listen to the nightingale pouring its song into the dark, and in that singing you hear the beloved's voice answer. Witness grief turned to music — the oldest Georgian way of keeping the dead near.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "ASK_THE_STAR",
+          "ordinal": 3,
+          "narration": "You look up to the one trembling star above the hills, and in its small steady light the beloved seems to look back. Witness how the whole sky can become a single remembered face.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "SHE_IS_IN_ALL_OF_THEM",
+          "ordinal": 4,
+          "narration": "And the heart understands at last: Suliko is not in the grave but in the rose, the nightingale, and the star together — in everything still living that the love has touched. Restore her, not to the earth, but to the world: for what is truly loved and truly remembered is never, anywhere, lost.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "SULIKO_FOUND",
+          "ordinal": 5,
+          "narration": "The search ends not in a grave but in a song that all of Georgia will sing — proof in three voices that love outlasts death the way memory outlasts oblivion. You have kept the tenderest thread in the whole Chronicle. The dusk is full of her.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "SEARCHING_FOR_SULIKO", "to": "CHOOSE_WHERE_SHE_LIVES", "choiceKey": null },
+        { "from": "CHOOSE_WHERE_SHE_LIVES", "to": "ASK_THE_ROSE", "choiceKey": "rose" },
+        { "from": "CHOOSE_WHERE_SHE_LIVES", "to": "ASK_THE_NIGHTINGALE", "choiceKey": "nightingale" },
+        { "from": "CHOOSE_WHERE_SHE_LIVES", "to": "ASK_THE_STAR", "choiceKey": "star" },
+        { "from": "ASK_THE_ROSE", "to": "SHE_IS_IN_ALL_OF_THEM", "choiceKey": null },
+        { "from": "ASK_THE_NIGHTINGALE", "to": "SHE_IS_IN_ALL_OF_THEM", "choiceKey": null },
+        { "from": "ASK_THE_STAR", "to": "SHE_IS_IN_ALL_OF_THEM", "choiceKey": null },
+        { "from": "SHE_IS_IN_ALL_OF_THEM", "to": "SULIKO_FOUND", "choiceKey": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_ABO",
+    "title": "გრძელი ღამე — The Long Night",
+    "strand": "HISTORY",
+    "eraId": 7,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_ABO_OF_TIFLIS",
+      "title": "აბო თბილელი — Abo of Tiflis",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 8,
+      "triggers": [
+        { "type": "ERA", "value": "ABO" },
+        { "type": "PLACE", "value": "metekhi_cliff" }
+      ],
+      "beats": [
+        {
+          "code": "ABO_COMES_TO_KARTLI",
+          "ordinal": 1,
+          "narration": "Under the Long Night of the Arab yoke comes აბო — a young perfumer of Baghdad, Arab-born, in the company of a Georgian prince returning home. The age is heavy; the Unremembering presses on a city that is told, day by day, to forget its own name. Witness a stranger arrive who will give that city back its memory by his death.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_CONVICTION",
+          "ordinal": 2,
+          "narration": "In Kartli, Abo studies the faith of the land that sheltered him and, freely, embraces it — and is baptized. Witness a conviction freely chosen. This is not a tale against the people he was born among, who are not the enemy here; it is a tale of one soul choosing what it will not betray.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_TRIAL",
+          "ordinal": 3,
+          "narration": "Tbilisi's rulers seize Abo and demand he recant and return to the faith of his birth, on pain of death. He refuses — calmly, without contempt for anyone. Witness him hold to the thing he has chosen while the whole weight of the Long Night leans on him to forget it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_HIS_WITNESS",
+          "ordinal": 4,
+          "narration": "They behead Abo, burn his body, and cast the ashes from the Metekhi cliff into the Mtkvari, so that no grave, no relic, no memory of him should remain — the Unremembering's whole purpose in one act. You cannot save his life; that is the truth of the tale. Ward his witness. Stand so that the river does not carry away the memory of what he chose.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_CITYS_REMEMBRANCE",
+          "ordinal": 5,
+          "narration": "Where his ashes fell, a light is seen on the water, and the city — Christian and Muslim both, who knew him — does not forget. Restore the remembrance: Abo becomes the patron of Tbilisi, the proof that even in the Long Night a city kept the memory of a just man against every effort to erase it.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "PATRON_OF_THE_CITY",
+          "ordinal": 6,
+          "narration": "Abo Tbileli stands in the Living Chronicle as the patron of the city that the empires could not make forget. The Long Night did not win. You have kept it — a memory the river was told to swallow, and did not.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "ABO_COMES_TO_KARTLI", "to": "THE_CONVICTION", "choiceKey": null },
+        { "from": "THE_CONVICTION", "to": "THE_TRIAL", "choiceKey": null },
+        { "from": "THE_TRIAL", "to": "WARD_HIS_WITNESS", "choiceKey": null },
+        { "from": "WARD_HIS_WITNESS", "to": "THE_CITYS_REMEMBRANCE", "choiceKey": null },
+        { "from": "THE_CITYS_REMEMBRANCE", "to": "PATRON_OF_THE_CITY", "choiceKey": null }
+      ]
+    }
+  ]
+}

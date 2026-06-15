@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_BAGRATI",
+    "title": "მიწათა შეკრება — The Gathering of the Lands",
+    "strand": "HISTORY",
+    "eraId": 8,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_GATHERING_BAGRAT",
+      "title": "ბაგრატ III — The Gathering",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 9,
+      "triggers": [
+        { "type": "ERA", "value": "BAGRATI" },
+        { "type": "PLACE", "value": "kutaisi" }
+      ],
+      "beats": [
+        {
+          "code": "THE_SPLINTERED_CROWNS",
+          "ordinal": 1,
+          "narration": "For generations the lands of the Georgians have worn separate crowns — Abkhazia, Kartli, Kakheti, Tao-Klarjeti — each a kingdom, none the whole. Witness a people who share a tongue, a faith, and a memory, yet not a throne; and feel how the Unremembering loves exactly this, a homeland too divided to remember itself entire.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "BAGRAT_THE_UNIFIER",
+          "ordinal": 2,
+          "narration": "Through inheritance, patience, and will, ბაგრატ III draws the crowns together into one — the first king of a Georgia that is, at last, a single realm from the Black Sea inward. Aid the gathering: carry the word between the courts, help bind what jealousy would keep apart.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AGAINST_DIVISION",
+          "ordinal": 3,
+          "narration": "The Aspect of Division rises against the young unity — the oldest enemy of this land, the voice in every petty lord that says a small certain throne is better than a great shared one. Ward the union in its first fragile years, against the fracture the Unremembering is always whispering for.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RAISE_BAGRATI_CATHEDRAL",
+          "ordinal": 4,
+          "narration": "At Kutaisi rises Bagrati Cathedral, vast and new, the stone declaration that the lands are one. Restore it — raise the monument that says to every later century, in a language of arches and light, that Georgia was gathered whole and can be gathered whole again.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "ONE_GEORGIA",
+          "ordinal": 5,
+          "narration": "One crown, one realm, one remembered nation — and from this gathering will come the Builder and the Golden Age. You have kept the union's beginning. The thread runs bright toward David. The way to the Age of the Builder is open.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_SPLINTERED_CROWNS", "to": "BAGRAT_THE_UNIFIER", "choiceKey": null },
+        { "from": "BAGRAT_THE_UNIFIER", "to": "WARD_AGAINST_DIVISION", "choiceKey": null },
+        { "from": "WARD_AGAINST_DIVISION", "to": "RAISE_BAGRATI_CATHEDRAL", "choiceKey": null },
+        { "from": "RAISE_BAGRATI_CATHEDRAL", "to": "ONE_GEORGIA", "choiceKey": null }
+      ]
+    }
+  ]
+}

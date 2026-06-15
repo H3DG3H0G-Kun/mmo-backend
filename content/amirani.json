@@ -1,0 +1,90 @@
+{
+  "saga": {
+    "code": "SAGA_AMIRANI",
+    "title": "ამირანი — Amirani",
+    "strand": "MYTH",
+    "eraId": 1,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_AMIRANI_BOUND",
+      "title": "ამირანი — Amirani Bound",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "peak" },
+        { "type": "STATE", "value": "STORM" }
+      ],
+      "beats": [
+        {
+          "code": "THE_PEAK_IN_THE_STORM",
+          "ordinal": 1,
+          "narration": "Lightning walks the high Caucasus, and on the storm-peak you find him — ამირანი, the bound titan, chained to the rock, an eagle at his side and a faithful hound licking the iron thin. You are the Watcher. He is the deathless one who suffered for the people, as you are the deathless one who carries their memory. You have come to keep him.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_DEEDS_REMEMBERED",
+          "ordinal": 2,
+          "narration": "In the lightning you witness his deeds as the old tellings hold them: ამირანი with his brothers ბადრი and უსიფი, the slaying of the devis and the great გველეშაპი, the winning of ქამარი from the powers of the sky. These were never small. To remember them truly is the first half of keeping him.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_HOW_TO_KEEP",
+          "ordinal": 3,
+          "narration": "The old belief is exact: forget Amirani, and his chains break and the world unmakes; remember him, and the iron holds. How will you help the people keep him — at the smith's forge, where the Holy-Thursday hammer renews the chain, or at the hearth, where the tale is told to the children? Both are true keepings.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "THE_HOLY_THURSDAY_HAMMER",
+          "ordinal": 4,
+          "narration": "You stand with the village smiths on Holy Thursday as they strike the anvil, and each blow renews Amirani's chain — the old rite by which a whole people, year on year, refuses to let him slip into oblivion. Aid the hammering. The ring of iron is the sound of remembrance made into work.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "THE_TELLING_BY_THE_FIRE",
+          "ordinal": 4,
+          "narration": "You sit with the elders at the hearth as the tale of Amirani is given to the children, who will give it onward — the chain of voices that has held him since before there were kings. Aid the telling. A myth kept in the mouths of the young is a chain no rust can reach.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AGAINST_FORGETTING",
+          "ordinal": 5,
+          "narration": "The ნისლი rises — the Unremembering, a slow Echo of Forgetting that would have the smiths fall silent and the tales go untold, until the chain rots through and the deep memory unravels. This is the only thing that can truly free Amirani, and freeing him this way would unmake the world. Ward remembrance. Stand against the Forgetting and let it not take him.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_CHAIN_HOLDS",
+          "ordinal": 6,
+          "narration": "The Forgetting recedes. The hammers ring, the tale is told, and the chain is renewed — not as a cruelty but as a covenant: the people will not let their titan, or themselves, be forgotten. Restore the rite, and the deep memory is bound fast to the world once more.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "HE_IS_REMEMBERED",
+          "ordinal": 7,
+          "narration": "Amirani endures upon his peak, suffering and remembered, and because he is remembered the world holds. You have kept the oldest memory of all. The storm passes; the Living Chronicle keeps his thread. He is bound, and he is not forgotten — and so neither are the people who tell of him.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_PEAK_IN_THE_STORM", "to": "THE_DEEDS_REMEMBERED", "choiceKey": null },
+        { "from": "THE_DEEDS_REMEMBERED", "to": "CHOOSE_HOW_TO_KEEP", "choiceKey": null },
+        { "from": "CHOOSE_HOW_TO_KEEP", "to": "THE_HOLY_THURSDAY_HAMMER", "choiceKey": "smiths" },
+        { "from": "CHOOSE_HOW_TO_KEEP", "to": "THE_TELLING_BY_THE_FIRE", "choiceKey": "telling" },
+        { "from": "THE_HOLY_THURSDAY_HAMMER", "to": "WARD_AGAINST_FORGETTING", "choiceKey": null },
+        { "from": "THE_TELLING_BY_THE_FIRE", "to": "WARD_AGAINST_FORGETTING", "choiceKey": null },
+        { "from": "WARD_AGAINST_FORGETTING", "to": "THE_CHAIN_HOLDS", "choiceKey": null },
+        { "from": "THE_CHAIN_HOLDS", "to": "HE_IS_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

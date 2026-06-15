@@ -1,0 +1,98 @@
+{
+  "saga": {
+    "code": "SAGA_FARNAVAZ",
+    "title": "ფარნავაზის ხანა — The Age of Parnavaz",
+    "strand": "HISTORY",
+    "eraId": 1,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_FARNAVAZ_CROWN",
+      "title": "ფარნავაზის გვირგვინი — The First Crown",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 2,
+      "triggers": [
+        { "type": "ERA", "value": "PARNAVAZ" },
+        { "type": "PLACE", "value": "throne_hall" }
+      ],
+      "beats": [
+        {
+          "code": "THE_LAND_UNDER_YOKE",
+          "ordinal": 1,
+          "narration": "Unseen, you stand in Kartli under the yoke of Azon, the tyrant left behind by Alexander's armies. The people labour, and a mist — ნისლი, the Unremembering — thickens over the land, until they begin to forget they ever had a king or a name of their own. You are the Watcher. You have come to keep the memory of how the forgetting ended.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_DREAM_OF_SUN_AND_MOON",
+          "ordinal": 2,
+          "narration": "In a hidden house sleeps Parnavaz, of the line of Kartlos. A dream is sent to him — „და იხილა ფარნავაზ ჩუენებით მზე და მთოვარე“: he beholds the sun and the moon, and the sun's light anoints his face. It is the sign of a crown to come. You witness the vision; in this world, to see a thing truly is to begin to keep it.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_HIDDEN_TREASURE",
+          "ordinal": 3,
+          "narration": "Hunting in the hills, Parnavaz follows a wounded deer into a cleft of rock, and there the old treasure of the Caucasus waits in the dark — gold enough to raise a host. The path is uncertain and the cave deep. Aid him: steady his torch, mark the way, help the founding find the means it was always going to find.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_ALLY",
+          "ordinal": 4,
+          "narration": "Word goes out, and the land answers. The warriors of Kartli gather to Parnavaz; in the west, ქუჯი — Kuji of Egrisi — raises his own men to join the cause. Both are true; the unification was one memory made of two. Whose muster will you walk among, to witness the founding from within?",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "WITH_KARTLI",
+          "ordinal": 5,
+          "narration": "You walk among the men of Kartli — farmers and hunters who remember, in their bones, that this was a kingdom before it was a province. They march toward Mtskheta beneath the mountain where Armazi will stand. The memory of Kartli's own strength, rising of itself, holds true around you.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WITH_EGRISI",
+          "ordinal": 5,
+          "narration": "You walk among the men of Egrisi, come east with Kuji to bind the two halves of the land into one. The friendship of Kartli and Egrisi is a thread the Unremembering most wishes cut — for a homeland divided forgets itself fastest. You witness the alliance, and it holds.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_FOUNDING",
+          "ordinal": 6,
+          "narration": "At the gates of the founding the mist gathers and takes a shape: the Aspect of the Foreign Yoke — not Azon the man, but the Unremembering wearing subjugation's face, that would leave Kartli nameless, a province with no crown and no letters of its own. It does not fall to slaughter. Stand between it and the memory. Ward the founding until the moment is true and cannot be unmade.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_FIRST_LETTERS",
+          "ordinal": 7,
+          "narration": "The yoke is held off, and the king does a thing no sword could do: „ქმნა მწიგნობრობა ქართული“ — he gives the realm its own letters, so that memory may be written and never again wholly lost. Help shape the first strokes of the script. This is the heart of your whole watch: a people learning to write its memory down. Restore the letters, and the forgetting loses its dominion here forever.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_CROWN_IS_REMEMBERED",
+          "ordinal": 8,
+          "narration": "„და იქმნა ფარნავაზ მეფე ქართლისა“ — and Parnavaz became king of Kartli. The first crown is raised over a land that now knows its own name and can write it. The mist withdraws; the thread of this era burns bright in the Living Chronicle. You have kept it. The memory is whole, and the road forward opens.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_LAND_UNDER_YOKE", "to": "THE_DREAM_OF_SUN_AND_MOON", "choiceKey": null },
+        { "from": "THE_DREAM_OF_SUN_AND_MOON", "to": "THE_HIDDEN_TREASURE", "choiceKey": null },
+        { "from": "THE_HIDDEN_TREASURE", "to": "CHOOSE_THE_ALLY", "choiceKey": null },
+        { "from": "CHOOSE_THE_ALLY", "to": "WITH_KARTLI", "choiceKey": "kartli" },
+        { "from": "CHOOSE_THE_ALLY", "to": "WITH_EGRISI", "choiceKey": "egrisi" },
+        { "from": "WITH_KARTLI", "to": "WARD_THE_FOUNDING", "choiceKey": null },
+        { "from": "WITH_EGRISI", "to": "WARD_THE_FOUNDING", "choiceKey": null },
+        { "from": "WARD_THE_FOUNDING", "to": "THE_FIRST_LETTERS", "choiceKey": null },
+        { "from": "THE_FIRST_LETTERS", "to": "THE_CROWN_IS_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

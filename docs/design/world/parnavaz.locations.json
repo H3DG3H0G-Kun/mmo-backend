@@ -1,0 +1,73 @@
+{
+  "_note": "PARNAVAZ region locations. Proposed `location` shape (WORLD_DESIGN.md §2). Backend session finalizes schema. Codes reconciled to existing authored PLACE values (throne_hall, peak, armazi_mount) and place_of_power codes (ARMAZTSIKHE). Coordinates per WORLD_DESIGN.md §1: metres; backend (x,y) -> Unity (x,1,y); origin (0,0) = Mtskheta.",
+  "era": {
+    "code": "PARNAVAZ",
+    "bounds": { "minX": -60, "minY": -30, "maxX": 60, "maxY": 150 },
+    "originLocation": "mtskheta"
+  },
+  "locations": [
+    {
+      "code": "mtskheta",
+      "name": "მცხეთა — Mtskheta, Seat of Kartli",
+      "eraCode": "PARNAVAZ",
+      "type": "TOWN",
+      "x": 0, "y": 0, "radius": 14,
+      "siegePlaceCode": null,
+      "folk": "KARTLIAN",
+      "forageRegion": "LOWLAND"
+    },
+    {
+      "code": "throne_hall",
+      "name": "The Throne-Hall of the First Crown",
+      "eraCode": "PARNAVAZ",
+      "type": "PLACE_OF_POWER",
+      "x": 6, "y": 6, "radius": 4,
+      "siegePlaceCode": null,
+      "folk": null,
+      "forageRegion": null,
+      "_keep": "Existing client hardcode (6,6,4). Must stay so TALE_FARNAVAZ_CROWN keeps resonating."
+    },
+    {
+      "code": "armazi_mount",
+      "name": "არმაზი — The Mount of Armazi",
+      "eraCode": "PARNAVAZ",
+      "type": "PLACE_OF_POWER",
+      "x": -34, "y": 20, "radius": 9,
+      "siegePlaceCode": "ARMAZTSIKHE",
+      "folk": null,
+      "forageRegion": null,
+      "_dual": "Same hill = siege place ARMAZTSIKHE (era 1 contest, V7) AND narrative place armazi_mount (era 2 Watchfire tale). Era-as-layer."
+    },
+    {
+      "code": "aragvi_marches",
+      "name": "The Frayed Marches of the Aragvi",
+      "eraCode": "PARNAVAZ",
+      "type": "WILDS",
+      "x": 12, "y": 52, "radius": 26,
+      "siegePlaceCode": null,
+      "folk": null,
+      "forageRegion": "WILDS"
+    },
+    {
+      "code": "pasanauri",
+      "name": "ფასანაური — Pasanauri, the Aragvi Hold",
+      "eraCode": "PARNAVAZ",
+      "type": "TOWN",
+      "x": 24, "y": 96, "radius": 10,
+      "siegePlaceCode": null,
+      "folk": "MTIULI",
+      "forageRegion": "HIGHLAND"
+    },
+    {
+      "code": "peak",
+      "name": "The Storm-Peak of the Chained One",
+      "eraCode": null,
+      "type": "LANDMARK",
+      "x": 38, "y": 132, "radius": 6,
+      "siegePlaceCode": null,
+      "folk": null,
+      "forageRegion": null,
+      "_transEra": "eraCode null = reachable in any era. Amirani resonates PLACE=peak + STATE=STORM, no ERA gate (content/amirani.json)."
+    }
+  ]
+}

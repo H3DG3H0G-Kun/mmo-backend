@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_KOPALA",
+    "title": "კოპალა — The Devi-Slayer",
+    "strand": "MYTH",
+    "eraId": 1,
+    "ordinal": 4
+  },
+  "tales": [
+    {
+      "code": "TALE_KOPALA_AND_THE_DEVIS",
+      "title": "კოპალა და დევები — Kopala and the Devis",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "gorge" },
+        { "type": "STATE", "value": "NIGHT" }
+      ],
+      "beats": [
+        {
+          "code": "THE_DEVIS_IN_THE_GORGE",
+          "ordinal": 1,
+          "narration": "In the first nights of the world the gorges belong to the დევები — the devis, and the great გველეშაპი coiled in the waters — and no human can settle there to live. Witness the land before it was the people's: beautiful, and closed to them by monsters.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "KOPALA_COMES",
+          "ordinal": 2,
+          "narration": "Down from Morige Ghmerti's court comes კოპალა, the khvtishvili, the hero born to clear the way — his iron mace blessed, his purpose single. Witness the coming of the deity who makes the wild gorges fit for human hearths.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "AID_THE_CLEARING",
+          "ordinal": 3,
+          "narration": "Kopala drives the devis from cave and cliff, gorge by gorge, opening the land. Aid the clearing — mark the dens, carry the blessed iron, help win the ground on which villages and shrines will one day stand. This is the world being made habitable, one cleared gorge at a time.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_GVELESHAPI",
+          "ordinal": 4,
+          "narration": "At the heart of the gorge waits the გველეშაპი itself, the dragon that has swallowed the spring and coils against the light — a true monster of the deep myth, primordial chaos given scales. Here the Ward is a battle outright: stand with Kopala and break the dragon, for this is no beloved soul but the old dark that would keep the world unmade.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_SPRING",
+          "ordinal": 5,
+          "narration": "The dragon falls and the swallowed waters break free, and the spring runs clean again into the gorge. Restore it to the people — the water that means flocks, fields, and a place to live. The wild has been made room enough for hearth-fire.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_LAND_MADE_FOR_PEOPLE",
+          "ordinal": 6,
+          "narration": "Where devis ruled, villages will rise; where the dragon coiled, the spring sings. Kopala's deed is remembered every time a highland hearth is lit in a gorge he opened. You have kept the myth of how the land became the people's. The night lifts; the thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_DEVIS_IN_THE_GORGE", "to": "KOPALA_COMES", "choiceKey": null },
+        { "from": "KOPALA_COMES", "to": "AID_THE_CLEARING", "choiceKey": null },
+        { "from": "AID_THE_CLEARING", "to": "WARD_THE_GVELESHAPI", "choiceKey": null },
+        { "from": "WARD_THE_GVELESHAPI", "to": "RESTORE_THE_SPRING", "choiceKey": null },
+        { "from": "RESTORE_THE_SPRING", "to": "THE_LAND_MADE_FOR_PEOPLE", "choiceKey": null }
+      ]
+    }
+  ]
+}

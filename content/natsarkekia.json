@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_NATSARKEKIA",
+    "title": "ნაცარქექია — The Ash-Raker",
+    "strand": "MYTH",
+    "eraId": 1,
+    "ordinal": 6
+  },
+  "tales": [
+    {
+      "code": "TALE_NATSARKEKIA",
+      "title": "ნაცარქექია — Natsarkekia",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "village" },
+        { "type": "STATE", "value": "NIGHT" }
+      ],
+      "beats": [
+        {
+          "code": "THE_LAZY_ASH_RAKER",
+          "ordinal": 1,
+          "narration": "By the dying hearth sprawls ნაცარქექია, the ash-raker, the laziest man in the village, who would rather poke the cold ashes than do an honest day's work. Witness, for once, a memory kept for pure delight — not every thread in the Chronicle is grief; some are the laughter a people keeps to stay sane.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_DEVI_AT_THE_DOOR",
+          "ordinal": 2,
+          "narration": "A great stupid დევი comes down to the village by night, meaning to make a meal of someone — and blunders to the ash-raker's door. Where a hero would draw a sword, Natsarkekia has only his wits, which, it turns out, are weapon enough. Witness brute terror meet lazy cunning.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_CONTEST_OF_WITS",
+          "ordinal": 3,
+          "narration": "The devi challenges him to feats of strength, so Natsarkekia cheats gloriously: he squeezes 'water from a stone' (a hidden lump of cheese), hurls a 'stone' so far it never lands (a bird let loose), and bluffs the giant breathless. Aid the trickery — pass him the cheese, hide the bird, keep a straight face. Cleverness is doing the work that muscle cannot.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_OFF_THE_DEVI",
+          "ordinal": 4,
+          "narration": "Convinced this scrawny man must be a monster of impossible strength, the devi panics. Ward the village — not with a blade but with one last enormous bluff that sends the giant fleeing over the hills, never to trouble the valley again. The lightest Ward in the Chronicle, won with a wink.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_TRICKSTER_REMEMBERED",
+          "ordinal": 5,
+          "narration": "Natsarkekia goes back to his ashes a hero, and the children laugh at the tale for a thousand years. You have kept a memory of the kind every people needs as much as its martyrs: the joy of the small and clever besting the big and cruel. The night is warm with laughter; the thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_LAZY_ASH_RAKER", "to": "THE_DEVI_AT_THE_DOOR", "choiceKey": null },
+        { "from": "THE_DEVI_AT_THE_DOOR", "to": "THE_CONTEST_OF_WITS", "choiceKey": null },
+        { "from": "THE_CONTEST_OF_WITS", "to": "WARD_OFF_THE_DEVI", "choiceKey": null },
+        { "from": "WARD_OFF_THE_DEVI", "to": "THE_TRICKSTER_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

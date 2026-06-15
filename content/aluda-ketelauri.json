@@ -1,0 +1,82 @@
+{
+  "saga": {
+    "code": "SAGA_ALUDA",
+    "title": "აღორძინებული სიტყვა — The Reborn Word",
+    "strand": "WORD",
+    "eraId": 13,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_ALUDA_KETELAURI",
+      "title": "ალუდა ქეთელაური — Aluda Ketelauri",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "mountain" },
+        { "type": "PRIOR_TALE", "value": "TALE_HOST_AND_GUEST" }
+      ],
+      "beats": [
+        {
+          "code": "THE_COMBAT",
+          "ordinal": 1,
+          "narration": "Vazha-Pshavela's second highland tragedy opens, and you stand on a Khevsureti slope where ალუდა ქეთელაური meets the Kist raider მუცალი in fair combat. Aluda wins — but Mutsali fights and dies so bravely that something in the Khevsur cannot hate him. Witness an enemy revealed, in the moment of his death, as a man worthy of honor. (This memory opens only to one who has already kept Host and Guest.)",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_CONSCIENCE",
+          "ordinal": 2,
+          "narration": "Custom demands that Aluda cut off the dead enemy's right hand as a trophy to carry home. His conscience refuses. Witness this turning either through the custom that presses on him, or through the conscience that resists it — for the poem's truth is that even tempted by the old law, Aluda chooses to honor the man he killed.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "HONOR_THE_ENEMY",
+          "ordinal": 3,
+          "narration": "You witness Aluda look at the brave dead and refuse to maim him — leaving Mutsali whole, his honor intact. To Aluda the bravery of an enemy is still bravery, and a man is still a man. Witness a conscience that sees past the tribe to the human being, which is the whole heart of Vazha.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_CUSTOM_DEMANDS",
+          "ordinal": 3,
+          "narration": "You witness the weight of the custom — generations of feud that say a trophy must be taken, that mercy to an enemy is betrayal of one's own dead. Aluda feels all of it. And still, in the end, he will not do it. Witness how heavy the right choice is, and that he makes it anyway.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_OX_OFFERING",
+          "ordinal": 4,
+          "narration": "Home in the village, Aluda goes further: he asks that an ox be sacrificed for the soul of Mutsali, the slain Muslim enemy. The ხევისბერი refuses, the community recoils — to pray for an enemy's soul is, to them, sacrilege. Witness a good man's mercy met as a crime by his own people.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_MEANING",
+          "ordinal": 5,
+          "narration": "An Aspect of Tribal Pride rises — not the Khevsur people, never the faith, but the blindness that would have this remembered as Aluda's disgrace instead of his greatness, and bury Vazha's plea that the enemy too is human. Ward the meaning. Stand so the memory keeps the truth: that Aluda was right, and his village wrong, and that this is the poem's glory, not its shame.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_LONELY_RIGHTNESS",
+          "ordinal": 6,
+          "narration": "Aluda and his family are driven from the community for his mercy, and he goes into exile carrying nothing but his rightness. Witness the lonely, unbroken figure on the mountain road — kin in spirit to Jokola, another highlander who kept the human law against his own people. You have kept it. „კაცი კაცისა ჯავრითა“ — let the enemy, too, be mourned as a man.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_COMBAT", "to": "CHOOSE_THE_CONSCIENCE", "choiceKey": null },
+        { "from": "CHOOSE_THE_CONSCIENCE", "to": "HONOR_THE_ENEMY", "choiceKey": "honor" },
+        { "from": "CHOOSE_THE_CONSCIENCE", "to": "THE_CUSTOM_DEMANDS", "choiceKey": "custom" },
+        { "from": "HONOR_THE_ENEMY", "to": "THE_OX_OFFERING", "choiceKey": null },
+        { "from": "THE_CUSTOM_DEMANDS", "to": "THE_OX_OFFERING", "choiceKey": null },
+        { "from": "THE_OX_OFFERING", "to": "WARD_THE_MEANING", "choiceKey": null },
+        { "from": "WARD_THE_MEANING", "to": "THE_LONELY_RIGHTNESS", "choiceKey": null }
+      ]
+    }
+  ]
+}

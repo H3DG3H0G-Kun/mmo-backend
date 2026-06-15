@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_EREKLE",
+    "title": "უკანასკნელი სამეფო — The Last Kingdom",
+    "strand": "HISTORY",
+    "eraId": 12,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_KRTSANISI",
+      "title": "კრწანისი — Krtsanisi",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 13,
+      "triggers": [
+        { "type": "ERA", "value": "EREKLE" },
+        { "type": "PLACE", "value": "krtsanisi" }
+      ],
+      "beats": [
+        {
+          "code": "THE_AGED_KING",
+          "ordinal": 1,
+          "narration": "It is 1795, and ერეკლე II — Erekle, the old lion of Kartli-Kakheti — stands at the edge of the field of Krtsanisi as Agha Mohammad Khan's vast army comes for Tbilisi. He is past seventy, his kingdom small and alone, his allies absent. Witness the last king of the old Georgia facing odds no courage can balance.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_LAST_MUSTER",
+          "ordinal": 2,
+          "narration": "A few thousand Georgians answer the muster against tens of thousands. Among them ride the men of the Aragvi gorge. Aid the last muster of the kingdom — there is no illusion of victory here, only the determination that the enemy will pay for every step toward the city.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_RETREAT",
+          "ordinal": 3,
+          "narration": "The line breaks under sheer numbers, and the king must be pulled from the field against his will. To buy his escape and the city's people time, the სამასი არაგველი — the Three Hundred Aragvians — turn and hold. Ward the retreat at their side. This is the last stand of the last kingdom; make it count for every life it shields.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_THREE_HUNDRED",
+          "ordinal": 4,
+          "narration": "The Three Hundred die where they stand, to the last man, and their dying holds the road. Witness them. The Aspect of the Burning will take Tbilisi tonight — the erasing tide, not the Persian soldier, is the true Distortion — but it will not take the memory of these three hundred who chose the homeland over their own breath.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THEIR_MEMORY",
+          "ordinal": 5,
+          "narration": "Tbilisi burns, and the old kingdom is mortally wounded; within a few years it will be gone. But restore the memory of Krtsanisi — of an aged king who would not leave, and three hundred from the Aragvi who would not run. A kingdom can fall and its memory still stand, and that standing memory is itself a kind of survival.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_KINGDOM_PASSES",
+          "ordinal": 6,
+          "narration": "The Last Kingdom passes into history, but not into oblivion. You have kept it — the burning city, the lion king, the three hundred — and from the ashes of the old kingdom the next age will be one not of crowns but of words, where the nation remembers itself awake. The thread holds into the Reborn Word.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_AGED_KING", "to": "THE_LAST_MUSTER", "choiceKey": null },
+        { "from": "THE_LAST_MUSTER", "to": "WARD_THE_RETREAT", "choiceKey": null },
+        { "from": "WARD_THE_RETREAT", "to": "THE_THREE_HUNDRED", "choiceKey": null },
+        { "from": "THE_THREE_HUNDRED", "to": "RESTORE_THEIR_MEMORY", "choiceKey": null },
+        { "from": "RESTORE_THEIR_MEMORY", "to": "THE_KINGDOM_PASSES", "choiceKey": null }
+      ]
+    }
+  ]
+}

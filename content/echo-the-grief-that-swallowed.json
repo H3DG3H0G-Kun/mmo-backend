@@ -1,0 +1,64 @@
+{
+  "saga": {
+    "code": "SAGA_ECHO_PANTHER",
+    "title": "ვეფხისტყაოსნის ექო — Echoes of the Panther's Skin",
+    "strand": "WORD",
+    "eraId": 4,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_ECHO_PANTHER_GRIEF",
+      "title": "ექო: ჩაყლაპული გოდება — Echo: The Grief That Swallowed",
+      "tier": "ECHO",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_THE_TAKING_OF_KAJETI" }
+      ],
+      "beats": [
+        {
+          "code": "THE_UNMADE_BROTHERHOOD",
+          "ordinal": 1,
+          "narration": "You enter a Rustaveli that never was. In this Echo, Avtandil chose his own comfort and never returned to the cave; the brotherhood was never sworn; Tariel sank into the panther's grief and never rose. The fiction marks it clearly: this is what-if, the poem's nightmare of itself. Witness the corruption, and remember the true ending you already restored.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "NESTAN_FORGOTTEN",
+          "ordinal": 2,
+          "narration": "Without the brothers, Kajeti is never stormed, and Nestan-Darejan stays locked in the Kaji fortress until even her name fades from the verse. Witness the unbearable false ending — love abandoned, the beloved forgotten, the poem collapsed into the despair it was written to defeat.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_GREATER_KAJI",
+          "ordinal": 3,
+          "narration": "Here in the Echo the Kajni rule unchallenged and at full, terrible strength — no true tale restrains them, so the Ward is the hardest the Word strand offers. Strike into the corrupted Kajeti and break the King of the Kajni who feeds on this false despair. This is variation the canon could never allow, permitted only because the fiction names it unreal.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_TRUE_ENDING",
+          "ordinal": 4,
+          "narration": "As the greater Kaji falls, the false despair shreds away and the true poem floods back — Avtandil returning, the oath sworn, the three storming the walls, Nestan freed. Restore Rustaveli's real ending over the nightmare. The Echo has only made the truth shine harder: love kept, friendship proven, the beloved never lost.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_ECHO_DISPELLED",
+          "ordinal": 5,
+          "narration": "The grief that swallowed the poem is itself swallowed, and ვეფხისტყაოსანი stands whole and true again, untouched in its real text, brighter for the dark having dreamed against it. You have kept the poem by defeating its nightmare. The panther's skin hangs as triumph still. The thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_UNMADE_BROTHERHOOD", "to": "NESTAN_FORGOTTEN", "choiceKey": null },
+        { "from": "NESTAN_FORGOTTEN", "to": "WARD_THE_GREATER_KAJI", "choiceKey": null },
+        { "from": "WARD_THE_GREATER_KAJI", "to": "RESTORE_THE_TRUE_ENDING", "choiceKey": null },
+        { "from": "RESTORE_THE_TRUE_ENDING", "to": "THE_ECHO_DISPELLED", "choiceKey": null }
+      ]
+    }
+  ]
+}

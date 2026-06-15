@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_HERMIT",
+    "title": "განდეგილი — The Hermit",
+    "strand": "WORD",
+    "eraId": 13,
+    "ordinal": 3
+  },
+  "tales": [
+    {
+      "code": "TALE_THE_HERMIT",
+      "title": "განდეგილი — The Hermit",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "mountain_cave" },
+        { "type": "STATE", "value": "STORM" }
+      ],
+      "beats": [
+        {
+          "code": "THE_BETLEMI_CAVE",
+          "ordinal": 1,
+          "narration": "High on the mountain, in the cave of Betlemi beneath the eternal snows of Mqinvartsveri, an old monk has renounced the world for decades — Ilia Chavchavadze's განდეგილი, the Hermit. Witness a life given wholly to prayer and solitude, and the great silence in which he believes he has made his peace.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_STORM_AND_THE_STRANGER",
+          "ordinal": 2,
+          "narration": "A storm drives a young shepherdess to the cave for shelter, and the world the hermit thought he had left walks in out of the snow — youth, warmth, life itself. She seeks only refuge. Witness the meeting, and do not judge either soul; the poem does not, and neither do we.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_SHAKEN_VOW",
+          "ordinal": 3,
+          "narration": "In her presence the hermit's decades of certainty waver, and he is torn between the renunciation that was his whole life and the living world he had believed himself beyond. Witness the trembling of a soul — Ilia's unflinching honesty about how thin the line can be between sanctity and longing.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_MEANING",
+          "ordinal": 4,
+          "narration": "Over his anguish gathers the Aspect of Despair — the Distortion that would have his entire devotion remembered as a wasted life, his struggle reduced to a fool's denial, and so let it be forgotten. Ward the dignity of his struggle. This tale takes no verdict; it keeps the truth that the question itself was holy and the man who wrestled with it deserves to be remembered whole.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_HERMIT_REMEMBERED",
+          "ordinal": 5,
+          "narration": "The hermit dies in his crisis, his peace broken, and Ilia leaves us no easy answer — only a soul, fully seen. You have kept it without judging it. The memory stands: a man who gave everything to a hard ideal, and met, at the last, the full weight of being human. Reverence, not a verdict. The thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_BETLEMI_CAVE", "to": "THE_STORM_AND_THE_STRANGER", "choiceKey": null },
+        { "from": "THE_STORM_AND_THE_STRANGER", "to": "THE_SHAKEN_VOW", "choiceKey": null },
+        { "from": "THE_SHAKEN_VOW", "to": "WARD_THE_MEANING", "choiceKey": null },
+        { "from": "WARD_THE_MEANING", "to": "THE_HERMIT_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

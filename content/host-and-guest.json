@@ -1,0 +1,98 @@
+{
+  "saga": {
+    "code": "SAGA_STUMARMASPINDZELI",
+    "title": "სტუმარ-მასპინძელი — Host and Guest",
+    "strand": "WORD",
+    "eraId": 4,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_HOST_AND_GUEST",
+      "title": "სტუმარ-მასპინძელი — Host and Guest",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "mountain" },
+        { "type": "STATE", "value": "STORM" }
+      ],
+      "beats": [
+        {
+          "code": "THE_MIST_ON_THE_MOUNTAIN",
+          "ordinal": 1,
+          "narration": "Storm closes over the Khevsureti highlands, and in the mountain mist — ნისლი — two hunters meet who cannot yet see each other's faces. One is ჯოყოლა (Jokola), a Kist; he speaks the oldest law of these mountains, „სტუმარი ღვთისაა“ — the guest is God's — and offers the stranger his roof. You are the Watcher. You have come not to change this night, but to keep its meaning whole.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_GUEST_TABLE",
+          "ordinal": 2,
+          "narration": "At Jokola's hearth his wife აღაზა (Aghaza) lays the guest-table — bread, fire, the honour a stranger is owed before his name is ever asked. Help her set it. In these mountains hospitality is not courtesy but something holy, older than any feud; for this hour the stranger is sacred and safe beneath an enemy's roof.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_WHOSE_EYES",
+          "ordinal": 3,
+          "narration": "The night will turn to grief, and the memory must be kept truly. Whose eyes will you witness it through — ჯოყოლა, the host bound by the holiest law, or აღაზა, who already grieves what is coming? Both see truly.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "THROUGH_JOKOLA",
+          "ordinal": 4,
+          "narration": "You stand with Jokola as recognition falls like a stone: the guest at his table is ზვიადაური (Zviadauri), the Khevsur whose hand has emptied Kist cradles — his people's blood-enemy. And still Jokola does not break the guest-law. To betray one who has eaten your bread is, to him, the one unforgivable sin. Witness a man hold the sacred against his own blood.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THROUGH_AGHAZA",
+          "ordinal": 4,
+          "narration": "You stand with Aghaza, who sees past the enemy's name to the man — proud, unafraid, noble even here. She knows what her people will demand, and what it will cost her husband's honour to refuse them. Her grief is the poem's conscience. Witness her see clearly when the whole world has gone blind with old blood.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_TEMI_COMES",
+          "ordinal": 5,
+          "narration": "The თემი — the community — learns whom Jokola shelters, and comes for him. They are not monsters; they are a people who have buried too many of their own, and the feud speaks through them. Jokola refuses to give up his guest; they overpower him and take Zviadauri to a kinsman's grave. He goes unbroken, refusing them even his fear. You cannot stop this — it is the truth of the tale. You can only witness it without looking away.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_MEANING",
+          "ordinal": 6,
+          "narration": "From the spilled blood rises a ჩრდილი — the Aspect of Vengeance, the feud itself grown monstrous — and it reaches for the memory: to have this night remembered as nothing but hatred, to strip Zviadauri's death of its dignity and Jokola's stand of its holiness, to drown the guest-law in the noise of old blood. You did not come to save the slain; you came to save what their story means. Stand between the memory and the Distortion. Ward the truth: that hospitality is sacred, and that two enemies were, for one hour, host and guest.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_LAMENT_OF_THE_ARAGVI",
+          "ordinal": 7,
+          "narration": "The Aspect breaks, and the mountains mourn as Vazha-Pshavela knew they would — the ხევსურეთის არაგვი, the cliffs, the wind, all of nature grieving the cruelty of men. Aghaza mourns the guest her people slew; Jokola is left dishonoured among his own for having been faithful. Restore the lament. Re-light the elegy, so that what was holy here is remembered as holy, and what was lost is rightly wept.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "IT_IS_MOURNED_AND_REMEMBERED",
+          "ordinal": 8,
+          "narration": "The shades of Zviadauri, Jokola, and Aghaza pass into the mountain's keeping, and the tale settles into the Living Chronicle as Vazha wrote it — not a triumph of vengeance, but a lament for hospitality betrayed; a plea that the enemy, too, is a human being. You have kept its meaning whole. It is mourned. It is remembered. „სტუმარი ღვთისაა.“",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_MIST_ON_THE_MOUNTAIN", "to": "THE_GUEST_TABLE", "choiceKey": null },
+        { "from": "THE_GUEST_TABLE", "to": "CHOOSE_WHOSE_EYES", "choiceKey": null },
+        { "from": "CHOOSE_WHOSE_EYES", "to": "THROUGH_JOKOLA", "choiceKey": "jokola" },
+        { "from": "CHOOSE_WHOSE_EYES", "to": "THROUGH_AGHAZA", "choiceKey": "aghaza" },
+        { "from": "THROUGH_JOKOLA", "to": "THE_TEMI_COMES", "choiceKey": null },
+        { "from": "THROUGH_AGHAZA", "to": "THE_TEMI_COMES", "choiceKey": null },
+        { "from": "THE_TEMI_COMES", "to": "WARD_THE_MEANING", "choiceKey": null },
+        { "from": "WARD_THE_MEANING", "to": "THE_LAMENT_OF_THE_ARAGVI", "choiceKey": null },
+        { "from": "THE_LAMENT_OF_THE_ARAGVI", "to": "IT_IS_MOURNED_AND_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

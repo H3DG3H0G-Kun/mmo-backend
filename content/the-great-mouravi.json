@@ -1,0 +1,82 @@
+{
+  "saga": {
+    "code": "SAGA_SAAKADZE",
+    "title": "დიდი მოურავის ხანა — The Age of the Great Mouravi",
+    "strand": "HISTORY",
+    "eraId": 11,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_GREAT_MOURAVI",
+      "title": "გიორგი სააკაძე — The Great Mouravi",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 12,
+      "triggers": [
+        { "type": "ERA", "value": "SAAKADZE" },
+        { "type": "PLACE", "value": "marabda" }
+      ],
+      "beats": [
+        {
+          "code": "THE_DIVIDED_LAND",
+          "ordinal": 1,
+          "narration": "Georgia lies sundered into rival kingdoms and princedoms, easy prey for the empires at its borders. Into this comes გიორგი სააკაძე, the Didi Mouravi, the Great Mouravi — a soldier of common birth and uncommon will, who dreams of one Georgia again. Witness a divided homeland and the man who would force it whole.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_FRAGILE_UNITY",
+          "ordinal": 2,
+          "narration": "Saakadze gathers what unity he can — a coalition of jealous nobles who trust him more than they trust each other, and barely that. His is a contested name, then and now: a patriot to most, a man of hard and tangled choices to others. We keep him as the nation's memory holds him, and we keep the tangle honest. Aid the fragile muster against Shah Abbas's Persia.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_AT_MARABDA",
+          "ordinal": 3,
+          "narration": "At Marabda, in 1625, the Georgian host meets the Persian army. They fight with everything and still the field is lost — but the cost they exact breaks the Shah's grip on the land. The true enemy here is not the Persian soldier; it is the Aspect of Division, განხეთქილება, the feud among Georgians that the Unremembering feeds on. Ward the field, and ward against the division that is the real wound.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_LESSON",
+          "ordinal": 4,
+          "narration": "Saakadze's life ends far from home, undone as much by Georgian division as by any foreign sword. What will you carry from him? Witness the cost of the dream of unity, or the grief of the division that defeated it. Both are the lesson.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "THE_COST_OF_UNITY",
+          "ordinal": 5,
+          "narration": "You witness what the dream of one Georgia demanded — a life spent entirely, alliances made and broken, a man burning himself out for a homeland that could not yet hold together. The cost was total, and he paid it. Witness the price of the dream.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_GRIEF_OF_DIVISION",
+          "ordinal": 5,
+          "narration": "You witness the deeper grief: that the enemy who beat him was, again and again, ourselves — the princes who would rather keep a small throne than share a great one. Witness the wound that every era of this land must learn to close.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "DIVISION_IS_THE_DOORWAY",
+          "ordinal": 6,
+          "narration": "The Great Mouravi passes into memory as a warning written in a life: that division is the doorway through which the Unremembering always comes, and unity the only lasting defense. You have kept it honestly — the dream and its cost both. The thread holds toward the last kingdom.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_DIVIDED_LAND", "to": "THE_FRAGILE_UNITY", "choiceKey": null },
+        { "from": "THE_FRAGILE_UNITY", "to": "WARD_AT_MARABDA", "choiceKey": null },
+        { "from": "WARD_AT_MARABDA", "to": "CHOOSE_THE_LESSON", "choiceKey": null },
+        { "from": "CHOOSE_THE_LESSON", "to": "THE_COST_OF_UNITY", "choiceKey": "cost" },
+        { "from": "CHOOSE_THE_LESSON", "to": "THE_GRIEF_OF_DIVISION", "choiceKey": "grief" },
+        { "from": "THE_COST_OF_UNITY", "to": "DIVISION_IS_THE_DOORWAY", "choiceKey": null },
+        { "from": "THE_GRIEF_OF_DIVISION", "to": "DIVISION_IS_THE_DOORWAY", "choiceKey": null }
+      ]
+    }
+  ]
+}

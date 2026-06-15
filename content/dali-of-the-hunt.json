@@ -1,0 +1,82 @@
+{
+  "saga": {
+    "code": "SAGA_DALI",
+    "title": "დალი — The Goddess of the Hunt",
+    "strand": "MYTH",
+    "eraId": 1,
+    "ordinal": 3
+  },
+  "tales": [
+    {
+      "code": "TALE_DALI_OF_THE_HUNT",
+      "title": "დალი — Dali of the Hunt",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "cliff" },
+        { "type": "STATE", "value": "DAWN" }
+      ],
+      "beats": [
+        {
+          "code": "THE_GOLDEN_HAIRED_ON_THE_CLIFF",
+          "ordinal": 1,
+          "narration": "At first light on the high Svan cliffs you see her — დალი, golden-haired goddess of the hunt, who dwells where no hunter should climb. She is beautiful and she is dangerous, and the game of the mountains is hers to give or to withhold. Witness the divinity the highlanders held in awe long before any king.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_HUNTERS_CONTRACT",
+          "ordinal": 2,
+          "narration": "Dali's law is a contract older than writing: take what you need and no more; never the pregnant doe, never the last of a kind, never out of greed. To the hunter who keeps the limit she grants the mountain's bounty; the one who breaks it she casts from the cliff. Witness the sacred balance between the hunter and the wild.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "CHOOSE_THE_HUNTER",
+          "ordinal": 3,
+          "narration": "Two hunters climb to Dali, and the myth holds both. Will you witness the faithful one, who keeps the contract and is blessed, or the doomed one, who breaks the taboo and falls? Both are true faces of the same law.",
+          "interaction": "CHOOSE",
+          "terminal": false
+        },
+        {
+          "code": "THE_FAITHFUL_HUNTER",
+          "ordinal": 4,
+          "narration": "You witness the hunter who honours the limit — who leaves the doe, who thanks the mountain, who takes only his need. Dali keeps faith with him, and he and his village live. Witness how remembering the limit is itself the blessing.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_BROKEN_TABOO",
+          "ordinal": 4,
+          "narration": "You witness the hunter who forgets the contract — who kills past need, who takes the forbidden — and is left clinging to the cliff Dali will not let him leave. Witness the cost of forgetting the sacred limit, not as cruelty but as a law as old and exact as gravity.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_BALANCE",
+          "ordinal": 5,
+          "narration": "The Aspect of Greed gathers — the forgetting of the contract, the appetite that would empty the mountains and call it progress. Ward the balance. Stand for the old limit against the hunger that does not know when to stop, for when the contract is forgotten the wild itself frays out of the world.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "SHE_KEEPS_THE_WILD",
+          "ordinal": 6,
+          "narration": "Dali keeps her cliffs, and the contract is remembered, and the mountains stay full of life. You have kept one of the oldest memories of all — that a people and a wild can hold each other, if neither forgets the limit. The dawn warms the high stone; the thread holds.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_GOLDEN_HAIRED_ON_THE_CLIFF", "to": "THE_HUNTERS_CONTRACT", "choiceKey": null },
+        { "from": "THE_HUNTERS_CONTRACT", "to": "CHOOSE_THE_HUNTER", "choiceKey": null },
+        { "from": "CHOOSE_THE_HUNTER", "to": "THE_FAITHFUL_HUNTER", "choiceKey": "faithful" },
+        { "from": "CHOOSE_THE_HUNTER", "to": "THE_BROKEN_TABOO", "choiceKey": "broken" },
+        { "from": "THE_FAITHFUL_HUNTER", "to": "WARD_THE_BALANCE", "choiceKey": null },
+        { "from": "THE_BROKEN_TABOO", "to": "WARD_THE_BALANCE", "choiceKey": null },
+        { "from": "WARD_THE_BALANCE", "to": "SHE_KEEPS_THE_WILD", "choiceKey": null }
+      ]
+    }
+  ]
+}

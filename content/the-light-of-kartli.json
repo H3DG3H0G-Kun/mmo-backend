@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_NINO",
+    "title": "ნინოს ხანა — The Coming of the Light",
+    "strand": "HISTORY",
+    "eraId": 5,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_LIGHT_OF_KARTLI",
+      "title": "ქართლის ნათელი — The Light of Kartli",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 6,
+      "triggers": [
+        { "type": "ERA", "value": "NINO" },
+        { "type": "PLACE", "value": "mtskheta" }
+      ],
+      "beats": [
+        {
+          "code": "NINO_COMES",
+          "ordinal": 1,
+          "narration": "To Mtskheta comes წმინდა ნინო, a maiden out of Cappadocia, bearing a cross bound with her own hair — the grapevine cross of Kartli. You are the Watcher. Witness the quiet beginning of a light that will not be unmade: not a conquest, but a coming.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_GRAPEVINE_CROSS",
+          "ordinal": 2,
+          "narration": "Queen ნანა lies ill, and Nino prays beside her until she rises healed. The grapevine cross is raised. Aid the carrying of it through Mtskheta — steady the hands that lift the first sign of the faith that will carry this people through every Long Night to come.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "THE_KINGS_CONVERSION",
+          "ordinal": 3,
+          "narration": "King მირიან hunts on the mountain when a darkness falls and blinds the day; in his terror he calls upon Nino's God, and the light returns. Witness a king turn — and with him, a kingdom — toward a memory that will outlast his crown.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_RAISING",
+          "ordinal": 4,
+          "narration": "Where Sidonia was buried clutching the Robe of Christ, a great cedar grew, and from it they would raise a pillar — but the Old Dark gathers, an Aspect of the forgetting that was, and the column will not rise. This is no fight against the old faith, which had its own dignity; it is a stand against oblivion itself. Ward the raising through Nino's night of prayer.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RAISE_THE_LIVING_PILLAR",
+          "ordinal": 5,
+          "narration": "At dawn the pillar lifts of itself and settles into its place, streaming holy myron that heals all who touch it — სვეტი ცხოველი, the life-giving pillar, Svetitskhoveli. Restore it. This is the living image of our whole watch: a column of memory that gives light, standing where a people chose not to forget.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_PILLAR_STREAMS_LIGHT",
+          "ordinal": 6,
+          "narration": "The pillar stands, and Kartli stands with it, lit. The thread of this era burns bright in the Living Chronicle, and a memory has been set down that no conqueror will ever fully erase. You have kept it. The light has come.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "NINO_COMES", "to": "THE_GRAPEVINE_CROSS", "choiceKey": null },
+        { "from": "THE_GRAPEVINE_CROSS", "to": "THE_KINGS_CONVERSION", "choiceKey": null },
+        { "from": "THE_KINGS_CONVERSION", "to": "WARD_THE_RAISING", "choiceKey": null },
+        { "from": "WARD_THE_RAISING", "to": "RAISE_THE_LIVING_PILLAR", "choiceKey": null },
+        { "from": "RAISE_THE_LIVING_PILLAR", "to": "THE_PILLAR_STREAMS_LIGHT", "choiceKey": null }
+      ]
+    }
+  ]
+}

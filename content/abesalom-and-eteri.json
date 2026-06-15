@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_ETERI",
+    "title": "აბესალომ და ეთერი — Abesalom and Eteri",
+    "strand": "MYTH",
+    "eraId": 1,
+    "ordinal": 5
+  },
+  "tales": [
+    {
+      "code": "TALE_ABESALOM_ETERI",
+      "title": "აბესალომ და ეთერი — Abesalom and Eteri",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PLACE", "value": "meadow" },
+        { "type": "STATE", "value": "DAWN" }
+      ],
+      "beats": [
+        {
+          "code": "THE_PRINCE_AND_THE_SHEPHERDESS",
+          "ordinal": 1,
+          "narration": "In a dawn meadow the prince აბესალომ first sees ეთერი, an orphan shepherdess of such grace that he loves her past all rank, and she him. Witness a love that leaps the gap between palace and pasture — the folk dream that the heart obeys no station.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "MURMANS_BARGAIN",
+          "ordinal": 2,
+          "narration": "The vizier მურმან desires Eteri too, and to win her he strikes a bargain with the devis — a dark pact to poison the lovers' happiness and turn the prince's heart sick. Witness the falsifier's oldest move: not honest rivalry, but a corruption bought from the dark.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_LOVE",
+          "ordinal": 3,
+          "narration": "Murman's devil-bargain is the Distortion — a Kaji-kin falsifier that sunders the lovers with sorcery and lies, not the lovers themselves and not even Murman's grief, but the dark thing he summoned. Ward the love. You cannot undo the tragedy the legend tells, but you can stand so that what was true between them is not buried under the lie that broke it.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_LOVERS_GRIEF",
+          "ordinal": 4,
+          "narration": "Sundered by the pact, Abesalom sickens and Eteri pines, and the legend ends as it must — both lost to grief, even Murman ruined by the dark he bought. Witness the sorrow without flinching; it is the price the folk memory set on a love that power would not permit.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_LOVE_REMEMBERED",
+          "ordinal": 5,
+          "narration": "Restore what the bargain could not kill: the memory of the love itself, which the people kept singing long after the lovers were dust, until it became an opera that a whole nation knows by heart. The dark won the day and lost the centuries. Re-light the love in the Chronicle.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "ETERI_REMEMBERED",
+          "ordinal": 6,
+          "narration": "Abesalom and Eteri are gone, but their love is among the best-remembered in the language — proof that what is loved truly outlasts the power that forbade it. You have kept it. The dawn lies gold on the empty meadow, and the song goes on.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_PRINCE_AND_THE_SHEPHERDESS", "to": "MURMANS_BARGAIN", "choiceKey": null },
+        { "from": "MURMANS_BARGAIN", "to": "WARD_THE_LOVE", "choiceKey": null },
+        { "from": "WARD_THE_LOVE", "to": "THE_LOVERS_GRIEF", "choiceKey": null },
+        { "from": "THE_LOVERS_GRIEF", "to": "RESTORE_THE_LOVE_REMEMBERED", "choiceKey": null },
+        { "from": "RESTORE_THE_LOVE_REMEMBERED", "to": "ETERI_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

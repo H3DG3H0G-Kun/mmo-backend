@@ -1,0 +1,64 @@
+{
+  "saga": {
+    "code": "SAGA_ECHO_DIDGORI",
+    "title": "დიდგორის ექო — Echoes of Didgori",
+    "strand": "HISTORY",
+    "eraId": 9,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_ECHO_DIDGORI_FALL",
+      "title": "ექო: დაცემა, რომელიც არ ყოფილა — Echo: The Fall That Was Not",
+      "tier": "ECHO",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "PRIOR_TALE", "value": "TALE_DIDGORI" }
+      ],
+      "beats": [
+        {
+          "code": "THE_FALSE_FIELD",
+          "ordinal": 1,
+          "narration": "You step into a memory that is not real. A ქაჯი has woven an Echo of Didgori in which the line broke, the wondrous victory never came, and Georgia was erased that morning in 1121. The fiction is plain: this is a what-if, a corruption, the silence imagining a defeat. Witness the lie, and do not mistake it for the truth you already kept.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_LIE_OF_DEFEAT",
+          "ordinal": 2,
+          "narration": "The false memory is seductive in its despair — it whispers that the real victory was luck, that the nation was always doomed, that there is no point in the standing. This is how an Echo works: it offers you the comfort of the worst. Witness the temptation to believe defeat, the sweetest poison the Unremembering pours.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_KAJI",
+          "ordinal": 3,
+          "narration": "Because this is an Echo and not the sacred true tale, the gloves come off: the Kaji here is stronger, the fight harder, the corruption able to push back as the canon never would. Ward against it with everything — for here you are not protecting a fragile real moment, you are tearing down a lie that wears its face. Break the false field.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_TRUE_VICTORY",
+          "ordinal": 4,
+          "narration": "As the Kaji fails, the false defeat unravels and the real morning reasserts itself — ძლევაჲ საკვირველი, the wondrous victory, exactly as it was. Restore the truth over the lie. An Echo defeated does not change history; it strengthens the memory of what really happened by contrast with what the dark wished had.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "THE_ECHO_DISPELLED",
+          "ordinal": 5,
+          "narration": "The corrupted memory dissolves like mist, and the true Didgori stands brighter for having been falsely challenged. You have done a different kind of keeping here — not the holding of a real moment, but the dispelling of a beautiful lie about it. The Echo fades. The truth remains, and is harder now to shake.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_FALSE_FIELD", "to": "THE_LIE_OF_DEFEAT", "choiceKey": null },
+        { "from": "THE_LIE_OF_DEFEAT", "to": "WARD_THE_KAJI", "choiceKey": null },
+        { "from": "WARD_THE_KAJI", "to": "RESTORE_THE_TRUE_VICTORY", "choiceKey": null },
+        { "from": "RESTORE_THE_TRUE_VICTORY", "to": "THE_ECHO_DISPELLED", "choiceKey": null }
+      ]
+    }
+  ]
+}

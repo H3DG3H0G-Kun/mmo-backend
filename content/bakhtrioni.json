@@ -1,0 +1,65 @@
+{
+  "saga": {
+    "code": "SAGA_BAKHTRIONI",
+    "title": "ბახტრიონი — Bakhtrioni",
+    "strand": "WORD",
+    "eraId": 11,
+    "ordinal": 2
+  },
+  "tales": [
+    {
+      "code": "TALE_BAKHTRIONI",
+      "title": "ბახტრიონი — Bakhtrioni",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": null,
+      "triggers": [
+        { "type": "ERA", "value": "SAAKADZE" },
+        { "type": "PLACE", "value": "bakhtrioni" }
+      ],
+      "beats": [
+        {
+          "code": "THE_HIGHLAND_OPPRESSED",
+          "ordinal": 1,
+          "narration": "Kakheti groans under the Qizilbash yoke, its valleys settled with foreign herders to break the land's spirit, and the mountain tribes watch from above. Witness, in Vazha-Pshavela's verse, a people pushed to the edge of forgetting itself — and the first stirring of the will to rise.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_TRIBES_UNITE",
+          "ordinal": 2,
+          "narration": "Tush, Pshav, and Khevsur — proud clans who guard their own valleys jealously — set their feuds aside and swear common cause, and among them moves the heroine Sanata, whose courage shames the hesitant to action. Aid the union. Here is the lesson the whole timeline keeps teaching: divided, the highlands fall; united, they cannot be held.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_BAKHTRIONI",
+          "ordinal": 3,
+          "narration": "The united highlanders storm the fortress of Bakhtrioni, the seat of the occupation. The true foe is the Aspect of the Yoke — the erasing weight that would settle the land with strangers until the Kakhetians forget it was ever theirs. Ward the assault; carry the walls; break the yoke.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "RESTORE_THE_HIGHLANDS",
+          "ordinal": 4,
+          "narration": "Bakhtrioni falls and the foreign settlers are driven from the valleys; Kakheti is the Kakhetians' again. Restore the highlands to themselves — a freedom won not by one hero but by tribes who remembered they were one people. The memory of this union is itself a weapon for every later age.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "UNITY_REMEMBERED",
+          "ordinal": 5,
+          "narration": "The 1659 uprising passes into the highlands' proudest song, kept burning in Vazha's verse: that when the clans stood as one, no empire could hold them. You have kept it. The thread runs bright toward the last kingdom.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_HIGHLAND_OPPRESSED", "to": "THE_TRIBES_UNITE", "choiceKey": null },
+        { "from": "THE_TRIBES_UNITE", "to": "WARD_BAKHTRIONI", "choiceKey": null },
+        { "from": "WARD_BAKHTRIONI", "to": "RESTORE_THE_HIGHLANDS", "choiceKey": null },
+        { "from": "RESTORE_THE_HIGHLANDS", "to": "UNITY_REMEMBERED", "choiceKey": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "saga": {
+    "code": "SAGA_ARMAZI",
+    "title": "არმაზის ხანა — The Watchfire of Armazi",
+    "strand": "HISTORY",
+    "eraId": 2,
+    "ordinal": 1
+  },
+  "tales": [
+    {
+      "code": "TALE_WATCHFIRE_OF_ARMAZI",
+      "title": "არმაზის სახმილი — The Watchfire of Armazi",
+      "tier": "TRUE_TALE",
+      "ordinal": 1,
+      "unlocksEraId": 5,
+      "triggers": [
+        { "type": "ERA", "value": "EARLY_KING" },
+        { "type": "PLACE", "value": "armazi_mount" }
+      ],
+      "beats": [
+        {
+          "code": "THE_IDOL_ON_THE_MOUNT",
+          "ordinal": 1,
+          "narration": "On the holy mount above Mtskheta stands არმაზი, the great idol Parnavaz raised, and the watchfire of his cult burns through the pre-Christian centuries. Witness the faith of this age as the age itself held it — with its own dignity and its own truth. You are the Watcher; you do not judge what a people believed, you keep the memory of how they kept themselves.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "BETWEEN_THE_EMPIRES",
+          "ordinal": 2,
+          "narration": "Iberia lies in the narrow place between Rome and Parthia, courted and threatened by both, and her kings walk a knife's edge to stay neither's province. Witness a small kingdom keeping its own name while giants lean on it from either side — the oldest Georgian art there is.",
+          "interaction": "WITNESS",
+          "terminal": false
+        },
+        {
+          "code": "THE_INSCRIBED_MEMORY",
+          "ordinal": 3,
+          "narration": "At Armazi the stone-cutters set inscriptions in two tongues, that the names and the deeds of Iberia be written and outlast the men who bore them. Aid the inscribing — as Parnavaz gave the realm its letters, this age gives the realm a record. Memory written in stone is memory the empires cannot simply overwrite.",
+          "interaction": "AID",
+          "terminal": false
+        },
+        {
+          "code": "WARD_THE_IDENTITY",
+          "ordinal": 4,
+          "narration": "The Aspect of the Devouring Empires presses on Iberia — not Rome or Parthia as peoples, but the erasing pull that would dissolve a small kingdom into a mere borderland of someone else's story, until it forgets it was ever its own. Ward the identity. Hold the watchfire so the kingdom stays itself.",
+          "interaction": "WARD",
+          "terminal": false
+        },
+        {
+          "code": "THE_LAND_KEPT_WHOLE",
+          "ordinal": 5,
+          "narration": "The pressure passes and Iberia endures — pagan still, but whole, and still itself. Restore what these quiet centuries truly accomplished: not a conquest, not a golden age, but the harder thing — a land kept intact and unforgotten through the long in-between.",
+          "interaction": "RESTORE",
+          "terminal": false
+        },
+        {
+          "code": "KEPT_FOR_THE_LIGHT",
+          "ordinal": 6,
+          "narration": "The watchfire of Armazi will one day yield to a different light, when a maiden from Cappadocia comes with a cross of vine. But that is only possible because these kings kept the land whole enough to receive it. You have kept the bridge-years. The way to the Coming of the Light is open.",
+          "interaction": "WITNESS",
+          "terminal": true
+        }
+      ],
+      "edges": [
+        { "from": "THE_IDOL_ON_THE_MOUNT", "to": "BETWEEN_THE_EMPIRES", "choiceKey": null },
+        { "from": "BETWEEN_THE_EMPIRES", "to": "THE_INSCRIBED_MEMORY", "choiceKey": null },
+        { "from": "THE_INSCRIBED_MEMORY", "to": "WARD_THE_IDENTITY", "choiceKey": null },
+        { "from": "WARD_THE_IDENTITY", "to": "THE_LAND_KEPT_WHOLE", "choiceKey": null },
+        { "from": "THE_LAND_KEPT_WHOLE", "to": "KEPT_FOR_THE_LIGHT", "choiceKey": null }
+      ]
+    }
+  ]
+}

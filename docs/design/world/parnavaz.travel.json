@@ -1,0 +1,13 @@
+{
+  "_note": "PARNAVAZ intra-era travel graph (WORLD_DESIGN.md §6). WALK = seamless on-foot (costGold 0, travelSeconds = metres/5). TELEPORT = sparse paid town-to-town memory-road. Era travel (cross-layer) stays the existing POST /api/world/travel. Links undirected.",
+  "eraCode": "PARNAVAZ",
+  "walkSpeedMetersPerSec": 5,
+  "links": [
+    { "fromCode": "mtskheta", "toCode": "throne_hall", "mode": "WALK", "costGold": 0, "travelSeconds": 2, "eraLocked": false },
+    { "fromCode": "mtskheta", "toCode": "armazi_mount", "mode": "WALK", "costGold": 0, "travelSeconds": 8, "eraLocked": false },
+    { "fromCode": "mtskheta", "toCode": "aragvi_marches", "mode": "WALK", "costGold": 0, "travelSeconds": 11, "eraLocked": false },
+    { "fromCode": "aragvi_marches", "toCode": "pasanauri", "mode": "WALK", "costGold": 0, "travelSeconds": 9, "eraLocked": false },
+    { "fromCode": "pasanauri", "toCode": "peak", "mode": "WALK", "costGold": 0, "travelSeconds": 8, "eraLocked": false },
+    { "fromCode": "mtskheta", "toCode": "pasanauri", "mode": "TELEPORT", "costGold": 20, "travelSeconds": 0, "eraLocked": false, "_note": "the one paid memory-road; town<->town only" }
+  ]
+}
